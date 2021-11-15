@@ -23,6 +23,7 @@ import com.gitee.fubluesky.kernel.cache.redis.AbstractRedisCacheOperator;
 import com.gitee.fubluesky.kernel.core.constants.CoreConstants;
 import com.gitee.fubluesky.kernel.jwt.api.pojo.config.JwtConfig;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.util.DigestUtils;
 
 /**
  * @author yanghq
@@ -51,6 +52,11 @@ public class LoginUserTokenRedisCache extends AbstractRedisCacheOperator<LoginUs
 	public String getKeyPrefix() {
 		return AuthConstants.CACHE_KEY_PREFIX + CoreConstants.COLON + AuthConstants.LOGIN_TOKEN_PREFIX
 				+ CoreConstants.COLON;
+	}
+
+	@Override
+	public String getKey(String key) {
+		return DigestUtils.md5DigestAsHex(key.getBytes());
 	}
 
 }

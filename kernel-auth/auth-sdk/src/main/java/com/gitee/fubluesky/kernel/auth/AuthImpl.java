@@ -34,8 +34,6 @@ import com.gitee.fubluesky.kernel.security.api.CaptchaApi;
 import com.gitee.fubluesky.kernel.security.api.pojo.CaptchaProperties;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.Set;
-
 /***
  * @author yanghq
  * @version 1.0
@@ -160,10 +158,6 @@ public class AuthImpl implements AuthApi {
 
 		LoginUser loginUser = userValidateInfo.getLoginUser();
 
-		// 获取角色
-		Set<String> roles = loginRequest.getUserServiceApi().getUserRole(loginUser.getUserId());
-		loginUser.setRoles(roles);
-
 		// 生成用户的token
 		DefaultJwtPayload defaultJwtPayload = new DefaultJwtPayload(loginUser.getUserId(), loginUser.getAccount(),
 				loginRequest.getRememberMe());
@@ -193,8 +187,6 @@ public class AuthImpl implements AuthApi {
 		loginUserTokenCache.add(jwtToken, loginUser, expire);
 		jwtToken = authProperties.getTokenPrefix() + jwtToken;
 		loginUser.setToken(jwtToken);
-		// user cache
-		loginUserCache.add(loginUser.getUserId() + "", loginUser, expire);
 		return jwtToken;
 	}
 

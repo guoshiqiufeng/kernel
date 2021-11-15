@@ -18,10 +18,12 @@
 package com.gitee.fubluesky.kernel.auth;
 
 import com.gitee.fubluesky.kernel.auth.api.LoginApi;
+import com.gitee.fubluesky.kernel.auth.api.UserServiceApi;
 import com.gitee.fubluesky.kernel.auth.api.exception.AuthException;
 import com.gitee.fubluesky.kernel.auth.api.exception.enums.AuthExceptionEnum;
 import com.gitee.fubluesky.kernel.auth.api.pojo.AuthProperties;
 import com.gitee.fubluesky.kernel.auth.api.pojo.login.LoginUser;
+import com.gitee.fubluesky.kernel.auth.utils.SpringContextUtils;
 import com.gitee.fubluesky.kernel.cache.api.CacheOperatorApi;
 import com.gitee.fubluesky.kernel.core.util.HttpServletUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -101,7 +103,18 @@ public class LoginImpl implements LoginApi {
 		if (loginUser == null) {
 			throw new AuthException(AuthExceptionEnum.AUTH_EXPIRED_ERROR);
 		}
-		return loginUserCache.get(loginUser.getUserId() + "");
+		LoginUser user = loginUserCache.get(loginUser.getUserId() + "");
+		if (user != null) {
+			return user;
+		}
+		UserServiceApi userServiceApi = SpringContextUtils.getBean(UserServiceApi.class);
+		user = userServiceApi.getLoginUser(loginUser.getUserId());
+		if (user == null) {
+			throw new AuthException(AuthExceptionEnum.AUTH_EXPIRED_ERROR);
+		}
+		// user cache expire 1h
+		loginUserCache.add(user.getUserId() + "", user, 60 * 60L);
+		return user;
 	}
 
 	/**

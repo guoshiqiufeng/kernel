@@ -16,6 +16,7 @@
  */
 package com.gitee.fubluesky.kernel.auth.api;
 
+import com.gitee.fubluesky.kernel.auth.api.pojo.login.LoginUser;
 import com.gitee.fubluesky.kernel.auth.api.pojo.login.UserLoginInfoDTO;
 
 import java.util.Set;
@@ -43,11 +44,11 @@ public interface UserServiceApi {
 	}
 
 	/**
-	 * 获取用户角色列表
+	 * 获取 用户
 	 * @param userId 用户id
-	 * @return 角色列表
+	 * @return 用户
 	 */
-	Set<String> getUserRole(Long userId);
+	LoginUser getLoginUser(Long userId);
 
 	/**
 	 * 获取用户头像
