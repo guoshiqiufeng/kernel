@@ -137,8 +137,8 @@ public class FtpFileOperator implements FileOperatorApi {
 	private boolean createDir(String remote, FTPClient ftpClient) {
 		String directory = remote.substring(0, remote.lastIndexOf(FileConstants.BACKSLASHES) + 1);
 		try {
-			if (!FileConstants.BACKSLASHES.equalsIgnoreCase(directory)
-					&& !ftpClient.changeWorkingDirectory(new String(directory.getBytes("GBK"), StandardCharsets.ISO_8859_1))) {
+			if (!FileConstants.BACKSLASHES.equalsIgnoreCase(directory) && !ftpClient
+					.changeWorkingDirectory(new String(directory.getBytes("GBK"), StandardCharsets.ISO_8859_1))) {
 				int start;
 				int end;
 				if (directory.startsWith(FileConstants.BACKSLASHES)) {
@@ -149,7 +149,8 @@ public class FtpFileOperator implements FileOperatorApi {
 				}
 				end = directory.indexOf(FileConstants.BACKSLASHES, start);
 				do {
-					String subDirectory = new String(remote.substring(start, end).getBytes("GBK"), StandardCharsets.ISO_8859_1);
+					String subDirectory = new String(remote.substring(start, end).getBytes("GBK"),
+							StandardCharsets.ISO_8859_1);
 					if (!ftpClient.changeWorkingDirectory(subDirectory)) {
 						if (!ftpClient.makeDirectory(subDirectory)) {
 							log.error("create directory " + subDirectory + " fail.");

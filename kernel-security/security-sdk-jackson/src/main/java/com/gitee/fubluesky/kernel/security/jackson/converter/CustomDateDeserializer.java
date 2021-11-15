@@ -83,8 +83,7 @@ public class CustomDateDeserializer {
 	public static class DateDeserializer extends JsonDeserializer<Date> {
 
 		@Override
-		public Date deserialize(JsonParser jsonParser, DeserializationContext ctxt)
-				throws IOException {
+		public Date deserialize(JsonParser jsonParser, DeserializationContext ctxt) throws IOException {
 			long timestamp = jsonParser.getValueAsLong();
 			return new Date(timestamp);
 		}

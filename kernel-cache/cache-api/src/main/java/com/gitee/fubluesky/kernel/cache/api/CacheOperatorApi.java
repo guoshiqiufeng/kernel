@@ -101,8 +101,7 @@ public interface CacheOperatorApi<T> {
 	String getKeyPrefix();
 
 	/**
-	 * 获取包装后缓存key
-	 * 可重写用于更改 key
+	 * 获取包装后缓存key 可重写用于更改 key
 	 * @param key 缓存key
 	 * @return 包装后缓存key
 	 */

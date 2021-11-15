@@ -81,7 +81,8 @@ public abstract class AbstractRedisCacheOperator<T> implements CacheOperatorApi<
 	@Override
 	public void delete(String... keys) {
 		List<String> keyList = Arrays.asList(keys);
-		List<String> withPrefixKeys = keyList.stream().map(i -> getKeyPrefix() + getKey(i)).collect(Collectors.toList());
+		List<String> withPrefixKeys = keyList.stream().map(i -> getKeyPrefix() + getKey(i))
+				.collect(Collectors.toList());
 		redisTemplate.delete(withPrefixKeys);
 	}
 
@@ -125,7 +126,8 @@ public abstract class AbstractRedisCacheOperator<T> implements CacheOperatorApi<
 		Set<String> keys = redisTemplate.keys(getKeyPrefix() + prefix + "*");
 		if (keys != null) {
 			// 去掉缓存key的prefix前缀
-			return keys.stream().map(key -> StrUtils.removePrefix(getKey(key), getKeyPrefix())).collect(Collectors.toSet());
+			return keys.stream().map(key -> StrUtils.removePrefix(getKey(key), getKeyPrefix()))
+					.collect(Collectors.toSet());
 		}
 		else {
 			return Sets.newHashSet();

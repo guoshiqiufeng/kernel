@@ -86,11 +86,14 @@ public class BeanMapTool {
 				Method setter = pd.getWriteMethod();
 				// Long类型需手动转换，否则报类型转换出错
 				if ("java.lang.Long".equals(setter.getParameterTypes()[0].getName())) {
-					if (!"java.lang.Long".equals(map.get(pd.getName()).getClass().getName())) {
-						setter.invoke(obj, ((Integer) map.get(pd.getName())).longValue());
-					}
-					else {
-						setter.invoke(obj, map.get(pd.getName()));
+					Object value = map.get(pd.getName());
+					if (value != null) {
+						if (!"java.lang.Long".equals(map.get(pd.getName()).getClass().getName())) {
+							setter.invoke(obj, ((Integer) value).longValue());
+						}
+						else {
+							setter.invoke(obj, map.get(pd.getName()));
+						}
 					}
 				}
 				else {

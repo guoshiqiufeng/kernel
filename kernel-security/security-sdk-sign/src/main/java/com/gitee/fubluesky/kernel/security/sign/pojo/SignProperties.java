@@ -46,6 +46,7 @@ public class SignProperties implements Serializable {
 	 * get请求 签名
 	 */
 	private Boolean requestGetEnable = false;
+
 	/**
 	 * 签名 盐
 	 */
