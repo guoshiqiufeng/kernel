@@ -19,6 +19,8 @@ package com.gitee.fubluesky.kernel.jwt.api.pojo.config;
 
 import lombok.Data;
 
+import java.util.Map;
+
 /**
  * @author yanghq
  * @version 1.0
@@ -46,5 +48,15 @@ public class JwtConfig {
 	 * 缓存刷新时间（单位天）
 	 */
 	private int refresh = 1;
+
+	/**
+	 * 是否启用多租户 启用后会前往 expireMap 寻找 对应 expire
+	 */
+	private Boolean enableMultiExpire = false;
+
+	/**
+	 * 多租户 token有效时长集合，单位秒 appId:expire
+	 */
+	private Map<String, Long> expireMap;
 
 }

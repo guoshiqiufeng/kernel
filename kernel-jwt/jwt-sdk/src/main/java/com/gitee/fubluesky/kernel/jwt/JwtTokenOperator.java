@@ -24,6 +24,8 @@ import com.gitee.fubluesky.kernel.jwt.api.exception.enums.JwtExceptionEnum;
 import com.gitee.fubluesky.kernel.jwt.api.pojo.config.JwtConfig;
 import com.gitee.fubluesky.kernel.jwt.api.pojo.payload.DefaultJwtPayload;
 import io.jsonwebtoken.*;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Date;
 import java.util.Map;
@@ -33,6 +35,7 @@ import java.util.Map;
  * @version 1.0
  * @since 2021-07-23 17:18
  */
+@Slf4j
 public class JwtTokenOperator implements JwtApi {
 
 	private final JwtConfig jwtConfig;
@@ -50,11 +53,41 @@ public class JwtTokenOperator implements JwtApi {
 	public String generateToken(Map<String, Object> payload) {
 		JwtBuilder builder = Jwts.builder().setClaims(payload).setIssuedAt(new Date())
 				.signWith(SignatureAlgorithm.HS512, jwtConfig.getSecret());
-		if (jwtConfig.getExpire() > 0) {
-			Date expireDate = new Date(System.currentTimeMillis() + jwtConfig.getExpire() * 1000);
-			builder.setExpiration(expireDate);
+		Date expiration = getExpiration((String) payload.get("appId"));
+		if (expiration != null) {
+			builder.setExpiration(expiration);
 		}
 		return builder.compact();
+	}
+
+	private Date getExpiration(String appId) {
+		if (!jwtConfig.getEnableMultiExpire()) {
+			// 未开启多租户
+			if (jwtConfig.getExpire() > 0) {
+				return new Date(System.currentTimeMillis() + jwtConfig.getExpire() * 1000);
+			}
+		}
+		else {
+			if (StringUtils.isBlank(appId)) {
+				log.error("generateToken fail. The appId is blank!");
+				throw new JwtException(JwtExceptionEnum.JWT_CREATE_ERROR);
+			}
+			// 获取
+			Map<String, Long> map = jwtConfig.getExpireMap();
+			if (map == null || map.isEmpty()) {
+				log.error("generateToken fail. The expireMap is empty!");
+				throw new JwtException(JwtExceptionEnum.JWT_CREATE_ERROR);
+			}
+			Long expire = map.get(appId);
+			if (expire == null) {
+				log.error("generateToken fail. The appId's expire in expireMap is empty!");
+				throw new JwtException(JwtExceptionEnum.JWT_PARSE_ERROR);
+			}
+			if (expire > 0) {
+				return new Date(System.currentTimeMillis() + expire * 1000);
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -64,16 +97,15 @@ public class JwtTokenOperator implements JwtApi {
 	 */
 	@Override
 	public String generateToken(DefaultJwtPayload defaultJwtPayload) {
-		Date expireDate = null;
-		if (jwtConfig.getExpire() > 0) {
-			expireDate = new Date(System.currentTimeMillis() + jwtConfig.getExpire() * 1000);
-			defaultJwtPayload.setExpirationDate(expireDate.getTime());
+		Date expiration = getExpiration(defaultJwtPayload.getAppId());
+		if (expiration != null) {
+			defaultJwtPayload.setExpirationDate(expiration.getTime());
 		}
 		JwtBuilder builder = Jwts.builder().setClaims(BeanMapTool.beanToMap(defaultJwtPayload))
 				.setSubject(defaultJwtPayload.getUserId().toString()).setIssuedAt(new Date())
 				.signWith(SignatureAlgorithm.HS512, jwtConfig.getSecret());
-		if (expireDate != null) {
-			builder.setExpiration(expireDate);
+		if (expiration != null) {
+			builder.setExpiration(expiration);
 		}
 		return builder.compact();
 	}

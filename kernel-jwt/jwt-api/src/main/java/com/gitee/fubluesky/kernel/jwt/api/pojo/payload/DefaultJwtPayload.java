@@ -43,6 +43,11 @@ public class DefaultJwtPayload {
 	private String account;
 
 	/**
+	 * 应用id
+	 */
+	private String appId;
+
+	/**
 	 * 唯一表示id, 用于缓存登录用户的唯一凭证
 	 */
 	private String uuid;
@@ -65,9 +70,10 @@ public class DefaultJwtPayload {
 	public DefaultJwtPayload() {
 	}
 
-	public DefaultJwtPayload(Long userId, String account, boolean rememberMe) {
+	public DefaultJwtPayload(Long userId, String account, String appId, boolean rememberMe) {
 		this.userId = userId;
 		this.account = account;
+		this.appId = appId;
 		this.uuid = IdUtils.generateUUID();
 		this.rememberMe = rememberMe;
 	}

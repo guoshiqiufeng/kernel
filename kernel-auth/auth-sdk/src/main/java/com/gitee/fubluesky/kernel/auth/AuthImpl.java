@@ -28,6 +28,7 @@ import com.gitee.fubluesky.kernel.auth.api.pojo.login.LoginResponse;
 import com.gitee.fubluesky.kernel.auth.api.pojo.login.LoginUser;
 import com.gitee.fubluesky.kernel.auth.api.pojo.login.UserLoginInfoDTO;
 import com.gitee.fubluesky.kernel.cache.api.CacheOperatorApi;
+import com.gitee.fubluesky.kernel.core.util.HttpServletUtil;
 import com.gitee.fubluesky.kernel.jwt.api.JwtApi;
 import com.gitee.fubluesky.kernel.jwt.api.pojo.payload.DefaultJwtPayload;
 import com.gitee.fubluesky.kernel.security.api.CaptchaApi;
@@ -158,9 +159,10 @@ public class AuthImpl implements AuthApi {
 
 		LoginUser loginUser = userValidateInfo.getLoginUser();
 
+		String appId = HttpServletUtil.getRequest().getHeader(authProperties.getJwtAppIdHeaderName());
 		// 生成用户的token
 		DefaultJwtPayload defaultJwtPayload = new DefaultJwtPayload(loginUser.getUserId(), loginUser.getAccount(),
-				loginRequest.getRememberMe());
+				appId, loginRequest.getRememberMe());
 
 		String jwtToken = createToken(loginUser, defaultJwtPayload);
 
@@ -175,16 +177,19 @@ public class AuthImpl implements AuthApi {
 	 */
 	@Override
 	public String createToken(LoginUser loginUser, Boolean rememberMe) {
+		String appId = HttpServletUtil.getRequest().getHeader(authProperties.getJwtAppIdHeaderName());
 		DefaultJwtPayload defaultJwtPayload = new DefaultJwtPayload(loginUser.getUserId(), loginUser.getAccount(),
-				rememberMe);
+				appId, rememberMe);
 		return createToken(loginUser, defaultJwtPayload);
 	}
 
 	private String createToken(LoginUser loginUser, DefaultJwtPayload defaultJwtPayload) {
 		String jwtToken = jwtApi.generateToken(defaultJwtPayload);
-		long expire = defaultJwtPayload.getExpirationDate() - System.currentTimeMillis();
-		// token cache
-		loginUserTokenCache.add(jwtToken, loginUser, expire);
+		if (defaultJwtPayload.getExpirationDate() != null && defaultJwtPayload.getExpirationDate() != 0) {
+			long expire = defaultJwtPayload.getExpirationDate() - System.currentTimeMillis();
+			// token cache
+			loginUserTokenCache.add(jwtToken, loginUser, expire);
+		}
 		jwtToken = authProperties.getTokenPrefix() + jwtToken;
 		loginUser.setToken(jwtToken);
 		return jwtToken;

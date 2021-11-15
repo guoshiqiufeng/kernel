@@ -74,15 +74,12 @@ public class LoginAutoConfiguration {
 	}
 
 	@Autowired
-	private CacheOperatorApi<LoginUser> loginUserTokenCache;
-
-	@Autowired
 	private CacheOperatorApi<LoginUser> loginUserCache;
 
 	@Bean
 	@ConditionalOnMissingBean(LoginApi.class)
 	public LoginApi loginApi() {
-		return new LoginImpl(authProperties, loginUserTokenCache, loginUserCache);
+		return new LoginImpl(authProperties, loginUserCache);
 	}
 
 }

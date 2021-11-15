@@ -27,7 +27,7 @@ import lombok.Data;
 public class AuthProperties {
 
 	/**
-	 * token 前缀
+	 * token prefix
 	 */
 	private String tokenPrefix = "Bearer ";
 
@@ -45,5 +45,10 @@ public class AuthProperties {
 	 * token cookie
 	 */
 	private String tokenCookieName = "Authorization";
+
+	/**
+	 * jwt appId header
+	 */
+	private String jwtAppIdHeaderName = "appId";
 
 }

@@ -26,6 +26,8 @@ import com.gitee.fubluesky.kernel.auth.api.pojo.login.LoginUser;
 import com.gitee.fubluesky.kernel.auth.utils.SpringContextUtils;
 import com.gitee.fubluesky.kernel.cache.api.CacheOperatorApi;
 import com.gitee.fubluesky.kernel.core.util.HttpServletUtil;
+import com.gitee.fubluesky.kernel.jwt.api.JwtApi;
+import com.gitee.fubluesky.kernel.jwt.api.pojo.payload.DefaultJwtPayload;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.Cookie;
@@ -40,14 +42,10 @@ public class LoginImpl implements LoginApi {
 
 	private final AuthProperties authProperties;
 
-	private final CacheOperatorApi<LoginUser> loginUserTokenCache;
-
 	private final CacheOperatorApi<LoginUser> loginUserCache;
 
-	public LoginImpl(AuthProperties authProperties, CacheOperatorApi<LoginUser> loginUserTokenCache,
-			CacheOperatorApi<LoginUser> loginUserCache) {
+	public LoginImpl(AuthProperties authProperties, CacheOperatorApi<LoginUser> loginUserCache) {
 		this.authProperties = authProperties;
-		this.loginUserTokenCache = loginUserTokenCache;
 		this.loginUserCache = loginUserCache;
 	}
 
@@ -98,17 +96,13 @@ public class LoginImpl implements LoginApi {
 	public LoginUser getLoginUser() {
 		// 获取token
 		String token = getToken();
-		LoginUser loginUser = loginUserTokenCache.get(token);
-
-		if (loginUser == null) {
+		JwtApi jwtApi = SpringContextUtils.getBean(JwtApi.class);
+		DefaultJwtPayload userJwt = jwtApi.getDefaultPayload(token);
+		if (userJwt == null) {
 			throw new AuthException(AuthExceptionEnum.AUTH_EXPIRED_ERROR);
 		}
-		LoginUser user = loginUserCache.get(loginUser.getUserId() + "");
-		if (user != null) {
-			return user;
-		}
 		UserServiceApi userServiceApi = SpringContextUtils.getBean(UserServiceApi.class);
-		user = userServiceApi.getLoginUser(loginUser.getUserId());
+		LoginUser user = userServiceApi.getLoginUser(userJwt.getUserId());
 		if (user == null) {
 			throw new AuthException(AuthExceptionEnum.AUTH_EXPIRED_ERROR);
 		}
