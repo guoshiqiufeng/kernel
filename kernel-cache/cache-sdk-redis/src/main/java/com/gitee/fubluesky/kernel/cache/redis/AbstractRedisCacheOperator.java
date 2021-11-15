@@ -50,7 +50,7 @@ public abstract class AbstractRedisCacheOperator<T> implements CacheOperatorApi<
 	 */
 	@Override
 	public void add(String key, T value) {
-		redisTemplate.boundValueOps(getKeyPrefix() + key).set(value);
+		redisTemplate.boundValueOps(getKeyPrefix() + getKey(key)).set(value);
 	}
 
 	/**
@@ -61,7 +61,7 @@ public abstract class AbstractRedisCacheOperator<T> implements CacheOperatorApi<
 	 */
 	@Override
 	public void add(String key, T value, Long expire) {
-		redisTemplate.boundValueOps(getKeyPrefix() + key).set(value, expire, TimeUnit.SECONDS);
+		redisTemplate.boundValueOps(getKeyPrefix() + getKey(key)).set(value, expire, TimeUnit.SECONDS);
 	}
 
 	/**
@@ -71,7 +71,7 @@ public abstract class AbstractRedisCacheOperator<T> implements CacheOperatorApi<
 	 */
 	@Override
 	public T get(String key) {
-		return redisTemplate.boundValueOps(getKeyPrefix() + key).get();
+		return redisTemplate.boundValueOps(getKeyPrefix() + getKey(key)).get();
 	}
 
 	/**
@@ -81,7 +81,7 @@ public abstract class AbstractRedisCacheOperator<T> implements CacheOperatorApi<
 	@Override
 	public void delete(String... keys) {
 		List<String> keyList = Arrays.asList(keys);
-		List<String> withPrefixKeys = keyList.stream().map(i -> getKeyPrefix() + i).collect(Collectors.toList());
+		List<String> withPrefixKeys = keyList.stream().map(i -> getKeyPrefix() + getKey(i)).collect(Collectors.toList());
 		redisTemplate.delete(withPrefixKeys);
 	}
 
@@ -92,7 +92,7 @@ public abstract class AbstractRedisCacheOperator<T> implements CacheOperatorApi<
 	 */
 	@Override
 	public void expire(String key, Long expire) {
-		redisTemplate.boundValueOps(getKeyPrefix() + key).expire(expire, TimeUnit.SECONDS);
+		redisTemplate.boundValueOps(getKeyPrefix() + getKey(key)).expire(expire, TimeUnit.SECONDS);
 	}
 
 	/**
@@ -102,7 +102,7 @@ public abstract class AbstractRedisCacheOperator<T> implements CacheOperatorApi<
 	 */
 	@Override
 	public boolean contains(String key) {
-		T value = redisTemplate.boundValueOps(getKeyPrefix() + key).get();
+		T value = redisTemplate.boundValueOps(getKeyPrefix() + getKey(key)).get();
 		return value != null;
 	}
 
@@ -125,7 +125,7 @@ public abstract class AbstractRedisCacheOperator<T> implements CacheOperatorApi<
 		Set<String> keys = redisTemplate.keys(getKeyPrefix() + prefix + "*");
 		if (keys != null) {
 			// 去掉缓存key的prefix前缀
-			return keys.stream().map(key -> StrUtils.removePrefix(key, getKeyPrefix())).collect(Collectors.toSet());
+			return keys.stream().map(key -> StrUtils.removePrefix(getKey(key), getKeyPrefix())).collect(Collectors.toSet());
 		}
 		else {
 			return Sets.newHashSet();
@@ -156,9 +156,15 @@ public abstract class AbstractRedisCacheOperator<T> implements CacheOperatorApi<
 		Collection<String> allKeys = this.getAllKeys();
 		HashMap<String, T> results = Maps.newHashMap();
 		for (String key : allKeys) {
+			key = getKey(key);
 			results.put(key, this.get(key));
 		}
 		return results;
+	}
+
+	@Override
+	public String getKey(String key) {
+		return key;
 	}
 
 }
