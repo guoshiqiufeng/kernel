@@ -116,6 +116,9 @@ public class SignAspect {
 		}
 		log.debug("uri: {}", uri);
 		String businessInfo = httpServletRequest.getQueryString();
+		if (businessInfo == null) {
+			businessInfo = "";
+		}
 		String body = SignUtils.getSignBody(uri + businessInfo, appId, signProperties);
 		log.debug("body: {}", body);
 		signApi.validateSign(sign, body);
