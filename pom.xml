@@ -23,7 +23,7 @@
     <groupId>com.gitee.fubluesky.kernel</groupId>
     <artifactId>kernel</artifactId>
     <packaging>pom</packaging>
-    <version>1.2.0</version>
+    <version>1.2.1</version>
     <inceptionYear>2021-Now</inceptionYear>
     <name>kernel</name>
     <description>kernel</description>
