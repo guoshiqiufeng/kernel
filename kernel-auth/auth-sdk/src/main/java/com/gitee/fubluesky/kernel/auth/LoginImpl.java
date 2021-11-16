@@ -101,6 +101,10 @@ public class LoginImpl implements LoginApi {
 		if (userJwt == null) {
 			throw new AuthException(AuthExceptionEnum.AUTH_EXPIRED_ERROR);
 		}
+		LoginUser cache = loginUserCache.get(userJwt.getUserId() + "");
+		if (cache != null) {
+			return cache;
+		}
 		UserServiceApi userServiceApi = SpringContextUtils.getBean(UserServiceApi.class);
 		LoginUser user = userServiceApi.getLoginUser(userJwt.getUserId());
 		if (user == null) {
