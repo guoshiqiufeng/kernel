@@ -185,13 +185,13 @@ public class AuthImpl implements AuthApi {
 
 	private String createToken(LoginUser loginUser, DefaultJwtPayload defaultJwtPayload) {
 		String jwtToken = jwtApi.generateToken(defaultJwtPayload);
+		String token = authProperties.getTokenPrefix() + jwtToken;
+		loginUser.setToken(token);
 		if (defaultJwtPayload.getExpirationDate() != null && defaultJwtPayload.getExpirationDate() != 0) {
 			long expire = defaultJwtPayload.getExpirationDate() - System.currentTimeMillis();
 			// token cache
 			loginUserTokenCache.add(jwtToken, loginUser, expire);
 		}
-		jwtToken = authProperties.getTokenPrefix() + jwtToken;
-		loginUser.setToken(jwtToken);
 		return jwtToken;
 	}
 

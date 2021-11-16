@@ -12,7 +12,7 @@ pom添加依赖
 <dependency>
     <groupId>com.gitee.fubluesky.kernel</groupId>
     <artifactId>jwt-spring-boot-starter</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.1</version>
 </dependency>
 ```
 
@@ -28,6 +28,10 @@ kernel:
     enabled: true
     secret: secret
     expire: 1800
+    enable-multi-expire: true
+    expire-map:
+      web: 1800
+      app: 0
 ```
 
 配置文件可配置参数
@@ -37,7 +41,9 @@ kernel:
 | kernel.jwt.enabled  | 是否启用自动装配               | 默认为false                              |
 | kernel.jwt.secret | 加密密钥         | 必填 |
 | kernel.jwt.expire | 过期时间。单位秒 |  |
-
+| kernel.jwt.refresh | 缓存刷新时间（单位天） |  |
+| kernel.jwt.enable-multi-expire | 是否启用多租户 |  |
+| kernel.jwt.expire-map | 多租户 token有效时长集合，单位秒。格式 appId:expire |  |
 ##### 使用
 
 spring boot 使用

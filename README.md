@@ -27,7 +27,7 @@
 #### ToDo
 - [ ] kernel-sms 添加多签名切换
 - [x] kernel-jwt 添加刷新token机制
-- [ ] kernel-jwt 添加多租户校验
+- [x] auth jwt 添加多租户校验
 
 #### 安装教程
 使用maven进行依赖安装
