@@ -65,12 +65,23 @@ public class UploadUtils {
 	 * @return 返回http地址
 	 */
 	public static String upload(byte[] data, String path) {
+		return upload(data, "", path);
+	}
+
+	/**
+	 * 文件上传
+	 * @param data 文件字节数组
+	 * @param savePrefixPath 保存地址前缀
+	 * @param path 文件路径
+	 * @return 返回http地址
+	 */
+	public static String upload(byte[] data, String savePrefixPath, String path) {
 		String url = "";
 		if (aliEnabled) {
-			url = aliFileOperator.getHttpPrefix() + aliFileOperator.upload(data, path);
+			url = aliFileOperator.getHttpPrefix() + aliFileOperator.upload(data, savePrefixPath, path);
 		}
 		if (ftpEnabled) {
-			url = aliFileOperator.getHttpPrefix() + ftpFileOperator.upload(data, path);
+			url = aliFileOperator.getHttpPrefix() + ftpFileOperator.upload(data, savePrefixPath, path);
 		}
 		return url;
 	}
