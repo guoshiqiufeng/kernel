@@ -179,18 +179,17 @@ public class FtpFileOperator implements FileOperatorApi {
 		return ftpFileProperties.getDomain();
 	}
 
-	/**
-	 * 文件上传
-	 * @param inputStream 字节流
-	 * @param path 文件路径，包含文件名
-	 * @return 返回http地址
-	 */
 	@Override
-	public String upload(InputStream inputStream, String path) {
+	public String upload(InputStream inputStream, String savePrefixPath, String path) {
 		try {
-			String prefix = "";
+			String prefix = savePrefixPath;
 			if (StringUtils.isNotEmpty(ftpFileProperties.getPrefix())) {
-				prefix = ftpFileProperties.getPrefix();
+				if (prefix.indexOf(FileConstants.BACKSLASHES) == 0) {
+					prefix = ftpFileProperties.getPrefix() + prefix;
+				}
+				else {
+					prefix = ftpFileProperties.getPrefix() + FileConstants.BACKSLASHES + prefix;
+				}
 			}
 			if (ftpFileProperties.getDatePathEnabled()) {
 				path = getPath(prefix, path.substring(path.lastIndexOf(".")));

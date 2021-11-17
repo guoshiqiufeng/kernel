@@ -63,18 +63,17 @@ public class AliFileOperator implements FileOperatorApi {
 		return aliOssProperties.getDomain();
 	}
 
-	/**
-	 * 文件上传
-	 * @param inputStream 字节流
-	 * @param path 文件路径，包含文件名
-	 * @return 返回http地址
-	 */
 	@Override
-	public String upload(InputStream inputStream, String path) {
+	public String upload(InputStream inputStream, String savePrefixPath, String path) {
 		try {
-			String prefix = "";
+			String prefix = savePrefixPath;
 			if (StringUtils.isNotEmpty(aliOssProperties.getPrefix())) {
-				prefix = aliOssProperties.getPrefix();
+				if (prefix.indexOf(FileConstants.BACKSLASHES) == 0) {
+					prefix = aliOssProperties.getPrefix() + prefix;
+				}
+				else {
+					prefix = aliOssProperties.getPrefix() + FileConstants.BACKSLASHES + prefix;
+				}
 			}
 			if (aliOssProperties.getDatePathEnabled()) {
 				path = getPath(prefix, path.substring(path.lastIndexOf(".")));

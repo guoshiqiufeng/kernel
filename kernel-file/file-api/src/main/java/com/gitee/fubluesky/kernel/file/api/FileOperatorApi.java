@@ -72,12 +72,34 @@ public interface FileOperatorApi {
 	}
 
 	/**
+	 * 上传
+	 * @param data 文件字节数组
+	 * @param savePrefixPath 保存地址前缀
+	 * @param path 文件路径，包含文件名
+	 * @return 返回http地址
+	 */
+	default String upload(byte[] data, String savePrefixPath, String path) {
+		return upload(new ByteArrayInputStream(data), savePrefixPath, path);
+	}
+
+	/**
 	 * 文件上传
 	 * @param inputStream 字节流
 	 * @param path 文件路径，包含文件名
 	 * @return 返回http地址
 	 */
-	String upload(InputStream inputStream, String path);
+	default String upload(InputStream inputStream, String path) {
+		return upload(inputStream, "", path);
+	}
+
+	/**
+	 * 文件上传
+	 * @param inputStream 字节流
+	 * @param savePrefixPath 保存地址前缀
+	 * @param path 文件路径，包含文件名
+	 * @return 返回http地址
+	 */
+	String upload(InputStream inputStream, String savePrefixPath, String path);
 
 	/**
 	 * 获取文件流
