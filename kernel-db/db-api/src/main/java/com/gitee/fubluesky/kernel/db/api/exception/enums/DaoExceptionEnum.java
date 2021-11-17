@@ -40,7 +40,7 @@ public enum DaoExceptionEnum implements AbstractExceptionEnum {
 	DATA_NONE_ERROR(CoreConstants.BUSINESS_ERROR_TYPE_CODE, DbConstants.DB_EXCEPTION_STEP_CODE + "02", "数据不存在");
 
 	/**
-	 * 异常分类 用户端异常: A 业务异常: B 第三方异常: C
+	 * 异常分类 用户端异常: 1 业务异常: 2 第三方异常: 3
 	 */
 	private final String typeCode;
 

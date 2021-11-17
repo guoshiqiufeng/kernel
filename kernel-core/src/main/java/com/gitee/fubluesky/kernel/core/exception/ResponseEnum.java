@@ -39,7 +39,7 @@ public enum ResponseEnum implements AbstractExceptionEnum {
 	FAILURE("", "-1", "失败");
 
 	/**
-	 * 异常分类 用户端异常: A 业务异常: B 第三方异常: C
+	 * 异常分类 用户端异常: 1 业务异常: 2 第三方异常: 3
 	 */
 	private final String typeCode;
 

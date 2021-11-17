@@ -20,7 +20,7 @@
 - [x] kernel-file [20]
 - [x] kernel-email [21]
 - [x] kernel-sms [22]
-- [ ] kernel-push [23]
+- [x] kernel-push [23]
 
 
 - [ ] kernel-office [30]
@@ -29,7 +29,8 @@
 - [ ] kernel-sms 添加多签名切换
 - [x] kernel-jwt 添加刷新token机制
 - [x] auth jwt 添加多租户校验
-
+- [ ] 模块拆分
+- [ ] 文档
 #### 安装教程
 使用maven进行依赖安装
 #### 使用说明

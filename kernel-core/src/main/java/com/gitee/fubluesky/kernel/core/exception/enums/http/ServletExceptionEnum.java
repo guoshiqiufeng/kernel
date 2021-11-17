@@ -43,7 +43,7 @@ public enum ServletExceptionEnum implements AbstractExceptionEnum {
 	NOT_FOUND_ERROR("", "404", "接口地址无效");
 
 	/**
-	 * 异常分类 用户端异常: A 业务异常: B 第三方异常: C
+	 * 异常分类 用户端异常: 1 业务异常: 2 第三方异常: 3
 	 */
 	private final String typeCode;
 

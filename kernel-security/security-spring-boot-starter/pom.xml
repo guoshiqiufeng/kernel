@@ -20,7 +20,7 @@
     <parent>
         <groupId>com.gitee.fubluesky.kernel</groupId>
         <artifactId>kernel-security</artifactId>
-        <version>1.2.1</version>
+        <version>1.3.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -40,11 +40,11 @@
             <artifactId>security-sdk-cors</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>com.gitee.fubluesky.kernel</groupId>
             <artifactId>security-sdk-crypto</artifactId>
             <version>${project.version}</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>com.gitee.fubluesky.kernel</groupId>
             <artifactId>security-sdk-jackson</artifactId>
