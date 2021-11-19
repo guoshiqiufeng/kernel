@@ -20,14 +20,12 @@ package com.gitee.fubluesky.kernel.email.api.exception;
 import com.gitee.fubluesky.kernel.core.exception.AbstractExceptionEnum;
 import com.gitee.fubluesky.kernel.core.exception.ServiceException;
 import com.gitee.fubluesky.kernel.email.api.constants.MailConstants;
-import lombok.Getter;
 
 /**
  * @author yanghq
  * @version 1.0
  * @since 2021-07-27 17:22
  */
-@Getter
 public class MailException extends ServiceException {
 
 	public MailException(AbstractExceptionEnum exception) {

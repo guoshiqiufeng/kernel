@@ -20,12 +20,14 @@ package com.gitee.fubluesky.kernel.email.api.exception.enums;
 import com.gitee.fubluesky.kernel.core.constants.CoreConstants;
 import com.gitee.fubluesky.kernel.core.exception.AbstractExceptionEnum;
 import com.gitee.fubluesky.kernel.email.api.constants.MailConstants;
+import lombok.Getter;
 
 /**
  * @author yanghq
  * @version 1.0
  * @since 2021-07-27 17:25
  */
+@Getter
 public enum MailExceptionEnum implements AbstractExceptionEnum {
 
 	/**
