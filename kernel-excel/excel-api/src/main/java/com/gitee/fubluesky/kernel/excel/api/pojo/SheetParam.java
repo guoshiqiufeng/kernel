@@ -40,6 +40,6 @@ public class SheetParam implements Serializable {
 	/**
 	 * sheet名
 	 */
-	private String sheetName = "sheet";
+	private String sheetName = "";
 
 }
