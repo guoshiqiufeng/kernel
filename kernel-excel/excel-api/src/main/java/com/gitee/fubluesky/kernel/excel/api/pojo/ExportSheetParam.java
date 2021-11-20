@@ -15,39 +15,42 @@
  *  limitations under the License.
  */
 
-package com.gitee.fubluesky.kernel.excel.api;
+package com.gitee.fubluesky.kernel.excel.api.pojo;
 
-import com.gitee.fubluesky.kernel.excel.api.pojo.ExportParam;
-import com.gitee.fubluesky.kernel.excel.api.pojo.ExportSheetParam;
+import lombok.Data;
+import lombok.experimental.Accessors;
 
-import java.io.InputStream;
+import javax.servlet.http.HttpServletResponse;
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * @author yanghq
  * @version 1.0
- * @since 2021-11-18 15:48
+ * @since 2021-11-19 15:00
  */
-public interface ExcelApi {
+@Data
+@Accessors(chain = true)
+public class ExportSheetParam implements Serializable {
 
 	/**
-	 * 单sheet下载
-	 * @param exportParam 下载参数
+	 * 输出流
 	 */
-	void download(ExportParam exportParam);
+	private HttpServletResponse response;
 
 	/**
-	 * 多sheet下载
-	 * @param exportSheetParam 下载参数
+	 * 集合类
 	 */
-	void download(ExportSheetParam exportSheetParam);
+	private Class<?> clazz;
 
 	/**
-	 * 从文件流中 组装 对象列表
-	 * @param inputStream 文件流
-	 * @param clazz 对象
-	 * @return 对象列表
+	 * 文件名
 	 */
-	<T> List<T> getList(InputStream inputStream, Class<T> clazz);
+	private String fileName = "file";
+
+	/**
+	 * sheet集合
+	 */
+	private List<SheetParam> sheets;
 
 }

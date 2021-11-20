@@ -29,11 +29,12 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class ExcelFactory {
 
-    /**
-     * 获取excel对象
-     * @return ExcelApi
-     */
-    public ExcelApi build() {
-        return new EasyExcelService();
-    }
+	/**
+	 * 获取excel对象
+	 * @return ExcelApi
+	 */
+	public ExcelApi build() {
+		return new EasyExcelService();
+	}
+
 }

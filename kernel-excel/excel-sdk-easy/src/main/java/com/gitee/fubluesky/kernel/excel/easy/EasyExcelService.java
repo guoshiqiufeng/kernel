@@ -18,22 +18,27 @@
 package com.gitee.fubluesky.kernel.excel.easy;
 
 import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.support.ExcelTypeEnum;
+import com.alibaba.excel.write.metadata.WriteSheet;
 import com.gitee.fubluesky.kernel.core.exception.ServiceException;
 import com.gitee.fubluesky.kernel.excel.api.ExcelApi;
 import com.gitee.fubluesky.kernel.excel.api.constants.ExcelConstants;
 import com.gitee.fubluesky.kernel.excel.api.exception.ExcelException;
 import com.gitee.fubluesky.kernel.excel.api.exception.enums.ExcelExceptionEnum;
 import com.gitee.fubluesky.kernel.excel.api.pojo.ExportParam;
+import com.gitee.fubluesky.kernel.excel.api.pojo.ExportSheetParam;
 import com.gitee.fubluesky.kernel.excel.easy.listener.DefaultDataListener;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -55,12 +60,54 @@ public class EasyExcelService implements ExcelApi {
 			response.setContentType("application/vnd.ms-excel");
 			response.setCharacterEncoding("utf-8");
 
-			String fileName = URLEncoder.encode(exportParam.getFileName() + ".xlsx", "UTF-8").replaceAll("\\+", "%20");
+			String fileName = URLEncoder.encode(exportParam.getFileName(), "UTF-8").replaceAll("\\+", "%20");
 
 			response.setHeader("Content-disposition", ExcelConstants.ATTACHMENT + fileName + ".xlsx");
 
 			EasyExcel.write(response.getOutputStream(), exportParam.getClazz()).excelType(ExcelTypeEnum.XLSX)
 					.sheet(exportParam.getSheetName()).doWrite(exportParam.getData());
+		}
+		catch (UnsupportedEncodingException e) {
+			log.error("filename error:", e);
+		}
+		catch (IOException e) {
+			throw new ExcelException(ExcelExceptionEnum.EXCEL_EXPORT_ERROR);
+		}
+	}
+
+	@Override
+	public void download(ExportSheetParam exportParam) {
+		if (exportParam == null) {
+			log.error("download fail: exportParam is null");
+			return;
+		}
+		try {
+			HttpServletResponse response = exportParam.getResponse();
+			response.setContentType("application/vnd.ms-excel");
+			response.setCharacterEncoding("utf-8");
+
+			String fileName = URLEncoder.encode(exportParam.getFileName(), "UTF-8").replaceAll("\\+", "%20");
+
+			response.setHeader("Content-disposition", ExcelConstants.ATTACHMENT + fileName + ".xlsx");
+
+			ExcelWriter excelWriter = EasyExcel.write(response.getOutputStream(), exportParam.getClazz())
+					.excelType(ExcelTypeEnum.XLSX).build();
+
+			if (exportParam.getSheets() != null && !exportParam.getSheets().isEmpty()) {
+				for (int i = 0; i < exportParam.getSheets().size(); i++) {
+					String sheetName = exportParam.getSheets().get(i).getSheetName();
+					if (StringUtils.isBlank(sheetName)) {
+						sheetName = "sheet" + i;
+					}
+					Collection<?> exportData = exportParam.getSheets().get(i).getData();
+					if (exportData == null) {
+						exportData = Lists.newArrayList();
+					}
+					WriteSheet writeSheet = EasyExcel.writerSheet(i, sheetName).build();
+					excelWriter.write(exportData, writeSheet);
+				}
+			}
+			excelWriter.finish();
 		}
 		catch (UnsupportedEncodingException e) {
 			log.error("filename error:", e);
