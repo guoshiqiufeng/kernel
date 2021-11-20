@@ -20,10 +20,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>com.gitee.fubluesky</groupId>
+        <artifactId>kernel-parent</artifactId>
+        <version>1.4.2</version>
+        <relativePath/>
+    </parent>
+
     <groupId>com.gitee.fubluesky.kernel</groupId>
     <artifactId>kernel</artifactId>
     <packaging>pom</packaging>
-    <version>1.3.2</version>
+    <version>1.4.2</version>
     <inceptionYear>2021-Now</inceptionYear>
     <name>kernel</name>
     <description>kernel</description>
@@ -35,60 +42,7 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <java.version>1.8</java.version>
-
-        <!-- Spring Projects -->
-        <spring-boot.version>2.5.6</spring-boot.version>
-
-        <spring-cloud.version>2020.0.4</spring-cloud.version>
-        <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
-
-        <kernel-dependencies.version>1.3.0</kernel-dependencies.version>
-        <kernel.version>1.3.2</kernel.version>
-        <!--插件-->
-        <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
-        <maven-install-plugin.version>3.0.0-M1</maven-install-plugin.version>
-        <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
-        <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
-        <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
-        <!-- Spring 提供的代码美化插件 -->
-        <spring-javaformat-maven-plugin.version>0.0.29</spring-javaformat-maven-plugin.version>
     </properties>
-
-    <!--scm信息-->
-    <scm>
-        <url>https://github.com/guoshiqiufeng/kernel.git</url>
-        <connection>scm:git:https://github.com/guoshiqiufeng/kernel.git</connection>
-        <developerConnection>scm:git:https://github.com/guoshiqiufeng/kernel.git</developerConnection>
-    </scm>
-
-    <licenses>
-        <license>
-            <name>Apache 2.0</name>
-            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
-        </license>
-    </licenses>
-
-    <developers>
-        <developer>
-            <id>yanghq</id>
-            <name>fubluesky</name>
-            <email>fubluesky@foxmail.com</email>
-        </developer>
-    </developers>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.vaadin.external.google</groupId>
-                    <artifactId>android-json</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-    </dependencies>
 
     <dependencyManagement>
         <dependencies>
@@ -123,45 +77,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <!--私服配置-->
-    <repositories>
-        <repository>
-            <id>dev</id>
-            <name>dev repository</name>
-            <url>https://maven.aliyun.com/repository/public/</url>
-            <releases>
-            </releases>
-        </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>plugin-repos</id>
-            <name>plugin Repository</name>
-            <url>https://maven.aliyun.com/nexus/content/groups/public</url>
-            <releases>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
-
-    <!--  指定远程发布仓库 -->
-    <distributionManagement>
-        <repository>
-            <id>s01-sonatype-nexus-releases</id>
-            <name>s01 Sonatype Nexus Release</name>
-            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-
-        <snapshotRepository>
-            <id>s01-sonatype-nexus-snapshots</id>
-            <name>s01 Sonatype Nexus SNAPSHOTS</name>
-            <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
 
     <build>
         <plugins>
@@ -273,7 +188,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- gpg plugin,用于签名认证 -->
+            <!-- gpg plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
@@ -288,7 +203,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--staging puglin,用于自动执行发布阶段(免手动)-->
+            <!--staging plugin -->
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
@@ -300,7 +215,7 @@
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
             </plugin>
-            <!-- release plugin,用于发布到release仓库部署插件 -->
+            <!-- release plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
@@ -317,6 +232,7 @@
         <module>kernel-push</module>
         <module>kernel-cache</module>
         <module>kernel-email</module>
+        <module>kernel-excel</module>
         <module>kernel-file</module>
         <module>kernel-sms</module>
         <module>kernel-validator</module>

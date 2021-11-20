@@ -1,0 +1,61 @@
+/*
+ *
+ *   Copyright 2021 fubluesky.
+ *
+ *   Licensed under the Apache License, Version 2.0 (the "License");
+ *   you may not use this file except in compliance with the License.
+ *   You may obtain a copy of the License at
+ *
+ *        https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
+package com.gitee.fubluesky.kernel.excel.api.pojo;
+
+import lombok.Data;
+import lombok.experimental.Accessors;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.Serializable;
+import java.util.Collection;
+
+/**
+ * @author yanghq
+ * @version 1.0
+ * @since 2021-11-19 15:00
+ */
+@Data
+@Accessors(chain = true)
+public class ExportParam implements Serializable {
+
+	/**
+	 * 输出流
+	 */
+	private HttpServletResponse response;
+
+	/**
+	 * 数据集合
+	 */
+	private Collection<?> data;
+
+	/**
+	 * 集合类
+	 */
+	private Class<?> clazz;
+
+	/**
+	 * 文件名
+	 */
+	private String fileName = "file";
+
+	/**
+	 * sheet名
+	 */
+	private String sheetName = "sheet";
+
+}

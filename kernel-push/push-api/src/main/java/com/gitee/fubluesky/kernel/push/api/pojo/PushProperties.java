@@ -34,6 +34,6 @@ public class PushProperties implements Serializable {
 	/**
 	 * 是否开启
 	 */
-	private Boolean enable = false;
+	private Boolean enabled = false;
 
 }
