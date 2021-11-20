@@ -20,7 +20,7 @@
     <parent>
         <groupId>com.gitee.fubluesky.kernel</groupId>
         <artifactId>kernel-excel</artifactId>
-        <version>1.4.2</version>
+        <version>1.4.3</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -43,12 +43,6 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>easyexcel</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.commons</groupId>
-                    <artifactId>commons-compress</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
     </dependencies>
 
