@@ -23,7 +23,7 @@
 - [x] kernel-push [23]
 
 
-- [ ] kernel-excel [30]
+- [x] kernel-excel [30]
 
 #### ToDo
 - [ ] kernel-sms 添加多签名切换

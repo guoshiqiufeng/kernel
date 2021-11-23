@@ -61,7 +61,7 @@ public class ServiceException extends RuntimeException {
 
 	public ServiceException(AbstractExceptionEnum exception) {
 		super(exception.getMessage());
-		this.moduleName = CoreConstants.CORE_MODULE_NAME;
+		this.moduleName = CoreConstants.MODULE_NAME;
 		this.code = Integer.parseInt(exception.getCode());
 		this.message = exception.getMessage();
 	}

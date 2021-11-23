@@ -36,4 +36,18 @@ public interface AbstractExceptionEnum {
 	 */
 	String getMessage();
 
+	/**
+	 * 获取数字类型异常的状态码
+	 * 若状态码可正常转换为数字则返回对应数字
+	 * 若转换失败则返回-1
+	 * @return 状态码
+	 */
+	default Integer getIntegerCode() {
+		String code = getCode();
+		try {
+			return Integer.parseInt(code);
+		} catch (Exception exception) {
+			return -1;
+		}
+	}
 }

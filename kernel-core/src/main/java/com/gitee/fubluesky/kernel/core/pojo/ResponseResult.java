@@ -66,7 +66,7 @@ public class ResponseResult implements Serializable {
 	 */
 	public ResponseResult(AbstractExceptionEnum exceptionEnum) {
 		super();
-		this.code = Integer.parseInt(exceptionEnum.getCode());
+		this.code = exceptionEnum.getIntegerCode();
 		this.message = exceptionEnum.getMessage();
 	}
 
@@ -77,7 +77,7 @@ public class ResponseResult implements Serializable {
 	 */
 	public ResponseResult(AbstractExceptionEnum exceptionEnum, String message) {
 		super();
-		this.code = Integer.parseInt(exceptionEnum.getCode());
+		this.code = exceptionEnum.getIntegerCode();
 		this.message = message;
 	}
 
@@ -88,7 +88,7 @@ public class ResponseResult implements Serializable {
 	 */
 	public ResponseResult(AbstractExceptionEnum exceptionEnum, Object data) {
 		super();
-		this.code = Integer.parseInt(exceptionEnum.getCode());
+		this.code = exceptionEnum.getIntegerCode();
 		this.message = exceptionEnum.getMessage();
 		this.data = data;
 	}
@@ -101,7 +101,7 @@ public class ResponseResult implements Serializable {
 	 */
 	public ResponseResult(AbstractExceptionEnum exceptionEnum, String message, Object data) {
 		super();
-		this.code = Integer.parseInt(exceptionEnum.getCode());
+		this.code = exceptionEnum.getIntegerCode();
 		this.message = message;
 		this.data = data;
 	}
@@ -113,7 +113,7 @@ public class ResponseResult implements Serializable {
 	 */
 	public ResponseResult(AbstractExceptionEnum exceptionEnum, Throwable throwable) {
 		super();
-		this.code = Integer.parseInt(exceptionEnum.getCode());
+		this.code = exceptionEnum.getIntegerCode();
 		this.message = exceptionEnum.getMessage();
 		this.throwable = throwable.getMessage();
 	}

@@ -17,9 +17,9 @@
 
 package com.gitee.fubluesky.kernel.core.exception.enums.defaults;
 
+import com.gitee.fubluesky.kernel.core.enums.ErrorType;
 import com.gitee.fubluesky.kernel.core.exception.AbstractExceptionEnum;
 
-import static com.gitee.fubluesky.kernel.core.constants.CoreConstants.BUSINESS_ERROR_TYPE_CODE;
 import static com.gitee.fubluesky.kernel.core.constants.CoreConstants.FIRST_LEVEL_WIDE_CODE;
 
 /**
@@ -33,15 +33,18 @@ public enum DefaultBusinessExceptionEnum implements AbstractExceptionEnum {
 	/**
 	 * 系统执行出错（一级宏观错误码）
 	 */
-	SYSTEM_RUNTIME_ERROR(BUSINESS_ERROR_TYPE_CODE, FIRST_LEVEL_WIDE_CODE, "系统执行出错，请检查系统运行状况"),
+	SYSTEM_RUNTIME_ERROR(ErrorType.BUSINESS_ERROR.getCode(), FIRST_LEVEL_WIDE_CODE, "系统执行出错，请检查系统运行状况"),
 
 	/**
 	 * 未知异常
 	 */
-	SYSTEM_UNKNOWN_ERROR(BUSINESS_ERROR_TYPE_CODE, FIRST_LEVEL_WIDE_CODE, "系统执行出错，请稍候再试");
+	SYSTEM_UNKNOWN_ERROR(ErrorType.BUSINESS_ERROR.getCode(), FIRST_LEVEL_WIDE_CODE, "系统执行出错，请稍候再试");
 
 	/**
-	 * 异常分类 用户端异常: 1 业务异常: 2 第三方异常: 3
+	 * 异常分类  {@link ErrorType}
+	 * 用户端异常: 1
+	 * 业务异常: 2
+	 * 第三方异常: 3
 	 */
 	private final String typeCode;
 

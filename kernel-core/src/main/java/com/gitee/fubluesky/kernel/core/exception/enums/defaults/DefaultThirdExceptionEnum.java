@@ -17,11 +17,11 @@
 
 package com.gitee.fubluesky.kernel.core.exception.enums.defaults;
 
+import com.gitee.fubluesky.kernel.core.enums.ErrorType;
 import com.gitee.fubluesky.kernel.core.exception.AbstractExceptionEnum;
 import lombok.Getter;
 
 import static com.gitee.fubluesky.kernel.core.constants.CoreConstants.FIRST_LEVEL_WIDE_CODE;
-import static com.gitee.fubluesky.kernel.core.constants.CoreConstants.THIRD_ERROR_TYPE_CODE;
 
 /**
  * 第三方服务错误
@@ -35,10 +35,13 @@ public enum DefaultThirdExceptionEnum implements AbstractExceptionEnum {
 	/**
 	 * 调用第三方服务出错（一级宏观错误码）
 	 */
-	THIRD_PARTY_ERROR(THIRD_ERROR_TYPE_CODE, FIRST_LEVEL_WIDE_CODE, "第三方调用出现错误");
+	THIRD_PARTY_ERROR(ErrorType.THIRD_ERROR.getCode(), FIRST_LEVEL_WIDE_CODE, "第三方调用出现错误");
 
 	/**
-	 * 异常分类 用户端异常: 1 业务异常: 2 第三方异常: 3
+	 * 异常分类  {@link ErrorType}
+	 * 用户端异常: 1
+	 * 业务异常: 2
+	 * 第三方异常: 3
 	 */
 	private final String typeCode;
 

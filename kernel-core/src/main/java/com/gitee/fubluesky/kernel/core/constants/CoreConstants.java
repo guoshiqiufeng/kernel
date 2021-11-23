@@ -17,7 +17,10 @@
 
 package com.gitee.fubluesky.kernel.core.constants;
 
+import com.gitee.fubluesky.kernel.core.enums.ErrorType;
+
 /**
+ * 常量
  * @author yanghq
  * @version 1.0
  * @since 2021-07-21 10:46
@@ -26,17 +29,23 @@ public interface CoreConstants {
 
 	/**
 	 * 用户端操作异常的错误码分类编号
+	 * 建议使用 ErrorType {@link ErrorType}
 	 */
+	@Deprecated
 	String USER_OPERATION_ERROR_TYPE_CODE = "1";
 
 	/**
 	 * 业务执行异常的错误码分类编号
+	 * 建议使用 ErrorType {@link ErrorType}
 	 */
+	@Deprecated
 	String BUSINESS_ERROR_TYPE_CODE = "2";
 
 	/**
 	 * 第三方调用异常的错误码分类编号
+	 * 建议使用 ErrorType {@link ErrorType}
 	 */
+	@Deprecated
 	String THIRD_ERROR_TYPE_CODE = "3";
 
 	/**
@@ -47,12 +56,12 @@ public interface CoreConstants {
 	/**
 	 * 异常枚举的步进值
 	 */
-	String CORE_EXCEPTION_STEP_CODE = "01";
+	String EXCEPTION_STEP_CODE = "01";
 
 	/**
 	 * 规则模块的名称
 	 */
-	String CORE_MODULE_NAME = "kernel-core";
+	String MODULE_NAME = "kernel-core";
 
 	String FLAG_TRUE = "true";
 
