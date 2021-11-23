@@ -21,6 +21,7 @@ import com.gitee.fubluesky.kernel.core.enums.ErrorType;
 
 /**
  * 常量
+ *
  * @author yanghq
  * @version 1.0
  * @since 2021-07-21 10:46
@@ -28,22 +29,19 @@ import com.gitee.fubluesky.kernel.core.enums.ErrorType;
 public interface CoreConstants {
 
 	/**
-	 * 用户端操作异常的错误码分类编号
-	 * 建议使用 ErrorType {@link ErrorType}
+	 * 用户端操作异常的错误码分类编号 建议使用 ErrorType {@link ErrorType}
 	 */
 	@Deprecated
 	String USER_OPERATION_ERROR_TYPE_CODE = "1";
 
 	/**
-	 * 业务执行异常的错误码分类编号
-	 * 建议使用 ErrorType {@link ErrorType}
+	 * 业务执行异常的错误码分类编号 建议使用 ErrorType {@link ErrorType}
 	 */
 	@Deprecated
 	String BUSINESS_ERROR_TYPE_CODE = "2";
 
 	/**
-	 * 第三方调用异常的错误码分类编号
-	 * 建议使用 ErrorType {@link ErrorType}
+	 * 第三方调用异常的错误码分类编号 建议使用 ErrorType {@link ErrorType}
 	 */
 	@Deprecated
 	String THIRD_ERROR_TYPE_CODE = "3";

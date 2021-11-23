@@ -41,10 +41,7 @@ public enum DefaultBusinessExceptionEnum implements AbstractExceptionEnum {
 	SYSTEM_UNKNOWN_ERROR(ErrorType.BUSINESS_ERROR.getCode(), FIRST_LEVEL_WIDE_CODE, "系统执行出错，请稍候再试");
 
 	/**
-	 * 异常分类  {@link ErrorType}
-	 * 用户端异常: 1
-	 * 业务异常: 2
-	 * 第三方异常: 3
+	 * 异常分类 {@link ErrorType} 用户端异常: 1 业务异常: 2 第三方异常: 3
 	 */
 	private final String typeCode;
 

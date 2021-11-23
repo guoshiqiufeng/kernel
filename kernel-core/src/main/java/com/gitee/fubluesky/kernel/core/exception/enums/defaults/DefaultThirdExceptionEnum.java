@@ -38,10 +38,7 @@ public enum DefaultThirdExceptionEnum implements AbstractExceptionEnum {
 	THIRD_PARTY_ERROR(ErrorType.THIRD_ERROR.getCode(), FIRST_LEVEL_WIDE_CODE, "第三方调用出现错误");
 
 	/**
-	 * 异常分类  {@link ErrorType}
-	 * 用户端异常: 1
-	 * 业务异常: 2
-	 * 第三方异常: 3
+	 * 异常分类 {@link ErrorType} 用户端异常: 1 业务异常: 2 第三方异常: 3
 	 */
 	private final String typeCode;
 

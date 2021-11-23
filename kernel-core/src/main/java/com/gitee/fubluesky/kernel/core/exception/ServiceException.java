@@ -47,7 +47,12 @@ public class ServiceException extends RuntimeException {
 
 	public ServiceException(String moduleName, String code, String message) {
 		super(message);
-		this.code = Integer.parseInt(code);
+		try {
+			this.code = Integer.parseInt(code);
+		}
+		catch (Exception exception) {
+			this.code = -1;
+		}
 		this.moduleName = moduleName;
 		this.message = message;
 	}
@@ -55,14 +60,14 @@ public class ServiceException extends RuntimeException {
 	public ServiceException(String moduleName, AbstractExceptionEnum exception) {
 		super(exception.getMessage());
 		this.moduleName = moduleName;
-		this.code = Integer.parseInt(exception.getCode());
+		this.code = exception.getIntegerCode();
 		this.message = exception.getMessage();
 	}
 
 	public ServiceException(AbstractExceptionEnum exception) {
 		super(exception.getMessage());
 		this.moduleName = CoreConstants.MODULE_NAME;
-		this.code = Integer.parseInt(exception.getCode());
+		this.code = exception.getIntegerCode();
 		this.message = exception.getMessage();
 	}
 

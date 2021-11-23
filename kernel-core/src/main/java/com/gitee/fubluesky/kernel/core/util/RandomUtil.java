@@ -20,6 +20,8 @@ package com.gitee.fubluesky.kernel.core.util;
 import lombok.experimental.UtilityClass;
 
 /**
+ * 随机数生成
+ *
  * @author yanghq
  * @version 1.0
  * @since 2021-08-17 9:59
@@ -56,7 +58,7 @@ public class RandomUtil {
 	 * @param num 位数
 	 * @return 随机数字
 	 */
-	private static String getRandom(int num) {
+	public String getRandom(int num) {
 		int[] a = new int[num];
 		StringBuilder ss = new StringBuilder();
 		for (int i = 0; i < a.length; i++) {

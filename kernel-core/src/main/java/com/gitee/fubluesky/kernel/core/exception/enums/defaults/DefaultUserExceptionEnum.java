@@ -38,10 +38,7 @@ public enum DefaultUserExceptionEnum implements AbstractExceptionEnum {
 	USER_OPERATION_ERROR(ErrorType.USER_OPERATION_ERROR.getCode(), FIRST_LEVEL_WIDE_CODE, "执行失败，请检查操作是否正常");
 
 	/**
-	 * 异常分类  {@link ErrorType}
-	 * 用户端异常: 1
-	 * 业务异常: 2
-	 * 第三方异常: 3
+	 * 异常分类 {@link ErrorType} 用户端异常: 1 业务异常: 2 第三方异常: 3
 	 */
 	private final String typeCode;
 

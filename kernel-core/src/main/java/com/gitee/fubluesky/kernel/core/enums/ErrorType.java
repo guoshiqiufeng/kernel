@@ -27,56 +27,57 @@ import lombok.Getter;
 @Getter
 public enum ErrorType {
 
-    /**
-     * 用户操作异常
-     */
-    USER_OPERATION_ERROR("1", "用户操作异常"),
+	/**
+	 * 用户操作异常
+	 */
+	USER_OPERATION_ERROR("1", "用户操作异常"),
 
-    /**
-     * 业务异常
-     */
-    BUSINESS_ERROR("2", "业务异常"),
+	/**
+	 * 业务异常
+	 */
+	BUSINESS_ERROR("2", "业务异常"),
 
-    /**
-     * 第三方异常
-     */
-    THIRD_ERROR("3", "第三方异常"),
+	/**
+	 * 第三方异常
+	 */
+	THIRD_ERROR("3", "第三方异常"),
 
-    /**
-     * 空
-     */
-    EMPTY("", "")
+	/**
+	 * 空
+	 */
+	EMPTY("", "")
 
-    ;
+	;
 
-    private final String code;
+	private final String code;
 
-    private final String describe;
+	private final String describe;
 
-    ErrorType(String code, String describe) {
-        this.code = code;
-        this.describe = describe;
-    }
+	ErrorType(String code, String describe) {
+		this.code = code;
+		this.describe = describe;
+	}
 
-    public static ErrorType getErrorType(String code) {
-        if (null != code) {
-            for (ErrorType errorType : ErrorType.values()) {
-                if (errorType.getCode().equals(code)) {
-                    return errorType;
-                }
-            }
-        }
-        return null;
-    }
+	public static ErrorType getErrorType(String code) {
+		if (null != code) {
+			for (ErrorType errorType : ErrorType.values()) {
+				if (errorType.getCode().equals(code)) {
+					return errorType;
+				}
+			}
+		}
+		return null;
+	}
 
-    public static String codeToDescribe(String code) {
-        if (null != code) {
-            for (ErrorType errorType : ErrorType.values()) {
-                if (errorType.getCode().equals(code)) {
-                    return errorType.getDescribe();
-                }
-            }
-        }
-        return "未知";
-    }
+	public static String codeToDescribe(String code) {
+		if (null != code) {
+			for (ErrorType errorType : ErrorType.values()) {
+				if (errorType.getCode().equals(code)) {
+					return errorType.getDescribe();
+				}
+			}
+		}
+		return "未知";
+	}
+
 }
