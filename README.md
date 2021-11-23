@@ -3,10 +3,8 @@
 [![License](http://img.shields.io/:license-apache-brightgreen.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 #### 介绍
 内核框架
-#### 异常
-用户异常 1
-业务异常 2
-第三方异常 3
+#### 代码
+采用阿里巴巴代码规范，使用spring-javaformat格式化代码
 #### 模块
 - [x] kernel-core [01]
 - [x] kernel-db [02]
