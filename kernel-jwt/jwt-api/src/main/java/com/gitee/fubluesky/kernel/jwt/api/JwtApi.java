@@ -18,7 +18,7 @@
 package com.gitee.fubluesky.kernel.jwt.api;
 
 import com.gitee.fubluesky.kernel.jwt.api.exception.JwtException;
-import com.gitee.fubluesky.kernel.jwt.api.pojo.payload.DefaultJwtPayload;
+import com.gitee.fubluesky.kernel.jwt.api.pojo.DefaultJwtPayload;
 
 import java.util.Map;
 

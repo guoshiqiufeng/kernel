@@ -29,11 +29,11 @@ public interface PushConstants {
 	/**
 	 * 安全模块的名称
 	 */
-	String PUSH_MODULE_NAME = "kernel-push";
+	String MODULE_NAME = "kernel-push";
 
 	/**
 	 * 异常枚举的步进值
 	 */
-	String PUSH_EXCEPTION_STEP_CODE = "23";
+	String EXCEPTION_STEP_CODE = "23";
 
 }

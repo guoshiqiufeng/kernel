@@ -17,7 +17,7 @@
 
 package com.gitee.fubluesky.kernel.validator.api.exception.enums;
 
-import com.gitee.fubluesky.kernel.core.constants.CoreConstants;
+import com.gitee.fubluesky.kernel.core.enums.ErrorType;
 import com.gitee.fubluesky.kernel.core.exception.AbstractExceptionEnum;
 import com.gitee.fubluesky.kernel.validator.api.constants.ValidatorConstants;
 
@@ -31,8 +31,8 @@ public enum ValidatorExceptionEnum implements AbstractExceptionEnum {
 	/**
 	 * 参数校验失败
 	 */
-	VALIDATED_RESULT_ERROR(CoreConstants.USER_OPERATION_ERROR_TYPE_CODE,
-			ValidatorConstants.VALIDATOR_EXCEPTION_STEP_CODE + "01", "参数校验失败："),
+	VALIDATED_RESULT_ERROR(ErrorType.USER_OPERATION_ERROR.getCode(), ValidatorConstants.EXCEPTION_STEP_CODE + "01",
+			"参数校验失败："),
 
 	;
 

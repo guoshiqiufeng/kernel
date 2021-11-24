@@ -15,52 +15,50 @@
  *  limitations under the License.
  */
 
-package com.gitee.fubluesky.kernel.email.api.constants;
+package com.gitee.fubluesky.kernel.db.mybatisplus.pojo;
+
+import lombok.Data;
+
+import java.io.Serializable;
 
 /**
  * @author yanghq
  * @version 1.0
- * @since 2021-07-27 17:21
+ * @since 2021-11-23 17:28
  */
-public interface MailConstants {
+@Data
+public class DbProperties implements Serializable {
+
+	private static final long serialVersionUID = -8733821714991760707L;
 
 	/**
-	 * 邮件模块的名称
+	 * 是否启用
 	 */
-	String MODULE_NAME = "kernel-email";
+	private Boolean enabled = true;
 
 	/**
-	 * 异常枚举的步进值
+	 * 是否启用分页插件
 	 */
-	String EXCEPTION_STEP_CODE = "21";
+	private Boolean interceptorEnabled = true;
 
 	/**
-	 * 邮件服务器主机名
+	 * 是否启用数据填充
 	 */
-	String MAIL_HOST = "mail.host";
+	private Boolean metaEnabled = true;
 
 	/**
-	 * 端口号
+	 * 通用字段：创建时间
 	 */
-	String MAIL_PORT = "mail.port";
+	private String createDate = "createDate";
 
 	/**
-	 * 邮件协议名称
+	 * 通用字段：更新时间
 	 */
-	String MAIL_TRANSPORT_PROTOCOL = "mail.transport.protocol";
-
-	String MAIL_SMTP = "smtp";
+	private String modifyDate = "modifyDate";
 
 	/**
-	 * 是否认证
+	 * 通用字段：已删除
 	 */
-	String MAIL_SMTP_AUTH = "mail.smtp.auth";
-
-	/**
-	 * 是否 开启SSL加密
-	 */
-	String MAIL_SMTP_SSL_ENABLE = "mail.smtp.ssl.enable";
-
-	String MAIL_SMTP_SSL_SOCKET_FACTORY = "mail.smtp.ssl.socketFactory";
+	private String isDeleted = "isDeleted";
 
 }

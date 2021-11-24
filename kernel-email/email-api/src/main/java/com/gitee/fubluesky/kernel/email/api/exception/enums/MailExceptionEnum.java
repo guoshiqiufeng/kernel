@@ -17,7 +17,7 @@
 
 package com.gitee.fubluesky.kernel.email.api.exception.enums;
 
-import com.gitee.fubluesky.kernel.core.constants.CoreConstants;
+import com.gitee.fubluesky.kernel.core.enums.ErrorType;
 import com.gitee.fubluesky.kernel.core.exception.AbstractExceptionEnum;
 import com.gitee.fubluesky.kernel.email.api.constants.MailConstants;
 import lombok.Getter;
@@ -33,13 +33,13 @@ public enum MailExceptionEnum implements AbstractExceptionEnum {
 	/**
 	 * 邮件发送异常，请求参数存在空值
 	 */
-	EMAIL_PARAM_EMPTY_ERROR(CoreConstants.BUSINESS_ERROR_TYPE_CODE, MailConstants.MAIL_EXCEPTION_STEP_CODE + "01",
+	EMAIL_PARAM_EMPTY_ERROR(ErrorType.BUSINESS_ERROR.getCode(), MailConstants.EXCEPTION_STEP_CODE + "01",
 			"邮件发送失败，请检查参数配置，{}参数可能为空"),
 
 	/**
 	 * 邮件发送异常
 	 */
-	EMAIL_SEND_ERROR(CoreConstants.BUSINESS_ERROR_TYPE_CODE, MailConstants.MAIL_EXCEPTION_STEP_CODE + "02", "邮件发送失败:"),
+	EMAIL_SEND_ERROR(ErrorType.BUSINESS_ERROR.getCode(), MailConstants.EXCEPTION_STEP_CODE + "02", "邮件发送失败:"),
 
 	;
 

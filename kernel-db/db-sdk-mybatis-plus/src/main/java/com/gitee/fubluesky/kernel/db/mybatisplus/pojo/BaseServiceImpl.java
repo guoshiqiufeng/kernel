@@ -21,8 +21,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.gitee.fubluesky.kernel.db.api.exception.DaoException;
-import com.gitee.fubluesky.kernel.db.api.exception.enums.DaoExceptionEnum;
+import com.gitee.fubluesky.kernel.db.api.exception.DbException;
+import com.gitee.fubluesky.kernel.db.api.exception.enums.DbExceptionEnum;
 import com.gitee.fubluesky.kernel.db.api.pojo.domain.BaseDomain;
 import com.gitee.fubluesky.kernel.db.api.pojo.page.PageResult;
 import com.gitee.fubluesky.kernel.db.mybatisplus.factory.PageFactory;
@@ -34,7 +34,7 @@ import java.lang.reflect.Field;
 import java.util.Arrays;
 
 /**
- * 通用业务逻辑接口
+ * 通用业务逻辑实现
  *
  * @author <a href="mailto:fubluesky@foxmail.com">yanghq</a>
  * @version 1.0
@@ -68,7 +68,7 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseDom
 	public T get(Long id) {
 		T domain = super.getById(id);
 		if (null == domain) {
-			throw new DaoException(DaoExceptionEnum.DATA_NONE_ERROR);
+			throw new DbException(DbExceptionEnum.DATA_NONE_ERROR);
 		}
 		return domain;
 	}
@@ -112,7 +112,7 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseDom
 	 */
 	protected boolean checkId(Long id) {
 		if (getById(id) == null) {
-			throw new DaoException(DaoExceptionEnum.DATA_NONE_ERROR);
+			throw new DbException(DbExceptionEnum.DATA_NONE_ERROR);
 		}
 		return true;
 	}

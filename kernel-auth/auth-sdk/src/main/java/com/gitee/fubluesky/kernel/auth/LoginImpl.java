@@ -27,7 +27,7 @@ import com.gitee.fubluesky.kernel.auth.utils.SpringContextUtils;
 import com.gitee.fubluesky.kernel.cache.api.CacheOperatorApi;
 import com.gitee.fubluesky.kernel.core.util.HttpServletUtil;
 import com.gitee.fubluesky.kernel.jwt.api.JwtApi;
-import com.gitee.fubluesky.kernel.jwt.api.pojo.payload.DefaultJwtPayload;
+import com.gitee.fubluesky.kernel.jwt.api.pojo.DefaultJwtPayload;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.Cookie;

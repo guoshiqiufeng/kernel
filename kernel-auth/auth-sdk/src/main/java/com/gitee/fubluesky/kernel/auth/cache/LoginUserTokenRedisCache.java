@@ -21,7 +21,7 @@ import com.gitee.fubluesky.kernel.auth.api.pojo.login.LoginUser;
 import com.gitee.fubluesky.kernel.auth.utils.SpringContextUtils;
 import com.gitee.fubluesky.kernel.cache.redis.AbstractRedisCacheOperator;
 import com.gitee.fubluesky.kernel.core.constants.CoreConstants;
-import com.gitee.fubluesky.kernel.jwt.api.pojo.config.JwtConfig;
+import com.gitee.fubluesky.kernel.jwt.api.pojo.JwtProperties;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.DigestUtils;
 
@@ -38,8 +38,8 @@ public class LoginUserTokenRedisCache extends AbstractRedisCacheOperator<LoginUs
 
 	@Override
 	public void add(String key, LoginUser value) {
-		JwtConfig jwtConfig = SpringContextUtils.getBean(JwtConfig.class);
-		int day = jwtConfig.getRefresh();
+		JwtProperties jwtProperties = SpringContextUtils.getBean(JwtProperties.class);
+		int day = jwtProperties.getRefresh();
 		long exp = 60 * 60 * 24L * day;
 		super.add(key, value, exp);
 	}

@@ -27,12 +27,12 @@ public interface FileConstants {
 	/**
 	 * 文件模块的名称
 	 */
-	String FILE_MODULE_NAME = "kernel-file";
+	String MODULE_NAME = "kernel-file";
 
 	/**
 	 * 异常枚举的步进值
 	 */
-	String FILE_EXCEPTION_STEP_CODE = "20";
+	String EXCEPTION_STEP_CODE = "20";
 
 	/**
 	 * 斜线

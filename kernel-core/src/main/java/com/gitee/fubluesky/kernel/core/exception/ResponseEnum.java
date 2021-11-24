@@ -17,6 +17,7 @@
 
 package com.gitee.fubluesky.kernel.core.exception;
 
+import com.gitee.fubluesky.kernel.core.enums.ErrorType;
 import lombok.Getter;
 
 /**
@@ -31,15 +32,15 @@ public enum ResponseEnum implements AbstractExceptionEnum {
 	/**
 	 * 成功
 	 */
-	SUCCESS("", "20000", "请求成功"),
+	SUCCESS(ErrorType.EMPTY.getCode(), "20000", "请求成功"),
 
 	/**
 	 * 失败
 	 */
-	FAILURE("", "-1", "失败");
+	FAILURE(ErrorType.EMPTY.getCode(), "-1", "失败");
 
 	/**
-	 * 异常分类 用户端异常: 1 业务异常: 2 第三方异常: 3
+	 * 异常分类 {@link ErrorType} 用户端异常: 1 业务异常: 2 第三方异常: 3
 	 */
 	private final String typeCode;
 

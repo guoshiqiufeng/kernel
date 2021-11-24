@@ -17,11 +17,11 @@
 
 package com.gitee.fubluesky.kernel.core.exception.enums.http;
 
+import com.gitee.fubluesky.kernel.core.enums.ErrorType;
 import com.gitee.fubluesky.kernel.core.exception.AbstractExceptionEnum;
 import lombok.Getter;
 
-import static com.gitee.fubluesky.kernel.core.constants.CoreConstants.BUSINESS_ERROR_TYPE_CODE;
-import static com.gitee.fubluesky.kernel.core.constants.CoreConstants.CORE_EXCEPTION_STEP_CODE;
+import static com.gitee.fubluesky.kernel.core.constants.CoreConstants.EXCEPTION_STEP_CODE;
 
 /**
  * servlet异常
@@ -35,15 +35,15 @@ public enum ServletExceptionEnum implements AbstractExceptionEnum {
 	/**
 	 * 获取不到http context异常
 	 */
-	HTTP_CONTEXT_ERROR(BUSINESS_ERROR_TYPE_CODE, CORE_EXCEPTION_STEP_CODE + "01", "获取不到http context"),
+	HTTP_CONTEXT_ERROR(ErrorType.BUSINESS_ERROR.getCode(), EXCEPTION_STEP_CODE + "01", "获取不到http context"),
 
 	/**
 	 * 404
 	 */
-	NOT_FOUND_ERROR("", "404", "接口地址无效");
+	NOT_FOUND_ERROR(ErrorType.EMPTY.getCode(), "404", "接口地址无效");
 
 	/**
-	 * 异常分类 用户端异常: 1 业务异常: 2 第三方异常: 3
+	 * 异常分类 {@link ErrorType} 用户端异常: 1 业务异常: 2 第三方异常: 3
 	 */
 	private final String typeCode;
 

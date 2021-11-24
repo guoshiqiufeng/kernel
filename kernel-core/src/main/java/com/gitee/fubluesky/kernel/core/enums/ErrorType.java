@@ -20,38 +20,49 @@ package com.gitee.fubluesky.kernel.core.enums;
 import lombok.Getter;
 
 /**
- * 性别
  * @author yanghq
  * @version 1.0
- * @since 2021-07-21 13:48
+ * @since 2021-11-23 14:32
  */
 @Getter
-public enum SexEnum {
+public enum ErrorType {
 
 	/**
-	 * 男
+	 * 用户操作异常
 	 */
-	MALE("1", "男"),
+	USER_OPERATION_ERROR("1", "用户操作异常"),
 
 	/**
-	 * 女
+	 * 业务异常
 	 */
-	FEMALE("2", "女");
+	BUSINESS_ERROR("2", "业务异常"),
+
+	/**
+	 * 第三方异常
+	 */
+	THIRD_ERROR("3", "第三方异常"),
+
+	/**
+	 * 空
+	 */
+	EMPTY("", "")
+
+	;
 
 	private final String code;
 
 	private final String describe;
 
-	SexEnum(String code, String describe) {
+	ErrorType(String code, String describe) {
 		this.code = code;
 		this.describe = describe;
 	}
 
-	public static SexEnum getEnum(String code) {
+	public static ErrorType getErrorType(String code) {
 		if (null != code) {
-			for (SexEnum sexEnum : SexEnum.values()) {
-				if (sexEnum.getCode().equals(code)) {
-					return sexEnum;
+			for (ErrorType errorType : ErrorType.values()) {
+				if (errorType.getCode().equals(code)) {
+					return errorType;
 				}
 			}
 		}
@@ -60,9 +71,9 @@ public enum SexEnum {
 
 	public static String codeToDescribe(String code) {
 		if (null != code) {
-			for (SexEnum sexEnum : SexEnum.values()) {
-				if (sexEnum.getCode().equals(code)) {
-					return sexEnum.getDescribe();
+			for (ErrorType errorType : ErrorType.values()) {
+				if (errorType.getCode().equals(code)) {
+					return errorType.getDescribe();
 				}
 			}
 		}

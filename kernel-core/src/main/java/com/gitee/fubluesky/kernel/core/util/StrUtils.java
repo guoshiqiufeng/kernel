@@ -18,6 +18,7 @@
 package com.gitee.fubluesky.kernel.core.util;
 
 import lombok.experimental.UtilityClass;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author yanghq
@@ -28,22 +29,13 @@ import lombok.experimental.UtilityClass;
 public class StrUtils {
 
 	/**
-	 * 字符串是否 为null、为""
-	 * @param str 被检测的字符串
-	 * @return 是否为空
-	 */
-	public boolean isEmpty(CharSequence str) {
-		return str == null || str.length() == 0;
-	}
-
-	/**
 	 * 去掉前缀
 	 * @param str 字符串
 	 * @param prefix 前缀
 	 * @return 切掉后的字符串，若前缀不是 prefix， 返回原字符串
 	 */
 	public String removePrefix(CharSequence str, CharSequence prefix) {
-		if (isEmpty(str) || isEmpty(prefix)) {
+		if (StringUtils.isEmpty(str) || StringUtils.isEmpty(prefix)) {
 			return str(str);
 		}
 
@@ -62,19 +54,19 @@ public class StrUtils {
 	 * @return 切割后后剩余的后半部分字符串
 	 */
 	public String subSuf(CharSequence string, int fromIndex) {
-		if (isEmpty(string)) {
+		if (StringUtils.isEmpty(string)) {
 			return null;
 		}
 		return string.subSequence(fromIndex, string.length()).toString();
 	}
 
 	/**
-	 * {@link CharSequence} 转为字符串，null安全
-	 * @param cs {@link CharSequence}
+	 * 不为null转为字符串
+	 * @param string 字符串
 	 * @return 字符串
 	 */
-	public String str(CharSequence cs) {
-		return null == cs ? null : cs.toString();
+	public String str(CharSequence string) {
+		return null == string ? null : string.toString();
 	}
 
 }

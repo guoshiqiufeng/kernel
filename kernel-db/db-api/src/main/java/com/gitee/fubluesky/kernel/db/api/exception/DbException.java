@@ -15,21 +15,23 @@
  *  limitations under the License.
  */
 
-package com.gitee.fubluesky.kernel.security.api.exception;
+package com.gitee.fubluesky.kernel.db.api.exception;
 
 import com.gitee.fubluesky.kernel.core.exception.AbstractExceptionEnum;
 import com.gitee.fubluesky.kernel.core.exception.ServiceException;
-import com.gitee.fubluesky.kernel.security.api.constants.SecurityConstants;
+import com.gitee.fubluesky.kernel.db.api.constants.DbConstants;
 
 /**
+ * 数据库相关异常
+ *
  * @author yanghq
  * @version 1.0
- * @since 2021-08-09 15:00
+ * @since 2021-07-22 10:27
  */
-public class SecurityException extends ServiceException {
+public class DbException extends ServiceException {
 
-	public SecurityException(AbstractExceptionEnum exception) {
-		super(SecurityConstants.MODULE_NAME, exception);
+	public DbException(AbstractExceptionEnum exception) {
+		super(DbConstants.MODULE_NAME, exception);
 	}
 
 }

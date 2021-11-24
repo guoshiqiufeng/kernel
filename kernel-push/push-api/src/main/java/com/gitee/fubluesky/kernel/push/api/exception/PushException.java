@@ -29,7 +29,7 @@ import com.gitee.fubluesky.kernel.push.api.constants.PushConstants;
 public class PushException extends ServiceException {
 
 	public PushException(AbstractExceptionEnum exception) {
-		super(PushConstants.PUSH_MODULE_NAME, exception);
+		super(PushConstants.MODULE_NAME, exception);
 	}
 
 }

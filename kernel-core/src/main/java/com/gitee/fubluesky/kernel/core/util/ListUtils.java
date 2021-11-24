@@ -49,7 +49,7 @@ public class ListUtils {
 	}
 
 	/**
-	 * 转化
+	 * 对象转换
 	 * @param obj list对象
 	 * @param clazz 转换的类
 	 * @param <T> clazz的类

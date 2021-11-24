@@ -26,12 +26,12 @@ public interface AuthConstants {
 	/**
 	 * auth模块的名称
 	 */
-	String AUTH_MODULE_NAME = "kernel-auth";
+	String MODULE_NAME = "kernel-auth";
 
 	/**
 	 * 异常枚举的步进值
 	 */
-	String AUTH_EXCEPTION_STEP_CODE = "11";
+	String EXCEPTION_STEP_CODE = "11";
 
 	/**
 	 * 缓存前缀

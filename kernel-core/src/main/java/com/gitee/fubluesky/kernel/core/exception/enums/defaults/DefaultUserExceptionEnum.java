@@ -17,14 +17,14 @@
 
 package com.gitee.fubluesky.kernel.core.exception.enums.defaults;
 
+import com.gitee.fubluesky.kernel.core.enums.ErrorType;
 import com.gitee.fubluesky.kernel.core.exception.AbstractExceptionEnum;
 import lombok.Getter;
 
 import static com.gitee.fubluesky.kernel.core.constants.CoreConstants.FIRST_LEVEL_WIDE_CODE;
-import static com.gitee.fubluesky.kernel.core.constants.CoreConstants.USER_OPERATION_ERROR_TYPE_CODE;
 
 /**
- * 用户操作错误
+ * 用户操作异常
  * @author yanghq
  * @version 1.0
  * @since 2021-07-21 14:33
@@ -35,10 +35,10 @@ public enum DefaultUserExceptionEnum implements AbstractExceptionEnum {
 	/**
 	 * 用户端错误（一级宏观错误码）
 	 */
-	USER_OPERATION_ERROR(USER_OPERATION_ERROR_TYPE_CODE, FIRST_LEVEL_WIDE_CODE, "执行失败，请检查操作是否正常");
+	USER_OPERATION_ERROR(ErrorType.USER_OPERATION_ERROR.getCode(), FIRST_LEVEL_WIDE_CODE, "执行失败，请检查操作是否正常");
 
 	/**
-	 * 异常分类 用户端异常: 1 业务异常: 2 第三方异常: 3
+	 * 异常分类 {@link ErrorType} 用户端异常: 1 业务异常: 2 第三方异常: 3
 	 */
 	private final String typeCode;
 

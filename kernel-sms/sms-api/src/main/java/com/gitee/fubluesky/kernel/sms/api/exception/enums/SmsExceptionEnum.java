@@ -17,7 +17,7 @@
 
 package com.gitee.fubluesky.kernel.sms.api.exception.enums;
 
-import com.gitee.fubluesky.kernel.core.constants.CoreConstants;
+import com.gitee.fubluesky.kernel.core.enums.ErrorType;
 import com.gitee.fubluesky.kernel.core.exception.AbstractExceptionEnum;
 import com.gitee.fubluesky.kernel.sms.api.constants.SmsConstants;
 
@@ -31,17 +31,16 @@ public enum SmsExceptionEnum implements AbstractExceptionEnum {
 	/**
 	 * 短信发送请求参数为空
 	 */
-	SEND_SMS_PARAM_NULL(CoreConstants.BUSINESS_ERROR_TYPE_CODE, SmsConstants.SMS_EXCEPTION_STEP_CODE,
-			"短信发送请求参数为空，参数为：{}"),
+	SEND_SMS_PARAM_NULL(ErrorType.BUSINESS_ERROR.getCode(), SmsConstants.EXCEPTION_STEP_CODE, "短信发送请求参数为空，参数为：{}"),
 	/**
 	 * 短信发送未启用
 	 */
-	SEND_SMS_UN_ENABLE(CoreConstants.BUSINESS_ERROR_TYPE_CODE, SmsConstants.SMS_EXCEPTION_STEP_CODE, "短信发送未启用"),
+	SEND_SMS_UN_ENABLE(ErrorType.BUSINESS_ERROR.getCode(), SmsConstants.EXCEPTION_STEP_CODE, "短信发送未启用"),
 
 	/**
 	 * 短信发送异常
 	 */
-	SMS_SEND_ERROR(CoreConstants.BUSINESS_ERROR_TYPE_CODE, SmsConstants.SMS_EXCEPTION_STEP_CODE, "短信发送异常"),
+	SMS_SEND_ERROR(ErrorType.BUSINESS_ERROR.getCode(), SmsConstants.EXCEPTION_STEP_CODE, "短信发送异常"),
 
 	;
 

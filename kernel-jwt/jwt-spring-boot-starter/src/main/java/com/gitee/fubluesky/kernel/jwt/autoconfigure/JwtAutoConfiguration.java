@@ -19,7 +19,7 @@ package com.gitee.fubluesky.kernel.jwt.autoconfigure;
 
 import com.gitee.fubluesky.kernel.jwt.JwtTokenOperator;
 import com.gitee.fubluesky.kernel.jwt.api.JwtApi;
-import com.gitee.fubluesky.kernel.jwt.api.pojo.config.JwtConfig;
+import com.gitee.fubluesky.kernel.jwt.api.pojo.JwtProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -38,18 +38,18 @@ public class JwtAutoConfiguration {
 
 	@Bean
 	@ConfigurationProperties(prefix = "kernel.jwt")
-	@ConditionalOnMissingBean(JwtConfig.class)
-	public JwtConfig jwtConfig() {
-		return new JwtConfig();
+	@ConditionalOnMissingBean(JwtProperties.class)
+	public JwtProperties jwtConfig() {
+		return new JwtProperties();
 	}
 
 	@Autowired
-	private JwtConfig jwtConfig;
+	private JwtProperties jwtProperties;
 
 	@Bean
 	@ConditionalOnMissingBean(JwtApi.class)
 	public JwtApi jwtApi() {
-		return new JwtTokenOperator(jwtConfig);
+		return new JwtTokenOperator(jwtProperties);
 	}
 
 }

@@ -29,7 +29,7 @@ import com.gitee.fubluesky.kernel.jwt.api.constants.JwtConstants;
 public class JwtException extends ServiceException {
 
 	public JwtException(AbstractExceptionEnum exception) {
-		super(JwtConstants.JWT_MODULE_NAME, exception);
+		super(JwtConstants.MODULE_NAME, exception);
 	}
 
 }

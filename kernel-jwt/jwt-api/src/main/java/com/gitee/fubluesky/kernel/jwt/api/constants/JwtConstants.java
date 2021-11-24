@@ -27,11 +27,11 @@ public interface JwtConstants {
 	/**
 	 * jwt模块的名称
 	 */
-	String JWT_MODULE_NAME = "kernel-d-jwt";
+	String MODULE_NAME = "kernel-jwt";
 
 	/**
 	 * 异常枚举的步进值
 	 */
-	String JWT_EXCEPTION_STEP_CODE = "03";
+	String EXCEPTION_STEP_CODE = "03";
 
 }

@@ -17,7 +17,7 @@
 
 package com.gitee.fubluesky.kernel.security.api.exception.enums;
 
-import com.gitee.fubluesky.kernel.core.constants.CoreConstants;
+import com.gitee.fubluesky.kernel.core.enums.ErrorType;
 import com.gitee.fubluesky.kernel.core.exception.AbstractExceptionEnum;
 import com.gitee.fubluesky.kernel.security.api.constants.SecurityConstants;
 
@@ -31,19 +31,17 @@ public enum SecurityExceptionEnum implements AbstractExceptionEnum {
 	/**
 	 * 无访问权限
 	 */
-	PERMISSION_NO_ACCESS(CoreConstants.BUSINESS_ERROR_TYPE_CODE, SecurityConstants.SECURITY_EXCEPTION_STEP_CODE + "01",
-			"无访问权限"),
+	PERMISSION_NO_ACCESS(ErrorType.BUSINESS_ERROR.getCode(), SecurityConstants.EXCEPTION_STEP_CODE + "01", "无访问权限"),
 
 	/**
 	 * 签名有误
 	 */
-	SIGN_ERROR(CoreConstants.BUSINESS_ERROR_TYPE_CODE, SecurityConstants.SECURITY_EXCEPTION_STEP_CODE + "50", "签名有误"),
+	SIGN_ERROR(ErrorType.BUSINESS_ERROR.getCode(), SecurityConstants.EXCEPTION_STEP_CODE + "50", "签名有误"),
 
 	/**
 	 * appId有误
 	 */
-	SIGN_APP_ID_ERROR(CoreConstants.BUSINESS_ERROR_TYPE_CODE, SecurityConstants.SECURITY_EXCEPTION_STEP_CODE + "51",
-			"appId有误"),
+	SIGN_APP_ID_ERROR(ErrorType.BUSINESS_ERROR.getCode(), SecurityConstants.EXCEPTION_STEP_CODE + "51", "appId有误"),
 
 	;
 

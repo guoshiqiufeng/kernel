@@ -30,7 +30,7 @@ import com.gitee.fubluesky.kernel.auth.api.pojo.login.UserLoginInfoDTO;
 import com.gitee.fubluesky.kernel.cache.api.CacheOperatorApi;
 import com.gitee.fubluesky.kernel.core.util.HttpServletUtil;
 import com.gitee.fubluesky.kernel.jwt.api.JwtApi;
-import com.gitee.fubluesky.kernel.jwt.api.pojo.payload.DefaultJwtPayload;
+import com.gitee.fubluesky.kernel.jwt.api.pojo.DefaultJwtPayload;
 import com.gitee.fubluesky.kernel.security.api.CaptchaApi;
 import com.gitee.fubluesky.kernel.security.api.pojo.CaptchaProperties;
 import org.apache.commons.lang3.StringUtils;

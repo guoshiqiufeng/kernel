@@ -17,6 +17,7 @@
 
 package com.gitee.fubluesky.kernel.excel.api.exception.enums;
 
+import com.gitee.fubluesky.kernel.core.enums.ErrorType;
 import com.gitee.fubluesky.kernel.core.exception.AbstractExceptionEnum;
 import com.gitee.fubluesky.kernel.excel.api.constants.ExcelConstants;
 import lombok.Getter;
@@ -32,12 +33,12 @@ public enum ExcelExceptionEnum implements AbstractExceptionEnum {
 	/**
 	 * Excel异常
 	 */
-	EXCEL_ERROR("1", ExcelConstants.EXCEL_EXCEPTION_STEP_CODE + "01", "Excel异常"),
+	EXCEL_ERROR(ErrorType.USER_OPERATION_ERROR.getCode(), ExcelConstants.EXCEPTION_STEP_CODE + "01", "Excel异常"),
 
 	/**
 	 * Excel导出异常
 	 */
-	EXCEL_EXPORT_ERROR("1", ExcelConstants.EXCEL_EXCEPTION_STEP_CODE + "02", "Excel导出异常"),
+	EXCEL_EXPORT_ERROR(ErrorType.USER_OPERATION_ERROR.getCode(), ExcelConstants.EXCEPTION_STEP_CODE + "02", "Excel导出异常"),
 
 	;
 

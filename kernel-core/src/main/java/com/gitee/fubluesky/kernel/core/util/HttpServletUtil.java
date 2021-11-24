@@ -27,6 +27,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * HttpServlet工具类
+ *
  * @author yanghq
  * @version 1.0
  * @since 2021-07-22 15:48

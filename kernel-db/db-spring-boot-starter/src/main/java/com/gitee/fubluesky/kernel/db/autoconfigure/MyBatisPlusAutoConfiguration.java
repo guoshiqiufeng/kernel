@@ -17,13 +17,19 @@
 
 package com.gitee.fubluesky.kernel.db.autoconfigure;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.autoconfigure.MybatisPlusAutoConfiguration;
 import com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties;
+import com.baomidou.mybatisplus.core.config.GlobalConfig;
+import com.baomidou.mybatisplus.core.toolkit.GlobalConfigUtils;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.gitee.fubluesky.kernel.db.mybatisplus.handler.MyMetaObjectHandler;
+import com.gitee.fubluesky.kernel.db.mybatisplus.util.MybatisConfigurationUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,9 +41,12 @@ import org.springframework.context.annotation.Configuration;
  */
 @Slf4j
 @Configuration
-@EnableConfigurationProperties({ MybatisPlusProperties.class, CustomMybatisPlusProperties.class })
+@EnableConfigurationProperties({ MybatisPlusProperties.class, DbAutoProperties.class })
 @AutoConfigureBefore(MybatisPlusAutoConfiguration.class)
+@ConditionalOnProperty(prefix = "kernel.db", name = "enabled", havingValue = "true", matchIfMissing = true)
 public class MyBatisPlusAutoConfiguration {
+
+	private DbAutoProperties dbAutoProperties;
 
 	/**
 	 * 分页插件
@@ -45,7 +54,9 @@ public class MyBatisPlusAutoConfiguration {
 	@Bean
 	public MybatisPlusInterceptor paginationInterceptor() {
 		MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
-		interceptor.addInnerInterceptor(new PaginationInnerInterceptor());
+		if (dbAutoProperties.getInterceptorEnabled()) {
+			interceptor.addInnerInterceptor(new PaginationInnerInterceptor());
+		}
 		return interceptor;
 	}
 
@@ -54,17 +65,25 @@ public class MyBatisPlusAutoConfiguration {
 	 */
 	@Bean
 	public MyMetaObjectHandler myMetaObjectHandler() {
-		return new MyMetaObjectHandler();
+		return new MyMetaObjectHandler(dbAutoProperties);
 	}
 
 	/**
 	 * 修改mybatis-plus 默认参数
 	 */
-	MyBatisPlusAutoConfiguration(MybatisPlusProperties mybatisPlusProperties,
-			CustomMybatisPlusProperties customMybatisPlusProperties) {
+	MyBatisPlusAutoConfiguration(MybatisPlusProperties mybatisPlusProperties, DbAutoProperties dbAutoProperties) {
 		log.debug("MyBatisPlusAutoConfiguration start");
-		mybatisPlusProperties.setGlobalConfig(customMybatisPlusProperties.getGlobalConfig())
-				.setConfiguration(customMybatisPlusProperties.getConfiguration());
+		this.dbAutoProperties = dbAutoProperties;
+		GlobalConfig globalConfig = GlobalConfigUtils.defaults();
+		globalConfig.setBanner(false);
+		GlobalConfig.DbConfig dbConfig = globalConfig.getDbConfig();
+		dbConfig.setIdType(IdType.AUTO);
+		if (StringUtils.isNotBlank(dbAutoProperties.getIsDeleted())) {
+			dbConfig.setLogicDeleteField(dbAutoProperties.getIsDeleted());
+		}
+		globalConfig.setDbConfig(dbConfig);
+		mybatisPlusProperties.setGlobalConfig(globalConfig);
+		mybatisPlusProperties.setConfiguration(MybatisConfigurationUtils.getDefault());
 		log.debug("mybatisPlusProperties: {}", mybatisPlusProperties);
 		log.debug("MyBatisPlusAutoConfiguration end");
 	}

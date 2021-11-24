@@ -15,7 +15,7 @@
  *  limitations under the License.
  */
 
-package com.gitee.fubluesky.kernel.jwt.api.pojo.payload;
+package com.gitee.fubluesky.kernel.jwt.api.pojo;
 
 import com.gitee.fubluesky.kernel.core.util.IdUtils;
 import lombok.Data;

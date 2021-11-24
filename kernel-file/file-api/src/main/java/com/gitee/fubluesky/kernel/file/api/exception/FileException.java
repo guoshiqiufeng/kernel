@@ -29,7 +29,7 @@ import com.gitee.fubluesky.kernel.file.api.constants.FileConstants;
 public class FileException extends ServiceException {
 
 	public FileException(AbstractExceptionEnum exception) {
-		super(FileConstants.FILE_MODULE_NAME, exception);
+		super(FileConstants.MODULE_NAME, exception);
 	}
 
 }

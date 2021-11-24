@@ -17,7 +17,7 @@
 
 package com.gitee.fubluesky.kernel.db.api.exception.enums;
 
-import com.gitee.fubluesky.kernel.core.constants.CoreConstants;
+import com.gitee.fubluesky.kernel.core.enums.ErrorType;
 import com.gitee.fubluesky.kernel.core.exception.AbstractExceptionEnum;
 import com.gitee.fubluesky.kernel.db.api.constants.DbConstants;
 
@@ -26,18 +26,17 @@ import com.gitee.fubluesky.kernel.db.api.constants.DbConstants;
  * @version 1.0
  * @since 2021-07-22 10:30
  */
-public enum DaoExceptionEnum implements AbstractExceptionEnum {
+public enum DbExceptionEnum implements AbstractExceptionEnum {
 
 	/**
 	 * 包含非法字符
 	 */
-	ILLEGAL_CHARACTERS_ERROR(CoreConstants.BUSINESS_ERROR_TYPE_CODE, DbConstants.DB_EXCEPTION_STEP_CODE + "01",
-			"包含非法字符"),
+	ILLEGAL_CHARACTERS_ERROR(ErrorType.BUSINESS_ERROR.getCode(), DbConstants.EXCEPTION_STEP_CODE + "01", "包含非法字符"),
 
 	/**
 	 * 数据不存在
 	 */
-	DATA_NONE_ERROR(CoreConstants.BUSINESS_ERROR_TYPE_CODE, DbConstants.DB_EXCEPTION_STEP_CODE + "02", "数据不存在");
+	DATA_NONE_ERROR(ErrorType.BUSINESS_ERROR.getCode(), DbConstants.EXCEPTION_STEP_CODE + "02", "数据不存在");
 
 	/**
 	 * 异常分类 用户端异常: 1 业务异常: 2 第三方异常: 3
@@ -54,7 +53,7 @@ public enum DaoExceptionEnum implements AbstractExceptionEnum {
 	 */
 	private final String message;
 
-	DaoExceptionEnum(String typeCode, String code, String message) {
+	DbExceptionEnum(String typeCode, String code, String message) {
 		this.typeCode = typeCode;
 		this.code = code;
 		this.message = message;

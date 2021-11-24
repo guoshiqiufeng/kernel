@@ -15,23 +15,32 @@
  *  limitations under the License.
  */
 
-package com.gitee.fubluesky.kernel.db.api.exception;
+package com.gitee.fubluesky.kernel.db.mybatisplus.util;
 
-import com.gitee.fubluesky.kernel.core.exception.AbstractExceptionEnum;
-import com.gitee.fubluesky.kernel.core.exception.ServiceException;
-import com.gitee.fubluesky.kernel.db.api.constants.DbConstants;
+import com.baomidou.mybatisplus.core.MybatisConfiguration;
+import lombok.experimental.UtilityClass;
+import org.apache.ibatis.type.JdbcType;
 
 /**
- * 数据库相关异常
- *
  * @author yanghq
  * @version 1.0
- * @since 2021-07-22 10:27
+ * @since 2021-08-30 13:48
  */
-public class DaoException extends ServiceException {
+@UtilityClass
+public class MybatisConfigurationUtils {
 
-	public DaoException(AbstractExceptionEnum exception) {
-		super(DbConstants.DB_MODULE_NAME, exception);
+	/**
+	 * 获取默认配置
+	 * @return MybatisConfiguration
+	 */
+	public MybatisConfiguration getDefault() {
+		MybatisConfiguration mybatisConfiguration = new MybatisConfiguration();
+
+		mybatisConfiguration.setCacheEnabled(false);
+		mybatisConfiguration.setCallSettersOnNulls(true);
+		mybatisConfiguration.setJdbcTypeForNull(JdbcType.NULL);
+
+		return mybatisConfiguration;
 	}
 
 }

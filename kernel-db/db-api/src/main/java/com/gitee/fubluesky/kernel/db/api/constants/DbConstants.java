@@ -29,21 +29,16 @@ public interface DbConstants {
 	/**
 	 * db模块的名称
 	 */
-	String DB_MODULE_NAME = "kernel-db";
+	String MODULE_NAME = "kernel-db";
 
 	/**
 	 * 异常枚举的步进值
 	 */
-	String DB_EXCEPTION_STEP_CODE = "02";
+	String EXCEPTION_STEP_CODE = "02";
 
 	/**
 	 * 要搜索类型别名的包
 	 */
-	String TYPE_ALIASES_PACKAGE = "com.gitee.fubluesky.hull.*.*.domain";
-
-	/**
-	 * 逻辑删除字段
-	 */
-	String LOGIC_DELETE_FIELD = "isDeleted";
+	String TYPE_ALIASES_PACKAGE = "com.gitee.fubluesky.kernel.*.*.domain";
 
 }

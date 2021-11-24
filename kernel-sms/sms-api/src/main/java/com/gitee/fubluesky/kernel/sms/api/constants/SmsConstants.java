@@ -27,11 +27,11 @@ public interface SmsConstants {
 	/**
 	 * 短信模块的名称
 	 */
-	String SMS_MODULE_NAME = "kernel-sms";
+	String MODULE_NAME = "kernel-sms";
 
 	/**
 	 * 异常枚举的步进值
 	 */
-	String SMS_EXCEPTION_STEP_CODE = "22";
+	String EXCEPTION_STEP_CODE = "22";
 
 }

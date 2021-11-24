@@ -27,11 +27,11 @@ public interface ValidatorConstants {
 	/**
 	 * 校验器模块的名称
 	 */
-	String VALIDATOR_MODULE_NAME = "kernel-validator";
+	String MODULE_NAME = "kernel-validator";
 
 	/**
 	 * 异常枚举的步进值
 	 */
-	String VALIDATOR_EXCEPTION_STEP_CODE = "11";
+	String EXCEPTION_STEP_CODE = "11";
 
 }
