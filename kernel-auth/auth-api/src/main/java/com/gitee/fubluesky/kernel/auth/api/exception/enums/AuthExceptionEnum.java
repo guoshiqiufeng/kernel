@@ -17,7 +17,7 @@
 package com.gitee.fubluesky.kernel.auth.api.exception.enums;
 
 import com.gitee.fubluesky.kernel.auth.api.constants.AuthConstants;
-import com.gitee.fubluesky.kernel.core.constants.CoreConstants;
+import com.gitee.fubluesky.kernel.core.enums.ErrorType;
 import com.gitee.fubluesky.kernel.core.exception.AbstractExceptionEnum;
 
 /**
@@ -30,38 +30,34 @@ public enum AuthExceptionEnum implements AbstractExceptionEnum {
 	/**
 	 * 登录失效
 	 */
-	AUTH_EXPIRED_ERROR(CoreConstants.BUSINESS_ERROR_TYPE_CODE, AuthConstants.AUTH_EXCEPTION_STEP_CODE + "01",
-			"当前登录失效，请重新登录"),
+	AUTH_EXPIRED_ERROR(ErrorType.BUSINESS_ERROR.getCode(), AuthConstants.EXCEPTION_STEP_CODE + "01", "当前登录失效，请重新登录"),
 
 	/**
 	 * 刷新token
 	 */
-	AUTH_TOKEN_ERROR(CoreConstants.BUSINESS_ERROR_TYPE_CODE, AuthConstants.AUTH_EXCEPTION_STEP_CODE + "02",
-			"token有误，请刷新token"),
+	AUTH_TOKEN_ERROR(ErrorType.BUSINESS_ERROR.getCode(), AuthConstants.EXCEPTION_STEP_CODE + "02", "token有误，请刷新token"),
 
 	/**
 	 * 账号或密码为空
 	 */
-	USERNAME_PASSWORD_EMPTY(CoreConstants.USER_OPERATION_ERROR_TYPE_CODE, AuthConstants.AUTH_EXCEPTION_STEP_CODE + "03",
+	USERNAME_PASSWORD_EMPTY(ErrorType.USER_OPERATION_ERROR.getCode(), AuthConstants.EXCEPTION_STEP_CODE + "03",
 			"账号或密码为空"),
 
 	/**
 	 * 账号或密码错误
 	 */
-	USERNAME_PASSWORD_ERROR(CoreConstants.USER_OPERATION_ERROR_TYPE_CODE, AuthConstants.AUTH_EXCEPTION_STEP_CODE + "04",
+	USERNAME_PASSWORD_ERROR(ErrorType.USER_OPERATION_ERROR.getCode(), AuthConstants.EXCEPTION_STEP_CODE + "04",
 			"账号或密码错误"),
 
 	/**
 	 * 验证码为空
 	 */
-	CAPTCHA_EMPTY(CoreConstants.USER_OPERATION_ERROR_TYPE_CODE, AuthConstants.AUTH_EXCEPTION_STEP_CODE + "05",
-			"验证码不能为空"),
+	CAPTCHA_EMPTY(ErrorType.USER_OPERATION_ERROR.getCode(), AuthConstants.EXCEPTION_STEP_CODE + "05", "验证码不能为空"),
 
 	/**
 	 * 验证码有误
 	 */
-	CAPTCHA_ERROR(CoreConstants.USER_OPERATION_ERROR_TYPE_CODE, AuthConstants.AUTH_EXCEPTION_STEP_CODE + "06",
-			"验证码有误"),;
+	CAPTCHA_ERROR(ErrorType.USER_OPERATION_ERROR.getCode(), AuthConstants.EXCEPTION_STEP_CODE + "06", "验证码有误"),;
 
 	/**
 	 * 异常分类 用户端异常: 1 业务异常: 2 第三方异常: 3

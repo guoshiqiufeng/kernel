@@ -27,12 +27,12 @@ public interface SecurityConstants {
 	/**
 	 * 安全模块的名称
 	 */
-	String SECURITY_MODULE_NAME = "kernel-security";
+	String MODULE_NAME = "kernel-security";
 
 	/**
 	 * 异常枚举的步进值
 	 */
-	String SECURITY_EXCEPTION_STEP_CODE = "12";
+	String EXCEPTION_STEP_CODE = "12";
 
 	/**
 	 * 缓存前缀标识

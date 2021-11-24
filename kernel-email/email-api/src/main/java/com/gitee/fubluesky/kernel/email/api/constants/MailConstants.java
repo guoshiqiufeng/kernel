@@ -27,12 +27,12 @@ public interface MailConstants {
 	/**
 	 * 邮件模块的名称
 	 */
-	String MAIL_MODULE_NAME = "kernel-email";
+	String MODULE_NAME = "kernel-email";
 
 	/**
 	 * 异常枚举的步进值
 	 */
-	String MAIL_EXCEPTION_STEP_CODE = "21";
+	String EXCEPTION_STEP_CODE = "21";
 
 	/**
 	 * 邮件服务器主机名

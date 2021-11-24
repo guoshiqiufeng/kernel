@@ -17,7 +17,7 @@
 
 package com.gitee.fubluesky.kernel.file.api.exception.enums;
 
-import com.gitee.fubluesky.kernel.core.constants.CoreConstants;
+import com.gitee.fubluesky.kernel.core.enums.ErrorType;
 import com.gitee.fubluesky.kernel.core.exception.AbstractExceptionEnum;
 import com.gitee.fubluesky.kernel.file.api.constants.FileConstants;
 
@@ -31,44 +31,44 @@ public enum FileExceptionEnum implements AbstractExceptionEnum {
 	/**
 	 * 阿里云OSS未启用
 	 */
-	ALI_OSS_NOT_ENABLE(CoreConstants.THIRD_ERROR_TYPE_CODE, FileConstants.FILE_EXCEPTION_STEP_CODE + "01", "阿里云OSS未启用"),
+	ALI_OSS_NOT_ENABLE(ErrorType.THIRD_ERROR.getCode(), FileConstants.EXCEPTION_STEP_CODE + "01", "阿里云OSS未启用"),
 
 	/**
 	 * ftp文件上传未启用
 	 */
-	FTP_NOT_ENABLE(CoreConstants.THIRD_ERROR_TYPE_CODE, FileConstants.FILE_EXCEPTION_STEP_CODE + "01", "ftp文件上传未启用"),
+	FTP_NOT_ENABLE(ErrorType.THIRD_ERROR.getCode(), FileConstants.EXCEPTION_STEP_CODE + "01", "ftp文件上传未启用"),
 
 	/**
 	 * 本地文件上传未启用
 	 */
-	LOCAL_NOT_ENABLE(CoreConstants.THIRD_ERROR_TYPE_CODE, FileConstants.FILE_EXCEPTION_STEP_CODE + "01", "本地文件上传未启用"),
+	LOCAL_NOT_ENABLE(ErrorType.THIRD_ERROR.getCode(), FileConstants.EXCEPTION_STEP_CODE + "01", "本地文件上传未启用"),
 
 	/**
 	 * 本地文件上传初始化失败
 	 */
-	LOCAL_INIT_ERROR(CoreConstants.THIRD_ERROR_TYPE_CODE, FileConstants.FILE_EXCEPTION_STEP_CODE + "02", "本地文件上传初始化失败"),
+	LOCAL_INIT_ERROR(ErrorType.THIRD_ERROR.getCode(), FileConstants.EXCEPTION_STEP_CODE + "02", "本地文件上传初始化失败"),
 
 	/**
 	 * 文件不存在
 	 */
-	FILE_NOT_FOUND(CoreConstants.THIRD_ERROR_TYPE_CODE, FileConstants.FILE_EXCEPTION_STEP_CODE + "04", "文件不存在"),
+	FILE_NOT_FOUND(ErrorType.THIRD_ERROR.getCode(), FileConstants.EXCEPTION_STEP_CODE + "04", "文件不存在"),
 
 	/**
 	 * 上传文件失败，请检查配置信息
 	 */
-	FILE_UPLOAD_ERROR(CoreConstants.THIRD_ERROR_TYPE_CODE, FileConstants.FILE_EXCEPTION_STEP_CODE + "10",
+	FILE_UPLOAD_ERROR(ErrorType.THIRD_ERROR.getCode(), FileConstants.EXCEPTION_STEP_CODE + "10",
 			"上传文件失败，请检查配置信息"),
 
 	/**
 	 * 获取文件失败
 	 */
-	FILE_GET_ERROR(CoreConstants.THIRD_ERROR_TYPE_CODE, FileConstants.FILE_EXCEPTION_STEP_CODE + "11",
+	FILE_GET_ERROR(ErrorType.THIRD_ERROR.getCode(), FileConstants.EXCEPTION_STEP_CODE + "11",
 			"获取文件失败，请检查配置信息"),
 
 	/**
 	 * 删除文件失败
 	 */
-	FILE_DELETE_ERROR(CoreConstants.THIRD_ERROR_TYPE_CODE, FileConstants.FILE_EXCEPTION_STEP_CODE + "12",
+	FILE_DELETE_ERROR(ErrorType.THIRD_ERROR.getCode(), FileConstants.EXCEPTION_STEP_CODE + "12",
 			"删除文件失败，请检查配置信息"),
 
 	;

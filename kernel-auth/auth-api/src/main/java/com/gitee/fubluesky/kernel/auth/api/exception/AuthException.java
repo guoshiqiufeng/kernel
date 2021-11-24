@@ -28,7 +28,7 @@ import com.gitee.fubluesky.kernel.core.exception.ServiceException;
 public class AuthException extends ServiceException {
 
 	public AuthException(AbstractExceptionEnum exception) {
-		super(AuthConstants.AUTH_MODULE_NAME, exception);
+		super(AuthConstants.MODULE_NAME, exception);
 	}
 
 }

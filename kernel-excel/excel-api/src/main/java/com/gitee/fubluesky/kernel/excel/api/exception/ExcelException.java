@@ -29,15 +29,15 @@ import com.gitee.fubluesky.kernel.excel.api.constants.ExcelConstants;
 public class ExcelException extends ServiceException {
 
 	public ExcelException(AbstractExceptionEnum exception) {
-		super(ExcelConstants.EXCEL_MODULE_NAME, exception);
+		super(ExcelConstants.MODULE_NAME, exception);
 	}
 
 	public ExcelException(AbstractExceptionEnum exception, String message) {
-		super(ExcelConstants.EXCEL_MODULE_NAME, exception.getCode(), exception.getMessage() + message);
+		super(ExcelConstants.MODULE_NAME, exception.getCode(), exception.getMessage() + message);
 	}
 
 	public ExcelException(String code, String message) {
-		super(ExcelConstants.EXCEL_MODULE_NAME, code, message);
+		super(ExcelConstants.MODULE_NAME, code, message);
 	}
 
 }

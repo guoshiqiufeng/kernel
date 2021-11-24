@@ -27,12 +27,12 @@ public interface ExcelConstants {
 	/**
 	 * 邮件模块的名称
 	 */
-	String EXCEL_MODULE_NAME = "kernel-excel";
+	String MODULE_NAME = "kernel-excel";
 
 	/**
 	 * 异常枚举的步进值
 	 */
-	String EXCEL_EXCEPTION_STEP_CODE = "30";
+	String EXCEPTION_STEP_CODE = "30";
 
 	String ATTACHMENT = "attachment;filename*=utf-8''";
 

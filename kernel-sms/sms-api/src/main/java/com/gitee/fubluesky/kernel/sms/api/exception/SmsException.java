@@ -29,15 +29,15 @@ import com.gitee.fubluesky.kernel.sms.api.constants.SmsConstants;
 public class SmsException extends ServiceException {
 
 	public SmsException(AbstractExceptionEnum exception) {
-		super(SmsConstants.SMS_MODULE_NAME, exception);
+		super(SmsConstants.MODULE_NAME, exception);
 	}
 
 	public SmsException(AbstractExceptionEnum exception, String message) {
-		super(SmsConstants.SMS_MODULE_NAME, exception.getCode(), message);
+		super(SmsConstants.MODULE_NAME, exception.getCode(), message);
 	}
 
 	public SmsException(String code, String message) {
-		super(SmsConstants.SMS_MODULE_NAME, code, message);
+		super(SmsConstants.MODULE_NAME, code, message);
 	}
 
 }

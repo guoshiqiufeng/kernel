@@ -29,15 +29,15 @@ import com.gitee.fubluesky.kernel.email.api.constants.MailConstants;
 public class MailException extends ServiceException {
 
 	public MailException(AbstractExceptionEnum exception) {
-		super(MailConstants.MAIL_MODULE_NAME, exception);
+		super(MailConstants.MODULE_NAME, exception);
 	}
 
 	public MailException(AbstractExceptionEnum exception, String message) {
-		super(MailConstants.MAIL_MODULE_NAME, exception.getCode(), exception.getMessage() + message);
+		super(MailConstants.MODULE_NAME, exception.getCode(), exception.getMessage() + message);
 	}
 
 	public MailException(String code, String message) {
-		super(MailConstants.MAIL_MODULE_NAME, code, message);
+		super(MailConstants.MODULE_NAME, code, message);
 	}
 
 }

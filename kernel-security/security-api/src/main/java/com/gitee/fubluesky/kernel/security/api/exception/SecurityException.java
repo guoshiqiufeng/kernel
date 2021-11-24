@@ -29,7 +29,7 @@ import com.gitee.fubluesky.kernel.security.api.constants.SecurityConstants;
 public class SecurityException extends ServiceException {
 
 	public SecurityException(AbstractExceptionEnum exception) {
-		super(SecurityConstants.SECURITY_MODULE_NAME, exception);
+		super(SecurityConstants.MODULE_NAME, exception);
 	}
 
 }

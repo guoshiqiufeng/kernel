@@ -31,8 +31,8 @@ public enum ValidatorExceptionEnum implements AbstractExceptionEnum {
 	/**
 	 * 参数校验失败
 	 */
-	VALIDATED_RESULT_ERROR(ErrorType.USER_OPERATION_ERROR.getCode(),
-			ValidatorConstants.EXCEPTION_STEP_CODE + "01", "参数校验失败："),
+	VALIDATED_RESULT_ERROR(ErrorType.USER_OPERATION_ERROR.getCode(), ValidatorConstants.EXCEPTION_STEP_CODE + "01",
+			"参数校验失败："),
 
 	;
 
