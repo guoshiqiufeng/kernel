@@ -10,16 +10,15 @@
 - [x] kernel-db [02] [使用说明](kernel-db/README.md)
 - [x] kernel-jwt [03] [使用说明](kernel-jwt/README.md)
 
-- [x] kernel-cache [10]
+- [x] kernel-cache [10] [使用说明](kernel-cache/README.md)
 - [x] kernel-validator [11]
 - [x] kernel-security [12]
 - [x] kernel-auth [13]
 
-- [x] kernel-file [20]
-- [x] kernel-email [21]
-- [x] kernel-sms [22]
+- [x] kernel-file [20] [使用说明](kernel-file/README.md)
+- [x] kernel-email [21] [使用说明](kernel-email/README.md)
+- [x] kernel-sms [22] [使用说明](kernel-sms/README.md)
 - [x] kernel-push [23]
-
 
 - [x] kernel-excel [30]
 
@@ -31,19 +30,6 @@
 - [ ] 文档
 #### 安装教程
 使用maven进行依赖安装
-#### 使用说明
-
-##### kernel-email
-
-[使用说明](kernel-email/README.md)
-
-##### kernel-file
-
-[使用说明](kernel-file/README.md)
-
-##### kernel-sms
-
-[使用说明](kernel-sms/README.md)
 
 #### 参与贡献
 

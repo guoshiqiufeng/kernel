@@ -29,7 +29,7 @@ import com.gitee.fubluesky.kernel.core.exception.ServiceException;
 public class CacheException extends ServiceException {
 
 	public CacheException(AbstractExceptionEnum exception) {
-		super(CacheConstants.CACHE_MODULE_NAME, exception);
+		super(CacheConstants.MODULE_NAME, exception);
 	}
 
 }

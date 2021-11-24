@@ -27,21 +27,21 @@ public interface CacheConstants {
 	/**
 	 * 缓存模块的名称
 	 */
-	String CACHE_MODULE_NAME = "kernel-cache";
+	String MODULE_NAME = "kernel-cache";
 
 	/**
 	 * 缓存模块的异常步进值
 	 */
-	String CACHE_EXCEPTION_STEP_CODE = "10";
+	String EXCEPTION_STEP_CODE = "10";
 
 	/**
 	 * 默认object对象缓存的缓存前缀
 	 */
-	String OBJECT_CACHE_PREFIX = "OBJECTS:";
+	String OBJECT_CACHE_PREFIX = "object:";
 
 	/**
 	 * 默认String对象缓存的缓存前缀
 	 */
-	String STRING_CACHE_PREFIX = "STRINGS:";
+	String STRING_CACHE_PREFIX = "string:";
 
 }
