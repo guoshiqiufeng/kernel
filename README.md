@@ -4,10 +4,10 @@
 #### 介绍
 内核框架
 #### 代码
-采用阿里巴巴代码规范，使用spring-javaformat格式化代码
+采用阿里巴巴代码规范，使用`spring-javaformat`格式化代码
 #### 模块
-- [x] kernel-core [01]
-- [x] kernel-db [02]
+- [x] kernel-core [01] [使用说明](kernel-core/README.md)
+- [x] kernel-db [02] [使用说明](kernel-db/README.md)
 - [x] kernel-jwt [03]
 
 - [x] kernel-cache [10]

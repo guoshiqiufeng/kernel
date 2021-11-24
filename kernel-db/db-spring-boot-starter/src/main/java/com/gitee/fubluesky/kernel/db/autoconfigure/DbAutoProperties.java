@@ -15,32 +15,19 @@
  *  limitations under the License.
  */
 
-package com.gitee.fubluesky.kernel.db.utils;
+package com.gitee.fubluesky.kernel.db.autoconfigure;
 
-import com.baomidou.mybatisplus.core.MybatisConfiguration;
-import lombok.experimental.UtilityClass;
-import org.apache.ibatis.type.JdbcType;
+import com.gitee.fubluesky.kernel.db.mybatisplus.pojo.DbProperties;
+import lombok.experimental.Accessors;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * @author yanghq
  * @version 1.0
- * @since 2021-08-30 13:48
+ * @since 2021-11-24 11:29
  */
-@UtilityClass
-public class MybatisConfigurationUtils {
-
-	/**
-	 * 获取默认配置
-	 * @return MybatisConfiguration
-	 */
-	public MybatisConfiguration getDefault() {
-		MybatisConfiguration mybatisConfiguration = new MybatisConfiguration();
-
-		mybatisConfiguration.setCacheEnabled(false);
-		mybatisConfiguration.setCallSettersOnNulls(true);
-		mybatisConfiguration.setJdbcTypeForNull(JdbcType.NULL);
-
-		return mybatisConfiguration;
-	}
+@Accessors(chain = true)
+@ConfigurationProperties(prefix = "kernel.db")
+public class DbAutoProperties extends DbProperties {
 
 }

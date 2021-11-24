@@ -15,30 +15,23 @@
  *  limitations under the License.
  */
 
-package com.gitee.fubluesky.kernel.db.api.constants;
+package com.gitee.fubluesky.kernel.db.api.exception;
+
+import com.gitee.fubluesky.kernel.core.exception.AbstractExceptionEnum;
+import com.gitee.fubluesky.kernel.core.exception.ServiceException;
+import com.gitee.fubluesky.kernel.db.api.constants.DbConstants;
 
 /**
- * 数据库模块常量
+ * 数据库相关异常
  *
  * @author yanghq
  * @version 1.0
- * @since 2021-07-22 9:02
+ * @since 2021-07-22 10:27
  */
-public interface DbConstants {
+public class DbException extends ServiceException {
 
-	/**
-	 * db模块的名称
-	 */
-	String MODULE_NAME = "kernel-db";
-
-	/**
-	 * 异常枚举的步进值
-	 */
-	String EXCEPTION_STEP_CODE = "02";
-
-	/**
-	 * 要搜索类型别名的包
-	 */
-	String TYPE_ALIASES_PACKAGE = "com.gitee.fubluesky.kernel.*.*.domain";
+	public DbException(AbstractExceptionEnum exception) {
+		super(DbConstants.MODULE_NAME, exception);
+	}
 
 }

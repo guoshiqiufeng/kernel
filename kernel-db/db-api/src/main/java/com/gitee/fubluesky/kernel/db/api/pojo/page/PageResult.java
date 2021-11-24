@@ -47,7 +47,7 @@ public class PageResult implements Serializable {
 	/**
 	 * 总页数
 	 */
-	private int totalPage;
+	private int totalPage = 0;
 
 	/**
 	 * 当前页数
@@ -71,7 +71,9 @@ public class PageResult implements Serializable {
 		this.totalCount = totalCount;
 		this.pageSize = pageSize;
 		this.currPage = currPage;
-		this.totalPage = (int) Math.ceil((double) totalCount / pageSize);
+		if (pageSize != 0) {
+			this.totalPage = (int) Math.ceil((double) totalCount / pageSize);
+		}
 	}
 
 }

@@ -18,6 +18,7 @@
 package com.gitee.fubluesky.kernel.db.mybatisplus.handler;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
+import com.gitee.fubluesky.kernel.db.mybatisplus.pojo.DbProperties;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.reflection.MetaObject;
 
@@ -34,52 +35,56 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
 
 	private static final String LANG_INTEGER = "Integer";
 
-	/**
-	 * 通用字段：创建时间
-	 */
-	private static final String CREATE_DATE = "createDate";
+	private DbProperties dbProperties;
 
-	/**
-	 * 通用字段：更新时间
-	 */
-	private static final String UPDATE_DATE = "modifyDate";
+	public MyMetaObjectHandler() {
+	}
 
-	/**
-	 * 通用字段：已删除
-	 */
-	private static final String DELETED = "isDeleted";
+	public MyMetaObjectHandler(DbProperties dbProperties) {
+		this.dbProperties = dbProperties;
+	}
 
 	@Override
 	public void insertFill(MetaObject metaObject) {
+		if (!dbProperties.getMetaEnabled()) {
+			return;
+		}
+		String createDate = dbProperties.getCreateDate();
+		String modifyDate = dbProperties.getModifyDate();
+		String isDeleted = dbProperties.getIsDeleted();
 		// 判断是否有相关字段
-		boolean hasCreateDate = metaObject.hasSetter(CREATE_DATE);
-		boolean hasUpdateDate = metaObject.hasSetter(UPDATE_DATE);
-		boolean hasDeleted = metaObject.hasSetter(DELETED);
+		boolean hasCreateDate = metaObject.hasSetter(createDate);
+		boolean hasUpdateDate = metaObject.hasSetter(modifyDate);
+		boolean hasDeleted = metaObject.hasSetter(isDeleted);
 
 		// 有字段则自动填充
 		if (hasCreateDate) {
-			strictInsertFill(metaObject, CREATE_DATE, LocalDateTime.class, LocalDateTime.now());
+			strictInsertFill(metaObject, createDate, LocalDateTime.class, LocalDateTime.now());
 		}
 		if (hasUpdateDate) {
-			strictInsertFill(metaObject, UPDATE_DATE, LocalDateTime.class, LocalDateTime.now());
+			strictInsertFill(metaObject, modifyDate, LocalDateTime.class, LocalDateTime.now());
 		}
 		if (hasDeleted) {
-			String type = metaObject.getGetterType(DELETED).getSimpleName();
+			String type = metaObject.getGetterType(isDeleted).getSimpleName();
 			if (StringUtils.isNotBlank(type) && LANG_INTEGER.equals(type)) {
-				strictInsertFill(metaObject, DELETED, Integer.class, 0);
+				strictInsertFill(metaObject, isDeleted, Integer.class, 0);
 			}
 			else {
-				strictInsertFill(metaObject, DELETED, Boolean.class, false);
+				strictInsertFill(metaObject, isDeleted, Boolean.class, false);
 			}
 		}
 	}
 
 	@Override
 	public void updateFill(MetaObject metaObject) {
-		Object val = getFieldValByName(UPDATE_DATE, metaObject);
+		if (!dbProperties.getMetaEnabled()) {
+			return;
+		}
+		String modifyDate = dbProperties.getModifyDate();
+		Object val = getFieldValByName(modifyDate, metaObject);
 		// 没有自定义值时才更新字段
 		if (val == null) {
-			strictUpdateFill(metaObject, UPDATE_DATE, LocalDateTime.class, LocalDateTime.now());
+			strictUpdateFill(metaObject, modifyDate, LocalDateTime.class, LocalDateTime.now());
 		}
 	}
 
