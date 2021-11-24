@@ -29,11 +29,11 @@ import com.gitee.fubluesky.kernel.validator.api.constants.ValidatorConstants;
 public class ParamValidateException extends ServiceException {
 
 	public ParamValidateException(AbstractExceptionEnum exception) {
-		super(ValidatorConstants.VALIDATOR_MODULE_NAME, exception);
+		super(ValidatorConstants.MODULE_NAME, exception);
 	}
 
 	public ParamValidateException(AbstractExceptionEnum exception, String message) {
-		super(ValidatorConstants.VALIDATOR_MODULE_NAME, exception.getCode(), message);
+		super(ValidatorConstants.MODULE_NAME, exception.getCode(), message);
 	}
 
 }
