@@ -17,7 +17,7 @@
 
 package com.gitee.fubluesky.kernel.jwt.api.exception.enums;
 
-import com.gitee.fubluesky.kernel.core.constants.CoreConstants;
+import com.gitee.fubluesky.kernel.core.enums.ErrorType;
 import com.gitee.fubluesky.kernel.core.exception.AbstractExceptionEnum;
 import com.gitee.fubluesky.kernel.jwt.api.constants.JwtConstants;
 
@@ -31,17 +31,17 @@ public enum JwtExceptionEnum implements AbstractExceptionEnum {
 	/**
 	 * jwt解析异常
 	 */
-	JWT_PARSE_ERROR(CoreConstants.BUSINESS_ERROR_TYPE_CODE, JwtConstants.JWT_EXCEPTION_STEP_CODE + "01", "jwt解析错误！"),
+	JWT_PARSE_ERROR(ErrorType.BUSINESS_ERROR.getCode(), JwtConstants.EXCEPTION_STEP_CODE + "01", "jwt解析错误！"),
 
 	/**
 	 * jwt过期了
 	 */
-	JWT_EXPIRED_ERROR(CoreConstants.BUSINESS_ERROR_TYPE_CODE, JwtConstants.JWT_EXCEPTION_STEP_CODE + "02", "jwt过期了！"),
+	JWT_EXPIRED_ERROR(ErrorType.BUSINESS_ERROR.getCode(), JwtConstants.EXCEPTION_STEP_CODE + "02", "jwt过期了！"),
 
 	/**
 	 * jwt生成异常
 	 */
-	JWT_CREATE_ERROR(CoreConstants.BUSINESS_ERROR_TYPE_CODE, JwtConstants.JWT_EXCEPTION_STEP_CODE + "03", "jwt生成异常"),
+	JWT_CREATE_ERROR(ErrorType.BUSINESS_ERROR.getCode(), JwtConstants.EXCEPTION_STEP_CODE + "03", "jwt生成异常"),
 
 	;
 

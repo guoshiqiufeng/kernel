@@ -15,7 +15,7 @@
  *  limitations under the License.
  */
 
-package com.gitee.fubluesky.kernel.jwt.api.pojo.config;
+package com.gitee.fubluesky.kernel.jwt.api.pojo;
 
 import lombok.Data;
 
@@ -27,7 +27,7 @@ import java.util.Map;
  * @since 2021-07-23 15:56
  */
 @Data
-public class JwtConfig {
+public class JwtProperties {
 
 	/**
 	 * 是否启用

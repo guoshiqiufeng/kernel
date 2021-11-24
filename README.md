@@ -8,7 +8,7 @@
 #### 模块
 - [x] kernel-core [01] [使用说明](kernel-core/README.md)
 - [x] kernel-db [02] [使用说明](kernel-db/README.md)
-- [x] kernel-jwt [03]
+- [x] kernel-jwt [03] [使用说明](kernel-jwt/README.md)
 
 - [x] kernel-cache [10]
 - [x] kernel-validator [11]
