@@ -38,7 +38,8 @@ public enum ExcelExceptionEnum implements AbstractExceptionEnum {
 	/**
 	 * Excel导出异常
 	 */
-	EXCEL_EXPORT_ERROR(ErrorType.USER_OPERATION_ERROR.getCode(), ExcelConstants.EXCEPTION_STEP_CODE + "02", "Excel导出异常"),
+	EXCEL_EXPORT_ERROR(ErrorType.USER_OPERATION_ERROR.getCode(), ExcelConstants.EXCEPTION_STEP_CODE + "02",
+			"Excel导出异常"),
 
 	;
 

@@ -56,20 +56,17 @@ public enum FileExceptionEnum implements AbstractExceptionEnum {
 	/**
 	 * 上传文件失败，请检查配置信息
 	 */
-	FILE_UPLOAD_ERROR(ErrorType.THIRD_ERROR.getCode(), FileConstants.EXCEPTION_STEP_CODE + "10",
-			"上传文件失败，请检查配置信息"),
+	FILE_UPLOAD_ERROR(ErrorType.THIRD_ERROR.getCode(), FileConstants.EXCEPTION_STEP_CODE + "10", "上传文件失败，请检查配置信息"),
 
 	/**
 	 * 获取文件失败
 	 */
-	FILE_GET_ERROR(ErrorType.THIRD_ERROR.getCode(), FileConstants.EXCEPTION_STEP_CODE + "11",
-			"获取文件失败，请检查配置信息"),
+	FILE_GET_ERROR(ErrorType.THIRD_ERROR.getCode(), FileConstants.EXCEPTION_STEP_CODE + "11", "获取文件失败，请检查配置信息"),
 
 	/**
 	 * 删除文件失败
 	 */
-	FILE_DELETE_ERROR(ErrorType.THIRD_ERROR.getCode(), FileConstants.EXCEPTION_STEP_CODE + "12",
-			"删除文件失败，请检查配置信息"),
+	FILE_DELETE_ERROR(ErrorType.THIRD_ERROR.getCode(), FileConstants.EXCEPTION_STEP_CODE + "12", "删除文件失败，请检查配置信息"),
 
 	;
 
