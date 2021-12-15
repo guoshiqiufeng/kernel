@@ -29,6 +29,7 @@
     <url>https://github.com/guoshiqiufeng</url>
 
     <properties>
+        <jdom2.version>2.0.6.1</jdom2.version>
         <mybatis-plus.version>3.4.2</mybatis-plus.version>
         <swagger.fox.version>3.0.0</swagger.fox.version>
         <knife4j.version>3.0.2</knife4j.version>
@@ -66,6 +67,11 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.jdom</groupId>
+                <artifactId>jdom2</artifactId>
+                <version>${jdom2.version}</version>
+            </dependency>
             <!--mybatis-plus-->
             <dependency>
                 <groupId>com.baomidou</groupId>
