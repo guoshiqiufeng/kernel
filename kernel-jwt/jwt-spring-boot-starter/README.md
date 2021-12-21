@@ -12,7 +12,7 @@ pom添加依赖
 <dependency>
     <groupId>com.gitee.fubluesky.kernel</groupId>
     <artifactId>jwt-spring-boot-starter</artifactId>
-    <version>1.5.0</version>
+    <version>1.5.4</version>
 </dependency>
 ```
 
