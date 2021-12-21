@@ -18,6 +18,8 @@ package com.gitee.fubluesky.kernel.auth.api.pojo;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * @author yanghq
  * @version 1.0
@@ -34,7 +36,7 @@ public class AuthProperties {
 	/**
 	 * token param
 	 */
-	private String tokenParamName = "token";
+	private String tokenParamName = "Authorization";
 
 	/**
 	 * token header
@@ -50,5 +52,16 @@ public class AuthProperties {
 	 * jwt appId header
 	 */
 	private String jwtAppIdHeaderName = "appId";
+
+	/**
+	 * 是否启用spring security config
+	 */
+	private Boolean securityConfigEnabled = true;
+
+	/**
+	 * 启用 spring security config 后
+	 * spring security 放行路径
+	 */
+	private List<String> securityConfigAllowPatterns;
 
 }
