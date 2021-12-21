@@ -1,5 +1,6 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   com.gitee.fubluesky.kernel.auth.autoconfigure.LoginAutoConfiguration,\
   com.gitee.fubluesky.kernel.auth.autoconfigure.AuthAutoConfiguration,\
+  com.gitee.fubluesky.kernel.auth.autoconfigure.SecurityAutoConfiguration,\
   com.gitee.fubluesky.kernel.auth.component.PermissionService,\
   com.gitee.fubluesky.kernel.auth.utils.SpringContextUtils

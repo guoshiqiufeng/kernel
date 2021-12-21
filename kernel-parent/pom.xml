@@ -23,7 +23,7 @@
     <groupId>com.gitee.fubluesky</groupId>
     <artifactId>kernel-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.5.2</version>
+    <version>1.5.3</version>
     <inceptionYear>2021-Now</inceptionYear>
     <name>kernel-parent</name>
     <description>kernel-parent</description>
@@ -43,7 +43,7 @@
         <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
 
         <kernel-dependencies.version>1.4.3</kernel-dependencies.version>
-        <kernel.version>1.5.2</kernel.version>
+        <kernel.version>1.5.3</kernel.version>
         <!--插件-->
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
         <maven-install-plugin.version>3.0.0-M1</maven-install-plugin.version>
