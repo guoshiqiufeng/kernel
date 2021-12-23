@@ -61,6 +61,9 @@ public class CustomDateDeserializer {
 			String dateFormat = request.getHeader(platformJacksonProperties.getDateFormatHeaderName());
 			if (StringUtils.isNotBlank(timestamps) && PlatformJacksonConstant.DISABLE.equals(timestamps)) {
 				log.debug("timestamps: {}", timestamps);
+				if (StringUtils.isBlank(dateFormat)) {
+					dateFormat = platformJacksonProperties.getDatePattern();
+				}
 				// if dateFormat is blank, set yyyy-MM-dd
 				if (StringUtils.isBlank(dateFormat)) {
 					dateFormat = PlatformJacksonConstant.PATTERN_DATE;
@@ -99,9 +102,12 @@ public class CustomDateDeserializer {
 			// get request header timestamps
 			String timestamps = request.getHeader(platformJacksonProperties.getTimestampsEnabledHeaderName());
 			// get request header dateFormat
-			String dateFormat = request.getHeader(platformJacksonProperties.getDateFormatHeaderName());
+			String dateFormat = request.getHeader(platformJacksonProperties.getDateTimeFormatHeaderName());
 			if (StringUtils.isNotBlank(timestamps) && PlatformJacksonConstant.DISABLE.equals(timestamps)) {
 				log.debug("timestamps: {}", timestamps);
+				if (StringUtils.isBlank(dateFormat)) {
+					dateFormat = platformJacksonProperties.getDateTimePattern();
+				}
 				// if dateFormat is blank, set yyyy-MM-dd HH:mm:ss
 				if (StringUtils.isBlank(dateFormat)) {
 					dateFormat = PlatformJacksonConstant.PATTERN_DATETIME;
@@ -139,18 +145,24 @@ public class CustomDateDeserializer {
 			HttpServletRequest request = HttpServletUtil.getRequest();
 			// get request header timestamps
 			String timestamps = request.getHeader(platformJacksonProperties.getTimestampsEnabledHeaderName());
-			// get request header dateFormat
-			String dateFormat = request.getHeader(platformJacksonProperties.getDateFormatHeaderName());
+			// get request header timeFormat
+			String timeFormat = request.getHeader(platformJacksonProperties.getTimeFormatHeaderName());
 			if (StringUtils.isNotBlank(timestamps) && PlatformJacksonConstant.DISABLE.equals(timestamps)) {
 				log.debug("timestamps: {}", timestamps);
-				// if dateFormat is blank, set HH:mm
-				if (StringUtils.isBlank(dateFormat)) {
-					dateFormat = PlatformJacksonConstant.PATTERN_TIME;
+				if (StringUtils.isBlank(timeFormat)) {
+					timeFormat = platformJacksonProperties.getTimePattern();
 				}
-				log.debug("dateFormat: {}", dateFormat);
-				DateTimeFormatter format = DateTimeFormatter.ofPattern(dateFormat);
-				// localDateTime parse
 				String localDateTimeStr = jsonParser.getValueAsString();
+				// if timeFormat is blank, set HH:mm
+				if (StringUtils.isBlank(timeFormat)) {
+					timeFormat = PlatformJacksonConstant.PATTERN_TIME;
+					if (localDateTimeStr.length() == PlatformJacksonConstant.TIMES_LENGTH) {
+						timeFormat = PlatformJacksonConstant.PATTERN_TIMES;
+					}
+				}
+				log.debug("dateFormat: {}", timeFormat);
+				DateTimeFormatter format = DateTimeFormatter.ofPattern(timeFormat);
+				// localTime parse
 				return LocalTime.parse(localDateTimeStr, format);
 			}
 			else {

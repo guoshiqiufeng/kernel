@@ -45,8 +45,33 @@ public class PlatformJacksonProperties implements Serializable {
 	private String timestampsEnabledHeaderName = "timestamps";
 
 	/**
-	 * 时间序列化 反序列化 格式化 规则 请求头 字段名 只有在 timestampsEnabledHeaderName 对应的 值 为 false 时才会启用
+	 * 日期时间序列化 反序列化 格式化 规则 请求头 字段名 只有在 timestampsEnabledHeaderName 对应的 值 为 false 时才会启用
+	 */
+	private String dateTimeFormatHeaderName = "dateTimeFormat";
+
+	/**
+	 * 日期序列化 反序列化 格式化 规则 请求头 字段名 只有在 timestampsEnabledHeaderName 对应的 值 为 false 时才会启用
 	 */
 	private String dateFormatHeaderName = "dateFormat";
+
+	/**
+	 * 时间序列化 反序列化 格式化 规则 请求头 字段名 只有在 timestampsEnabledHeaderName 对应的 值 为 false 时才会启用
+	 */
+	private String timeFormatHeaderName = "timeFormat";
+
+	/**
+	 * 日期时间 格式
+	 */
+	private String dateTimePattern = "yyyy-MM-dd HH:mm:ss";
+
+	/**
+	 * 日期 格式
+	 */
+	private String datePattern = "yyyy-MM-dd";
+
+	/**
+	 * 时间格式
+	 */
+	private String timePattern = "HH:mm";
 
 }

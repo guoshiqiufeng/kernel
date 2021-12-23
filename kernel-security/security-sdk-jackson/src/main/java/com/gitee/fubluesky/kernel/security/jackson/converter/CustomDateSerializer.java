@@ -53,6 +53,9 @@ public class CustomDateSerializer {
 		@Override
 		public void serialize(LocalDate localDate, JsonGenerator jsonGenerator, SerializerProvider serializerProvider)
 				throws IOException {
+			if (localDate == null) {
+				return;
+			}
 			// get http servlet request
 			HttpServletRequest request = HttpServletUtil.getRequest();
 			// get request header timestamps
@@ -61,6 +64,9 @@ public class CustomDateSerializer {
 			String dateFormat = request.getHeader(platformJacksonProperties.getDateFormatHeaderName());
 			if (StringUtils.isNotBlank(timestamps) && PlatformJacksonConstant.DISABLE.equals(timestamps)) {
 				log.debug("timestamps: {}", timestamps);
+				if (StringUtils.isBlank(dateFormat)) {
+					dateFormat = platformJacksonProperties.getDatePattern();
+				}
 				// if dateFormat is blank, set yyyy-MM-dd
 				if (StringUtils.isBlank(dateFormat)) {
 					dateFormat = PlatformJacksonConstant.PATTERN_DATE;
@@ -71,7 +77,7 @@ public class CustomDateSerializer {
 				String date = format.format(localDate);
 				jsonGenerator.writeString(date);
 			}
-			else if (localDate != null) {
+			else {
 				ZoneId zone = ZoneId.systemDefault();
 				Instant instant = localDate.atStartOfDay(zone).toInstant();
 				jsonGenerator.writeNumber(instant.toEpochMilli());
@@ -94,14 +100,20 @@ public class CustomDateSerializer {
 		@Override
 		public void serialize(LocalDateTime localDateTime, JsonGenerator jsonGenerator,
 				SerializerProvider serializerProvider) throws IOException {
+			if (localDateTime == null) {
+				return;
+			}
 			// get http servlet request
 			HttpServletRequest request = HttpServletUtil.getRequest();
 			// get request header timestamps
 			String timestamps = request.getHeader(platformJacksonProperties.getTimestampsEnabledHeaderName());
 			// get request header dateFormat
-			String dateFormat = request.getHeader(platformJacksonProperties.getDateFormatHeaderName());
+			String dateFormat = request.getHeader(platformJacksonProperties.getDateTimeFormatHeaderName());
 			if (StringUtils.isNotBlank(timestamps) && PlatformJacksonConstant.DISABLE.equals(timestamps)) {
 				log.debug("timestamps: {}", timestamps);
+				if (StringUtils.isBlank(dateFormat)) {
+					dateFormat = platformJacksonProperties.getDateTimePattern();
+				}
 				// if dateFormat is blank, set yyyy-MM-dd HH:mm:ss
 				if (StringUtils.isBlank(dateFormat)) {
 					dateFormat = PlatformJacksonConstant.PATTERN_DATETIME;
@@ -112,7 +124,7 @@ public class CustomDateSerializer {
 				String date = format.format(localDateTime);
 				jsonGenerator.writeString(date);
 			}
-			else if (localDateTime != null) {
+			else {
 				ZoneId zone = ZoneId.systemDefault();
 				Instant instant = localDateTime.atZone(zone).toInstant();
 				jsonGenerator.writeNumber(instant.toEpochMilli());
@@ -135,25 +147,31 @@ public class CustomDateSerializer {
 		@Override
 		public void serialize(LocalTime localTime, JsonGenerator jsonGenerator, SerializerProvider serializerProvider)
 				throws IOException {
+			if (localTime == null) {
+				return;
+			}
 			// get http servlet request
 			HttpServletRequest request = HttpServletUtil.getRequest();
 			// get request header timestamps
 			String timestamps = request.getHeader(platformJacksonProperties.getTimestampsEnabledHeaderName());
 			// get request header dateFormat
-			String dateFormat = request.getHeader(platformJacksonProperties.getDateFormatHeaderName());
+			String timeFormat = request.getHeader(platformJacksonProperties.getTimeFormatHeaderName());
 			if (StringUtils.isNotBlank(timestamps) && PlatformJacksonConstant.DISABLE.equals(timestamps)) {
 				log.debug("timestamps: {}", timestamps);
-				// if dateFormat is blank, set HH:mm
-				if (StringUtils.isBlank(dateFormat)) {
-					dateFormat = PlatformJacksonConstant.PATTERN_TIME;
+				if (StringUtils.isBlank(timeFormat)) {
+					timeFormat = platformJacksonProperties.getTimePattern();
 				}
-				log.debug("dateFormat: {}", dateFormat);
-				DateTimeFormatter format = DateTimeFormatter.ofPattern(dateFormat);
+				// if dateFormat is blank, set HH:mm
+				if (StringUtils.isBlank(timeFormat)) {
+					timeFormat = PlatformJacksonConstant.PATTERN_TIME;
+				}
+				log.debug("dateFormat: {}", timeFormat);
+				DateTimeFormatter format = DateTimeFormatter.ofPattern(timeFormat);
 				// localTime format
 				String date = format.format(localTime);
 				jsonGenerator.writeString(date);
 			}
-			else if (localTime != null) {
+			else {
 				ZoneId zone = ZoneId.systemDefault();
 				Instant instant = localTime.atDate(LocalDate.now()).atZone(zone).toInstant();
 				jsonGenerator.writeNumber(instant.toEpochMilli());

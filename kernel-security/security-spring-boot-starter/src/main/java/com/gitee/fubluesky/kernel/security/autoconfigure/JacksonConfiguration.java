@@ -92,7 +92,7 @@ public class JacksonConfiguration {
 		objectMapper.getDeserializationConfig().withoutFeatures(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
 		if (!platformJacksonProperties.getTimestampsEnabled()) {
-			objectMapper.registerModule(new DefaultJavaTimeModule());
+			objectMapper.registerModule(new DefaultJavaTimeModule(platformJacksonProperties));
 		}
 		else {
 			objectMapper.registerModule(new TimestampsJavaTimeModule(platformJacksonProperties));

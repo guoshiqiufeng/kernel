@@ -46,7 +46,9 @@ public interface PlatformJacksonConstant {
 	 */
 	String PATTERN_TIME = "HH:mm";
 
-	DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern(PlatformJacksonConstant.PATTERN_DATETIME);
+	String PATTERN_TIMES = "HH:mm:ss";
+
+	int TIMES_LENGTH = 8;
 
 	DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern(PlatformJacksonConstant.PATTERN_DATE);
 
