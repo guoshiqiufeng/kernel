@@ -59,7 +59,8 @@ public class AuthProperties {
 	private Boolean securityConfigEnabled = true;
 
 	/**
-	 * 启用 spring security config 后 spring security 放行路径
+	 * 启用 spring security config 后
+	 * spring security 放行路径
 	 */
 	private List<String> securityConfigAllowPatterns;
 

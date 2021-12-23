@@ -34,7 +34,7 @@
         <dependency>
             <groupId>com.gitee.fubluesky.kernel</groupId>
             <artifactId>kernel-core</artifactId>
-            <version>${kernel.version}</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
