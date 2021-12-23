@@ -25,7 +25,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>kernel-all-spring-boot-starter</artifactId>
-    <version>1.5.6-SNAPSHOT</version>
+    <version>1.5.5</version>
     <description>spring-boot 依赖引用</description>
     <inceptionYear>2021-Now</inceptionYear>
     <packaging>pom</packaging>
@@ -34,17 +34,17 @@
         <dependency>
             <groupId>com.gitee.fubluesky.kernel</groupId>
             <artifactId>jwt-spring-boot-starter</artifactId>
-            <version>${kernel.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.gitee.fubluesky.kernel</groupId>
             <artifactId>cache-redis-spring-boot-starter</artifactId>
-            <version>${kernel.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.gitee.fubluesky.kernel</groupId>
             <artifactId>db-spring-boot-starter</artifactId>
-            <version>${kernel.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.gitee.fubluesky.kernel</groupId>
@@ -54,22 +54,22 @@
         <dependency>
             <groupId>com.gitee.fubluesky.kernel</groupId>
             <artifactId>auth-spring-boot-starter</artifactId>
-            <version>${kernel.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.gitee.fubluesky.kernel</groupId>
             <artifactId>file-all-spring-boot-starter</artifactId>
-            <version>${kernel.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.gitee.fubluesky.kernel</groupId>
             <artifactId>file-expand-apk</artifactId>
-            <version>${kernel.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.gitee.fubluesky.kernel</groupId>
             <artifactId>push-spring-boot-starter</artifactId>
-            <version>${kernel.version}</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 

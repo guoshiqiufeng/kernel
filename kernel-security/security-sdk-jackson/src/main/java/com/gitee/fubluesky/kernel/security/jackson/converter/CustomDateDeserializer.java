@@ -18,16 +18,10 @@ package com.gitee.fubluesky.kernel.security.jackson.converter;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.gitee.fubluesky.kernel.core.util.HttpServletUtil;
-import com.gitee.fubluesky.kernel.security.jackson.constant.PlatformJacksonConstant;
-import com.gitee.fubluesky.kernel.security.jackson.pojo.PlatformJacksonProperties;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.time.*;
-import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 /**
  * 时间反序列化
@@ -36,7 +30,6 @@ import java.time.format.DateTimeFormatter;
  * @version 1.0
  * @since 2020-12-08 15:40
  */
-@Slf4j
 public class CustomDateDeserializer {
 
 	/**
@@ -44,38 +37,12 @@ public class CustomDateDeserializer {
 	 */
 	public static class LocalDateDeserializer extends JsonDeserializer<LocalDate> {
 
-		PlatformJacksonProperties platformJacksonProperties;
-
-		public LocalDateDeserializer(PlatformJacksonProperties platformJacksonProperties) {
-			this.platformJacksonProperties = platformJacksonProperties;
-		}
-
 		@Override
 		public LocalDate deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
 				throws IOException {
-			// get http servlet request
-			HttpServletRequest request = HttpServletUtil.getRequest();
-			// get request header timestamps
-			String timestamps = request.getHeader(platformJacksonProperties.getTimestampsEnabledHeaderName());
-			// get request header dateFormat
-			String dateFormat = request.getHeader(platformJacksonProperties.getDateFormatHeaderName());
-			if (StringUtils.isNotBlank(timestamps) && PlatformJacksonConstant.DISABLE.equals(timestamps)) {
-				log.debug("timestamps: {}", timestamps);
-				// if dateFormat is blank, set yyyy-MM-dd
-				if (StringUtils.isBlank(dateFormat)) {
-					dateFormat = PlatformJacksonConstant.PATTERN_DATE;
-				}
-				log.debug("dateFormat: {}", dateFormat);
-				DateTimeFormatter format = DateTimeFormatter.ofPattern(dateFormat);
-				// localDate parse
-				String localDateStr = jsonParser.getValueAsString();
-				return LocalDate.parse(localDateStr, format);
-			}
-			else {
-				long timestamp = jsonParser.getValueAsLong();
-				Instant instant = Instant.ofEpochMilli(timestamp);
-				return LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
-			}
+			long timestamp = jsonParser.getValueAsLong();
+			Instant instant = Instant.ofEpochMilli(timestamp);
+			return LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
 		}
 
 	}
@@ -85,38 +52,12 @@ public class CustomDateDeserializer {
 	 */
 	public static class LocalDateTimeDeserializer extends JsonDeserializer<LocalDateTime> {
 
-		PlatformJacksonProperties platformJacksonProperties;
-
-		public LocalDateTimeDeserializer(PlatformJacksonProperties platformJacksonProperties) {
-			this.platformJacksonProperties = platformJacksonProperties;
-		}
-
 		@Override
 		public LocalDateTime deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
 				throws IOException {
-			// get http servlet request
-			HttpServletRequest request = HttpServletUtil.getRequest();
-			// get request header timestamps
-			String timestamps = request.getHeader(platformJacksonProperties.getTimestampsEnabledHeaderName());
-			// get request header dateFormat
-			String dateFormat = request.getHeader(platformJacksonProperties.getDateFormatHeaderName());
-			if (StringUtils.isNotBlank(timestamps) && PlatformJacksonConstant.DISABLE.equals(timestamps)) {
-				log.debug("timestamps: {}", timestamps);
-				// if dateFormat is blank, set yyyy-MM-dd HH:mm:ss
-				if (StringUtils.isBlank(dateFormat)) {
-					dateFormat = PlatformJacksonConstant.PATTERN_DATETIME;
-				}
-				log.debug("dateFormat: {}", dateFormat);
-				DateTimeFormatter format = DateTimeFormatter.ofPattern(dateFormat);
-				// localDateTime parse
-				String localDateTimeStr = jsonParser.getValueAsString();
-				return LocalDateTime.parse(localDateTimeStr, format);
-			}
-			else {
-				long timestamp = jsonParser.getValueAsLong();
-				Instant instant = Instant.ofEpochMilli(timestamp);
-				return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
-			}
+			long timestamp = jsonParser.getValueAsLong();
+			Instant instant = Instant.ofEpochMilli(timestamp);
+			return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
 		}
 
 	}
@@ -126,38 +67,25 @@ public class CustomDateDeserializer {
 	 */
 	public static class LocalTimeDeserializer extends JsonDeserializer<LocalTime> {
 
-		PlatformJacksonProperties platformJacksonProperties;
-
-		public LocalTimeDeserializer(PlatformJacksonProperties platformJacksonProperties) {
-			this.platformJacksonProperties = platformJacksonProperties;
-		}
-
 		@Override
 		public LocalTime deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
 				throws IOException {
-			// get http servlet request
-			HttpServletRequest request = HttpServletUtil.getRequest();
-			// get request header timestamps
-			String timestamps = request.getHeader(platformJacksonProperties.getTimestampsEnabledHeaderName());
-			// get request header dateFormat
-			String dateFormat = request.getHeader(platformJacksonProperties.getDateFormatHeaderName());
-			if (StringUtils.isNotBlank(timestamps) && PlatformJacksonConstant.DISABLE.equals(timestamps)) {
-				log.debug("timestamps: {}", timestamps);
-				// if dateFormat is blank, set HH:mm
-				if (StringUtils.isBlank(dateFormat)) {
-					dateFormat = PlatformJacksonConstant.PATTERN_TIME;
-				}
-				log.debug("dateFormat: {}", dateFormat);
-				DateTimeFormatter format = DateTimeFormatter.ofPattern(dateFormat);
-				// localDateTime parse
-				String localDateTimeStr = jsonParser.getValueAsString();
-				return LocalTime.parse(localDateTimeStr, format);
-			}
-			else {
-				long timestamp = jsonParser.getValueAsLong();
-				Instant instant = Instant.ofEpochMilli(timestamp);
-				return LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalTime();
-			}
+			long timestamp = jsonParser.getValueAsLong();
+			Instant instant = Instant.ofEpochMilli(timestamp);
+			return LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalTime();
+		}
+
+	}
+
+	/**
+	 * 反序列化Date
+	 */
+	public static class DateDeserializer extends JsonDeserializer<Date> {
+
+		@Override
+		public Date deserialize(JsonParser jsonParser, DeserializationContext ctxt) throws IOException {
+			long timestamp = jsonParser.getValueAsLong();
+			return new Date(timestamp);
 		}
 
 	}
