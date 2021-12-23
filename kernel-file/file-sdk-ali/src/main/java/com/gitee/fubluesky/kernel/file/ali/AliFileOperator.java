@@ -17,7 +17,8 @@
 
 package com.gitee.fubluesky.kernel.file.ali;
 
-import com.aliyun.oss.OSSClient;
+import com.aliyun.oss.OSS;
+import com.aliyun.oss.OSSClientBuilder;
 import com.aliyun.oss.model.OSSObject;
 import com.gitee.fubluesky.kernel.file.ali.pojo.AliOssProperties;
 import com.gitee.fubluesky.kernel.file.api.FileOperatorApi;
@@ -44,13 +45,13 @@ public class AliFileOperator implements FileOperatorApi {
 		this.aliOssProperties = aliOssProperties;
 	}
 
-	private OSSClient ossClient;
+	private OSS ossClient;
 
 	private void init() {
 		if (!aliOssProperties.getEnabled()) {
 			throw new FileException(FileExceptionEnum.ALI_OSS_NOT_ENABLE);
 		}
-		ossClient = new OSSClient(aliOssProperties.getEndPoint(), aliOssProperties.getAccessKey(),
+		ossClient = new OSSClientBuilder().build(aliOssProperties.getEndPoint(), aliOssProperties.getAccessKey(),
 				aliOssProperties.getSecretKey());
 	}
 
