@@ -26,10 +26,13 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 import com.gitee.fubluesky.kernel.security.jackson.constant.PlatformJacksonConstant;
+import com.gitee.fubluesky.kernel.security.jackson.pojo.PlatformJacksonProperties;
+import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * @author yanghq
@@ -38,18 +41,32 @@ import java.time.LocalTime;
  */
 public class DefaultJavaTimeModule extends SimpleModule {
 
-	public DefaultJavaTimeModule() {
+	public DefaultJavaTimeModule(PlatformJacksonProperties platformJacksonProperties) {
 		super(PackageVersion.VERSION);
 		// LocalDateTime
-		this.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(PlatformJacksonConstant.DATETIME_FORMAT));
-		this.addDeserializer(LocalDateTime.class,
-				new LocalDateTimeDeserializer(PlatformJacksonConstant.DATETIME_FORMAT));
+		String dateTimePattern = platformJacksonProperties.getDateTimePattern();
+		if (StringUtils.isBlank(dateTimePattern)) {
+			dateTimePattern = PlatformJacksonConstant.PATTERN_DATETIME;
+		}
+		DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern(dateTimePattern);
+		this.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(dateTimeFormat));
+		this.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(dateTimeFormat));
 		// LocalDate
-		this.addSerializer(LocalDate.class, new LocalDateSerializer(PlatformJacksonConstant.DATE_FORMAT));
-		this.addDeserializer(LocalDate.class, new LocalDateDeserializer(PlatformJacksonConstant.DATE_FORMAT));
+		String datePattern = platformJacksonProperties.getDatePattern();
+		if (StringUtils.isBlank(datePattern)) {
+			datePattern = PlatformJacksonConstant.PATTERN_DATE;
+		}
+		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern(datePattern);
+		this.addSerializer(LocalDate.class, new LocalDateSerializer(dateFormat));
+		this.addDeserializer(LocalDate.class, new LocalDateDeserializer(dateFormat));
 		// LocalTime
-		this.addSerializer(LocalTime.class, new LocalTimeSerializer(PlatformJacksonConstant.TIME_FORMAT));
-		this.addDeserializer(LocalTime.class, new LocalTimeDeserializer(PlatformJacksonConstant.TIME_FORMAT));
+		String timePattern = platformJacksonProperties.getTimePattern();
+		if (StringUtils.isBlank(timePattern)) {
+			timePattern = PlatformJacksonConstant.PATTERN_TIME;
+		}
+		DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern(timePattern);
+		this.addSerializer(LocalTime.class, new LocalTimeSerializer(timeFormat));
+		this.addDeserializer(LocalTime.class, new LocalTimeDeserializer(timeFormat));
 	}
 
 }
