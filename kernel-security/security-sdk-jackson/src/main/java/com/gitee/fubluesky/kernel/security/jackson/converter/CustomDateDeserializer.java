@@ -153,12 +153,14 @@ public class CustomDateDeserializer {
 					timeFormat = platformJacksonProperties.getTimePattern();
 				}
 				String localDateTimeStr = jsonParser.getValueAsString();
+
 				// if timeFormat is blank, set HH:mm
 				if (StringUtils.isBlank(timeFormat)) {
-					timeFormat = PlatformJacksonConstant.PATTERN_TIME;
-					if (localDateTimeStr.length() == PlatformJacksonConstant.TIMES_LENGTH) {
-						timeFormat = PlatformJacksonConstant.PATTERN_TIMES;
-					}
+					timeFormat = getTimeFormat(localDateTimeStr);
+				}
+				else if (PlatformJacksonConstant.PATTERN_TIME.equals(timeFormat)
+						|| PlatformJacksonConstant.PATTERN_TIMES.equals(timeFormat)) {
+					timeFormat = getTimeFormat(localDateTimeStr);
 				}
 				log.debug("dateFormat: {}", timeFormat);
 				DateTimeFormatter format = DateTimeFormatter.ofPattern(timeFormat);
@@ -172,6 +174,15 @@ public class CustomDateDeserializer {
 			}
 		}
 
+	}
+
+	private static String getTimeFormat(String localDateTimeStr) {
+		String timeFormat;
+		timeFormat = PlatformJacksonConstant.PATTERN_TIME;
+		if (localDateTimeStr.length() == PlatformJacksonConstant.TIMES_LENGTH) {
+			timeFormat = PlatformJacksonConstant.PATTERN_TIMES;
+		}
+		return timeFormat;
 	}
 
 }
