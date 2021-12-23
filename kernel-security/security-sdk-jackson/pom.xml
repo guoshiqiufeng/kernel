@@ -33,7 +33,7 @@
         <dependency>
             <groupId>com.gitee.fubluesky.kernel</groupId>
             <artifactId>security-api</artifactId>
-            <version>${project.version}</version>
+            <version>${kernel.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

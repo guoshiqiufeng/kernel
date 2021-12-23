@@ -19,11 +19,9 @@ package com.gitee.fubluesky.kernel.security.jackson.module;
 
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.PackageVersion;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
-import com.gitee.fubluesky.kernel.security.jackson.constant.PlatformJacksonConstant;
 import com.gitee.fubluesky.kernel.security.jackson.converter.CustomDateDeserializer;
 import com.gitee.fubluesky.kernel.security.jackson.converter.CustomDateSerializer;
+import com.gitee.fubluesky.kernel.security.jackson.pojo.PlatformJacksonProperties;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -36,17 +34,21 @@ import java.time.LocalTime;
  */
 public class TimestampsJavaTimeModule extends SimpleModule {
 
-	public TimestampsJavaTimeModule() {
+	public TimestampsJavaTimeModule(PlatformJacksonProperties platformJacksonProperties) {
 		super(PackageVersion.VERSION);
 		// LocalDateTime
-		this.addSerializer(LocalDateTime.class, new CustomDateSerializer.LocalDateTimeSerializer());
-		this.addDeserializer(LocalDateTime.class, new CustomDateDeserializer.LocalDateTimeDeserializer());
+		this.addSerializer(LocalDateTime.class,
+				new CustomDateSerializer.LocalDateTimeSerializer(platformJacksonProperties));
+		this.addDeserializer(LocalDateTime.class,
+				new CustomDateDeserializer.LocalDateTimeDeserializer(platformJacksonProperties));
 		// LocalDate
-		this.addSerializer(LocalDate.class, new CustomDateSerializer.LocalDateSerializer());
-		this.addDeserializer(LocalDate.class, new CustomDateDeserializer.LocalDateDeserializer());
+		this.addSerializer(LocalDate.class, new CustomDateSerializer.LocalDateSerializer(platformJacksonProperties));
+		this.addDeserializer(LocalDate.class,
+				new CustomDateDeserializer.LocalDateDeserializer(platformJacksonProperties));
 		// LocalTime
-		this.addDeserializer(LocalTime.class, new LocalTimeDeserializer(PlatformJacksonConstant.TIME_FORMAT));
-		this.addSerializer(LocalTime.class, new LocalTimeSerializer(PlatformJacksonConstant.TIME_FORMAT));
+		this.addSerializer(LocalTime.class, new CustomDateSerializer.LocalTimeSerializer(platformJacksonProperties));
+		this.addDeserializer(LocalTime.class,
+				new CustomDateDeserializer.LocalTimeDeserializer(platformJacksonProperties));
 	}
 
 }
