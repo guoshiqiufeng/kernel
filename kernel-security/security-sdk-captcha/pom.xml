@@ -20,7 +20,7 @@
     <parent>
         <groupId>com.gitee.fubluesky.kernel</groupId>
         <artifactId>kernel-security</artifactId>
-        <version>1.5.6-SNAPSHOT</version>
+        <version>1.5.5</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -33,17 +33,17 @@
         <dependency>
             <groupId>com.gitee.fubluesky.kernel</groupId>
             <artifactId>security-api</artifactId>
-            <version>${kernel.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.gitee.fubluesky.kernel</groupId>
             <artifactId>cache-api</artifactId>
-            <version>${kernel.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.gitee.fubluesky.kernel</groupId>
             <artifactId>cache-sdk-redis</artifactId>
-            <version>${kernel.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.github.whvcse</groupId>
