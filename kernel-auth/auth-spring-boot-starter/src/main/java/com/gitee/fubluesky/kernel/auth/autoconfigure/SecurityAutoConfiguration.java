@@ -37,11 +37,12 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 @ConditionalOnProperty(prefix = "kernel.auth", name = "securityConfigEnabled", matchIfMissing = true)
 public class SecurityAutoConfiguration {
 
-    @Autowired
-    private AuthProperties authProperties;
+	@Autowired
+	private AuthProperties authProperties;
 
-    @Bean
-    public SecurityConfig securityConfig() {
-        return new SecurityConfig(authProperties);
-    }
+	@Bean
+	public SecurityConfig securityConfig() {
+		return new SecurityConfig(authProperties);
+	}
+
 }
