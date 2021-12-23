@@ -39,4 +39,14 @@ public class PlatformJacksonProperties implements Serializable {
 	 */
 	private Boolean timestampsEnabled = true;
 
+	/**
+	 * 是否启用时间戳序列化 请求头 字段名 只有在启用 timestampsEnabled 才会 有用
+	 */
+	private String timestampsEnabledHeaderName = "timestamps";
+
+	/**
+	 * 时间序列化 反序列化 格式化 规则 请求头 字段名 只有在 timestampsEnabledHeaderName 对应的 值 为 false 时才会启用
+	 */
+	private String dateFormatHeaderName = "dateFormat";
+
 }
