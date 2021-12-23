@@ -31,8 +31,10 @@
 - [ ] kernel-sms 添加多签名切换
 - [x] kernel-jwt 添加刷新token机制
 - [x] auth jwt 添加多租户校验
+- [x] jackson localDateTime、localDate、localTime支持 通过request header设置转换格式
 - [ ] 模块拆分
 - [ ] 文档
+- [ ] demo
 #### 安装教程
 使用maven进行依赖安装
 
