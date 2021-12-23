@@ -95,7 +95,7 @@ public class JacksonConfiguration {
 			objectMapper.registerModule(new DefaultJavaTimeModule(platformJacksonProperties));
 		}
 		else {
-			objectMapper.registerModule(new TimestampsJavaTimeModule());
+			objectMapper.registerModule(new TimestampsJavaTimeModule(platformJacksonProperties));
 		}
 		objectMapper.findAndRegisterModules();
 		return objectMapper;

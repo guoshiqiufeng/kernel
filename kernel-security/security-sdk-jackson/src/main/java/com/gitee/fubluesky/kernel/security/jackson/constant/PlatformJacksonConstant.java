@@ -26,12 +26,24 @@ import java.time.format.DateTimeFormatter;
  */
 public interface PlatformJacksonConstant {
 
-	String DISBALE = "false";
+	/**
+	 * 禁用
+	 */
+	String DISABLE = "false";
 
+	/**
+	 * 日期时间 格式
+	 */
 	String PATTERN_DATETIME = "yyyy-MM-dd HH:mm:ss";
 
+	/**
+	 * 日期 格式
+	 */
 	String PATTERN_DATE = "yyyy-MM-dd";
 
+	/**
+	 * 时间格式
+	 */
 	String PATTERN_TIME = "HH:mm";
 
 	String PATTERN_TIMES = "HH:mm:ss";
