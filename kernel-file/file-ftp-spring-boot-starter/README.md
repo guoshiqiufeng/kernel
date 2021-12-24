@@ -12,7 +12,7 @@ pom添加依赖
 <dependency>
     <groupId>com.gitee.fubluesky.kernel</groupId>
     <artifactId>file-ftp-spring-boot-starter</artifactId>
-    <version>1.5.4</version>
+    <version>1.5.6</version>
 </dependency>
 ```
 
