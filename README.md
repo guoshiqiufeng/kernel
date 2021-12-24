@@ -7,7 +7,7 @@
 - spring-boot 2.5.8
 - spring-cloud 2020.0.4
 - spring-cloud-alibaba 2021.1
-- kernel-dependencies 1.4.3
+- kernel-dependencies 1.6.0
 #### 代码
 采用阿里巴巴代码规范，使用`spring-javaformat`格式化代码
 #### 模块

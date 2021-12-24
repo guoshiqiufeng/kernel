@@ -52,7 +52,7 @@ kernel:
        date-path-enabled: true
        local-file-save-path-linux: /file/
        local-file-save-path-win: D:\file\
-       prefix: dev
+       prefix: develop
        mvc-path: source
 ```
 
