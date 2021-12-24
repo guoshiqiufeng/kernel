@@ -22,7 +22,7 @@
     <groupId>com.gitee.fubluesky.kernel</groupId>
     <artifactId>kernel-dependencies</artifactId>
     <name>kernel-dependencies</name>
-    <version>1.6.0-SNAPSHOT</version>
+    <version>1.6.0</version>
     <description>依赖版本统一配置</description>
     <inceptionYear>2021-Now</inceptionYear>
     <packaging>pom</packaging>
