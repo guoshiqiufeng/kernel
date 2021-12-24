@@ -22,8 +22,6 @@ import com.gitee.fubluesky.kernel.file.ali.pojo.AliOssProperties;
 import com.gitee.fubluesky.kernel.file.api.FileOperatorApi;
 import com.gitee.fubluesky.kernel.file.ftp.FtpFileOperator;
 import com.gitee.fubluesky.kernel.file.ftp.pojo.FtpFileProperties;
-import com.gitee.fubluesky.kernel.file.local.LocalFileOperator;
-import com.gitee.fubluesky.kernel.file.local.pojo.LocalFileProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -56,31 +54,21 @@ public class AllAutoConfiguration {
 	@Autowired
 	private AliOssProperties aliOssProperties;
 
+	@Autowired
+	private FtpFileProperties ftpFileProperties;
+
 	@Bean("aliFileOperator")
-	@ConditionalOnProperty(prefix = "kernel.file.ali", name = "enabled")
+	@ConditionalOnProperty(prefix = "kernel.file.ali", name = "enabled", havingValue = "true")
 	@ConditionalOnMissingBean(name = "aliFileOperator")
 	public FileOperatorApi aliFileOperator() {
 		return new AliFileOperator(aliOssProperties);
 	}
 
-	@Autowired
-	private FtpFileProperties ftpFileProperties;
-
 	@Bean("ftpFileOperator")
-	@ConditionalOnProperty(prefix = "kernel.file.ftp", name = "enabled")
+	@ConditionalOnProperty(prefix = "kernel.file.ftp", name = "enabled", havingValue = "true")
 	@ConditionalOnMissingBean(name = "ftpFileOperator")
 	public FileOperatorApi ftpFileOperator() {
 		return new FtpFileOperator(ftpFileProperties);
-	}
-
-	@Autowired
-	private LocalFileProperties localFileProperties;
-
-	@Bean("localFileOperator")
-	@ConditionalOnProperty(prefix = "kernel.file.local", name = "enabled")
-	@ConditionalOnMissingBean(name = "localFileOperator")
-	public FileOperatorApi localFileOperator() {
-		return new LocalFileOperator(localFileProperties);
 	}
 
 }

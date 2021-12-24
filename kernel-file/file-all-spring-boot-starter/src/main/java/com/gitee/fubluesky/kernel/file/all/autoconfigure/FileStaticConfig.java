@@ -17,9 +17,10 @@
 
 package com.gitee.fubluesky.kernel.file.all.autoconfigure;
 
+import com.gitee.fubluesky.kernel.file.api.FileOperatorApi;
+import com.gitee.fubluesky.kernel.file.local.LocalFileOperator;
 import com.gitee.fubluesky.kernel.file.local.pojo.LocalFileProperties;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -35,8 +36,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @version 1.0
  * @since 2021-08-02 17:07
  */
-@ConditionalOnProperty(prefix = "kernel.file.local", name = "enabled", matchIfMissing = true)
-@AutoConfigureBefore(AllAutoConfiguration.class)
+@ConditionalOnProperty(prefix = "kernel.file.local", name = "enabled", havingValue = "true")
 @Configuration
 public class FileStaticConfig implements WebMvcConfigurer {
 
@@ -49,6 +49,12 @@ public class FileStaticConfig implements WebMvcConfigurer {
 
 	@Autowired
 	private LocalFileProperties localFileProperties;
+
+	@Bean("localFileOperator")
+	@ConditionalOnMissingBean(name = "localFileOperator")
+	public FileOperatorApi localFileOperator() {
+		return new LocalFileOperator(localFileProperties);
+	}
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {

@@ -65,10 +65,10 @@ public class AliFileOperator implements FileOperatorApi {
 	}
 
 	@Override
-	public String upload(InputStream inputStream, String savePrefixPath, String path) {
+	public String upload(InputStream inputStream, String savePrefixPath, String path, Boolean datePathEnabled) {
 		try {
 			String prefix = savePrefixPath;
-			if (StringUtils.isNotEmpty(aliOssProperties.getPrefix())) {
+			if (StringUtils.isNotEmpty(aliOssProperties.getPrefix()) && datePathEnabled) {
 				if (prefix.indexOf(FileConstants.BACKSLASHES) == 0) {
 					prefix = aliOssProperties.getPrefix() + prefix;
 				}
@@ -76,10 +76,10 @@ public class AliFileOperator implements FileOperatorApi {
 					prefix = aliOssProperties.getPrefix() + FileConstants.BACKSLASHES + prefix;
 				}
 			}
-			if (aliOssProperties.getDatePathEnabled()) {
+			if (aliOssProperties.getDatePathEnabled() && datePathEnabled) {
 				path = getPath(prefix, path.substring(path.lastIndexOf(".")));
 			}
-			else {
+			else if (StringUtils.isNotBlank(prefix)) {
 				if (path.indexOf(FileConstants.BACKSLASHES) == 0) {
 					path = prefix + path;
 				}
@@ -99,7 +99,10 @@ public class AliFileOperator implements FileOperatorApi {
 			ossClient.shutdown();
 		}
 
-		return "/" + path;
+		if (StringUtils.isNotBlank(path) && path.indexOf(FileConstants.BACKSLASHES) == 0) {
+			return path;
+		}
+		return FileConstants.BACKSLASHES + path;
 	}
 
 	/**

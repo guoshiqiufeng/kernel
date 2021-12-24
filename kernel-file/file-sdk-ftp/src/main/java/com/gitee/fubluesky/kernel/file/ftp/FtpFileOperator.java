@@ -180,10 +180,10 @@ public class FtpFileOperator implements FileOperatorApi {
 	}
 
 	@Override
-	public String upload(InputStream inputStream, String savePrefixPath, String path) {
+	public String upload(InputStream inputStream, String savePrefixPath, String path, Boolean datePathEnabled) {
 		try {
 			String prefix = savePrefixPath;
-			if (StringUtils.isNotEmpty(ftpFileProperties.getPrefix())) {
+			if (StringUtils.isNotEmpty(ftpFileProperties.getPrefix()) && datePathEnabled) {
 				if (prefix.indexOf(FileConstants.BACKSLASHES) == 0) {
 					prefix = ftpFileProperties.getPrefix() + prefix;
 				}
@@ -191,10 +191,10 @@ public class FtpFileOperator implements FileOperatorApi {
 					prefix = ftpFileProperties.getPrefix() + FileConstants.BACKSLASHES + prefix;
 				}
 			}
-			if (ftpFileProperties.getDatePathEnabled()) {
+			if (ftpFileProperties.getDatePathEnabled() && datePathEnabled) {
 				path = getPath(prefix, path.substring(path.lastIndexOf(".")));
 			}
-			else {
+			else if (StringUtils.isNotBlank(prefix)) {
 				if (path.indexOf(FileConstants.BACKSLASHES) == 0) {
 					path = prefix + path;
 				}
@@ -217,7 +217,10 @@ public class FtpFileOperator implements FileOperatorApi {
 		finally {
 			disConnect();
 		}
-		return "/" + path;
+		if (StringUtils.isNotBlank(path) && path.indexOf(FileConstants.BACKSLASHES) == 0) {
+			return path;
+		}
+		return FileConstants.BACKSLASHES + path;
 	}
 
 	/**

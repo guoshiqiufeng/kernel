@@ -55,14 +55,21 @@ public class LocalFileOperator implements FileOperatorApi {
 	 */
 	@Override
 	public String getHttpPrefix() {
-		return localFileProperties.getDomain();
+		if (StringUtils.isBlank(localFileProperties.getDomain())) {
+			return localFileProperties.getMvcPath();
+		}
+		if (localFileProperties.getDomain()
+				.lastIndexOf(FileConstants.BACKSLASHES) != localFileProperties.getDomain().length() - 1) {
+			return localFileProperties.getDomain() + FileConstants.BACKSLASHES + localFileProperties.getMvcPath();
+		}
+		return localFileProperties.getDomain() + localFileProperties.getMvcPath();
 	}
 
 	@Override
-	public String upload(InputStream inputStream, String savePrefixPath, String path) {
+	public String upload(InputStream inputStream, String savePrefixPath, String path, Boolean datePathEnabled) {
 		try {
 			String prefix = savePrefixPath;
-			if (StringUtils.isNotEmpty(localFileProperties.getPrefix())) {
+			if (StringUtils.isNotEmpty(localFileProperties.getPrefix()) && datePathEnabled) {
 				if (prefix.indexOf(FileConstants.BACKSLASHES) == 0) {
 					prefix = localFileProperties.getPrefix() + prefix;
 				}
@@ -70,10 +77,10 @@ public class LocalFileOperator implements FileOperatorApi {
 					prefix = localFileProperties.getPrefix() + FileConstants.BACKSLASHES + prefix;
 				}
 			}
-			if (localFileProperties.getDatePathEnabled()) {
+			if (localFileProperties.getDatePathEnabled() && datePathEnabled) {
 				path = getPath(prefix, path.substring(path.lastIndexOf(".")));
 			}
-			else {
+			else if (StringUtils.isNotBlank(prefix)) {
 				if (path.indexOf(FileConstants.BACKSLASHES) == 0) {
 					path = prefix + path;
 				}
@@ -95,7 +102,10 @@ public class LocalFileOperator implements FileOperatorApi {
 			log.error("ftp file upload error:", e);
 			throw new FileException(FileExceptionEnum.FILE_UPLOAD_ERROR);
 		}
-		return FileConstants.BACKSLASHES + localFileProperties.getMvcPath() + FileConstants.BACKSLASHES + path;
+		if (StringUtils.isNotBlank(path) && path.indexOf(FileConstants.BACKSLASHES) == 0) {
+			return path;
+		}
+		return FileConstants.BACKSLASHES + path;
 	}
 
 	/**

@@ -17,8 +17,12 @@
 
 package com.gitee.fubluesky.kernel.file.all.utils;
 
+import com.gitee.fubluesky.kernel.file.ali.AliFileOperator;
 import com.gitee.fubluesky.kernel.file.api.FileOperatorApi;
+import com.gitee.fubluesky.kernel.file.ftp.FtpFileOperator;
+import com.gitee.fubluesky.kernel.file.local.LocalFileOperator;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -40,18 +44,18 @@ public class UploadUtils {
 
 	private static Boolean aliEnabled;
 
-	@Autowired
-	public void setAliFileOperator(FileOperatorApi aliFileOperator) {
+	@Autowired(required = false)
+	public void setAliFileOperator(AliFileOperator aliFileOperator) {
 		UploadUtils.aliFileOperator = aliFileOperator;
 	}
 
-	@Autowired
-	public void setFtpFileOperator(FileOperatorApi ftpFileOperator) {
+	@Autowired(required = false)
+	public void setFtpFileOperator(FtpFileOperator ftpFileOperator) {
 		UploadUtils.ftpFileOperator = ftpFileOperator;
 	}
 
-	@Autowired
-	public void setLocalFileOperator(FileOperatorApi localFileOperator) {
+	@Autowired(required = false)
+	public void setLocalFileOperator(LocalFileOperator localFileOperator) {
 		UploadUtils.localFileOperator = localFileOperator;
 	}
 
@@ -116,17 +120,27 @@ public class UploadUtils {
 	 */
 	public static String upload(byte[] data, String savePrefixPath, String path, boolean enableHttpPrefix) {
 		String url = "";
-		if (aliEnabled) {
-			url = aliFileOperator.upload(data, savePrefixPath, path);
-			log.debug("ali oss upload url: {}", url);
-		}
-		if (ftpEnabled) {
-			url = ftpFileOperator.upload(data, savePrefixPath, path);
-			log.debug("ftp oss upload url: {}", url);
-		}
 		if (localEnabled) {
 			url = localFileOperator.upload(data, savePrefixPath, path);
 			log.debug("local oss upload url: {}", url);
+		}
+		if (ftpEnabled) {
+			if (StringUtils.isNotBlank(url)) {
+				url = ftpFileOperator.upload(data, "", url, false);
+			}
+			else {
+				url = ftpFileOperator.upload(data, savePrefixPath, path);
+			}
+			log.debug("ftp oss upload url: {}", url);
+		}
+		if (aliEnabled) {
+			if (StringUtils.isNotBlank(url)) {
+				url = aliFileOperator.upload(data, "", url, false);
+			}
+			else {
+				url = aliFileOperator.upload(data, savePrefixPath, path);
+			}
+			log.debug("ali oss upload url: {}", url);
 		}
 		if (enableHttpPrefix) {
 			return getHttpPrefix() + url;
