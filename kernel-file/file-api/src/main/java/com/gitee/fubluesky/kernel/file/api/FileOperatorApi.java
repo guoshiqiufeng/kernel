@@ -79,7 +79,19 @@ public interface FileOperatorApi {
 	 * @return 返回http地址
 	 */
 	default String upload(byte[] data, String savePrefixPath, String path) {
-		return upload(new ByteArrayInputStream(data), savePrefixPath, path);
+		return upload(new ByteArrayInputStream(data), savePrefixPath, path, true);
+	}
+
+	/**
+	 * 上传
+	 * @param data 文件字节数组
+	 * @param savePrefixPath 保存地址前缀
+	 * @param path 文件路径，包含文件名
+	 * @param datePathEnabled 是否使用时间规则+uuid命名文件
+	 * @return 返回http地址
+	 */
+	default String upload(byte[] data, String savePrefixPath, String path, Boolean datePathEnabled) {
+		return upload(new ByteArrayInputStream(data), savePrefixPath, path, datePathEnabled);
 	}
 
 	/**
@@ -99,7 +111,19 @@ public interface FileOperatorApi {
 	 * @param path 文件路径，包含文件名
 	 * @return 返回http地址
 	 */
-	String upload(InputStream inputStream, String savePrefixPath, String path);
+	default String upload(InputStream inputStream, String savePrefixPath, String path) {
+		return upload(inputStream, savePrefixPath, path, true);
+	}
+
+	/**
+	 * 文件上传
+	 * @param inputStream 字节流
+	 * @param savePrefixPath 保存地址前缀
+	 * @param path 文件路径，包含文件名
+	 * @param datePathEnabled 是否使用时间规则+uuid命名文件
+	 * @return 返回http地址
+	 */
+	String upload(InputStream inputStream, String savePrefixPath, String path, Boolean datePathEnabled);
 
 	/**
 	 * 获取文件流

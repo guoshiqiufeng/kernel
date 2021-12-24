@@ -48,7 +48,7 @@ public class JpushAutoConfiguration {
 
 	@Bean
 	@ConditionalOnMissingBean(PushApi.class)
-	public PushApi signApi() {
+	public PushApi pushApi() {
 		return new JpushService(jpushProperties);
 	}
 

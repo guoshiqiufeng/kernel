@@ -54,18 +54,18 @@ public class AllAutoConfiguration {
 	@Autowired
 	private AliOssProperties aliOssProperties;
 
+	@Autowired
+	private FtpFileProperties ftpFileProperties;
+
 	@Bean("aliFileOperator")
-	@ConditionalOnProperty(prefix = "kernel.file.ali", name = "enabled")
+	@ConditionalOnProperty(prefix = "kernel.file.ali", name = "enabled", havingValue = "true")
 	@ConditionalOnMissingBean(name = "aliFileOperator")
 	public FileOperatorApi aliFileOperator() {
 		return new AliFileOperator(aliOssProperties);
 	}
 
-	@Autowired
-	private FtpFileProperties ftpFileProperties;
-
 	@Bean("ftpFileOperator")
-	@ConditionalOnProperty(prefix = "kernel.file.ftp", name = "enabled")
+	@ConditionalOnProperty(prefix = "kernel.file.ftp", name = "enabled", havingValue = "true")
 	@ConditionalOnMissingBean(name = "ftpFileOperator")
 	public FileOperatorApi ftpFileOperator() {
 		return new FtpFileOperator(ftpFileProperties);

@@ -72,6 +72,6 @@ public class PlatformJacksonProperties implements Serializable {
 	/**
 	 * 时间格式
 	 */
-	private String timePattern = "HH:mm";
+	private String timePattern = "HH:mm:ss";
 
 }

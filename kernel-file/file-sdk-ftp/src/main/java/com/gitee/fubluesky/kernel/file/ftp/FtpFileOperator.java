@@ -21,7 +21,7 @@ import com.gitee.fubluesky.kernel.file.api.FileOperatorApi;
 import com.gitee.fubluesky.kernel.file.api.constants.FileConstants;
 import com.gitee.fubluesky.kernel.file.api.exception.FileException;
 import com.gitee.fubluesky.kernel.file.api.exception.enums.FileExceptionEnum;
-import com.gitee.fubluesky.kernel.file.api.utils.IOUtils;
+import com.gitee.fubluesky.kernel.file.api.utils.IoUtils;
 import com.gitee.fubluesky.kernel.file.ftp.pojo.FtpFileProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -180,10 +180,10 @@ public class FtpFileOperator implements FileOperatorApi {
 	}
 
 	@Override
-	public String upload(InputStream inputStream, String savePrefixPath, String path) {
+	public String upload(InputStream inputStream, String savePrefixPath, String path, Boolean datePathEnabled) {
 		try {
 			String prefix = savePrefixPath;
-			if (StringUtils.isNotEmpty(ftpFileProperties.getPrefix())) {
+			if (StringUtils.isNotEmpty(ftpFileProperties.getPrefix()) && datePathEnabled) {
 				if (prefix.indexOf(FileConstants.BACKSLASHES) == 0) {
 					prefix = ftpFileProperties.getPrefix() + prefix;
 				}
@@ -191,10 +191,10 @@ public class FtpFileOperator implements FileOperatorApi {
 					prefix = ftpFileProperties.getPrefix() + FileConstants.BACKSLASHES + prefix;
 				}
 			}
-			if (ftpFileProperties.getDatePathEnabled()) {
+			if (ftpFileProperties.getDatePathEnabled() && datePathEnabled) {
 				path = getPath(prefix, path.substring(path.lastIndexOf(".")));
 			}
-			else {
+			else if (StringUtils.isNotBlank(prefix)) {
 				if (path.indexOf(FileConstants.BACKSLASHES) == 0) {
 					path = prefix + path;
 				}
@@ -217,7 +217,10 @@ public class FtpFileOperator implements FileOperatorApi {
 		finally {
 			disConnect();
 		}
-		return "/" + path;
+		if (StringUtils.isNotBlank(path) && path.indexOf(FileConstants.BACKSLASHES) == 0) {
+			return path;
+		}
+		return FileConstants.BACKSLASHES + path;
 	}
 
 	/**
@@ -234,7 +237,7 @@ public class FtpFileOperator implements FileOperatorApi {
 			FTPClient ftpClient = ftpClientThreadLocal.get();
 
 			objectContent = ftpClient.retrieveFileStream(path);
-			return IOUtils.readStreamAsByteArray(objectContent);
+			return IoUtils.readStreamAsByteArray(objectContent);
 		}
 		catch (Exception e) {
 			log.error("ftp file delete error:", e);

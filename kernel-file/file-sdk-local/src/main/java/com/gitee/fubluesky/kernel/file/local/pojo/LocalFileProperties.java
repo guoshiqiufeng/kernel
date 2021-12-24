@@ -17,11 +17,11 @@
 
 package com.gitee.fubluesky.kernel.file.local.pojo;
 
-import cn.hutool.core.io.FileUtil;
 import com.gitee.fubluesky.kernel.file.api.constants.FileConstants;
 import com.gitee.fubluesky.kernel.file.api.exception.FileException;
 import com.gitee.fubluesky.kernel.file.api.exception.enums.FileExceptionEnum;
 import com.gitee.fubluesky.kernel.file.api.pojo.FileProperties;
+import com.gitee.fubluesky.kernel.file.api.utils.FileUtil;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;

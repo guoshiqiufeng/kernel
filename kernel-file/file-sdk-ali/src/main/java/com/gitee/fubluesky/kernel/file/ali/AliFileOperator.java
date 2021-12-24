@@ -17,14 +17,15 @@
 
 package com.gitee.fubluesky.kernel.file.ali;
 
-import com.aliyun.oss.OSSClient;
+import com.aliyun.oss.OSS;
+import com.aliyun.oss.OSSClientBuilder;
 import com.aliyun.oss.model.OSSObject;
 import com.gitee.fubluesky.kernel.file.ali.pojo.AliOssProperties;
 import com.gitee.fubluesky.kernel.file.api.FileOperatorApi;
 import com.gitee.fubluesky.kernel.file.api.constants.FileConstants;
 import com.gitee.fubluesky.kernel.file.api.exception.FileException;
 import com.gitee.fubluesky.kernel.file.api.exception.enums.FileExceptionEnum;
-import com.gitee.fubluesky.kernel.file.api.utils.IOUtils;
+import com.gitee.fubluesky.kernel.file.api.utils.IoUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
@@ -44,13 +45,13 @@ public class AliFileOperator implements FileOperatorApi {
 		this.aliOssProperties = aliOssProperties;
 	}
 
-	private OSSClient ossClient;
+	private OSS ossClient;
 
 	private void init() {
 		if (!aliOssProperties.getEnabled()) {
 			throw new FileException(FileExceptionEnum.ALI_OSS_NOT_ENABLE);
 		}
-		ossClient = new OSSClient(aliOssProperties.getEndPoint(), aliOssProperties.getAccessKey(),
+		ossClient = new OSSClientBuilder().build(aliOssProperties.getEndPoint(), aliOssProperties.getAccessKey(),
 				aliOssProperties.getSecretKey());
 	}
 
@@ -64,10 +65,10 @@ public class AliFileOperator implements FileOperatorApi {
 	}
 
 	@Override
-	public String upload(InputStream inputStream, String savePrefixPath, String path) {
+	public String upload(InputStream inputStream, String savePrefixPath, String path, Boolean datePathEnabled) {
 		try {
 			String prefix = savePrefixPath;
-			if (StringUtils.isNotEmpty(aliOssProperties.getPrefix())) {
+			if (StringUtils.isNotEmpty(aliOssProperties.getPrefix()) && datePathEnabled) {
 				if (prefix.indexOf(FileConstants.BACKSLASHES) == 0) {
 					prefix = aliOssProperties.getPrefix() + prefix;
 				}
@@ -75,10 +76,10 @@ public class AliFileOperator implements FileOperatorApi {
 					prefix = aliOssProperties.getPrefix() + FileConstants.BACKSLASHES + prefix;
 				}
 			}
-			if (aliOssProperties.getDatePathEnabled()) {
+			if (aliOssProperties.getDatePathEnabled() && datePathEnabled) {
 				path = getPath(prefix, path.substring(path.lastIndexOf(".")));
 			}
-			else {
+			else if (StringUtils.isNotBlank(prefix)) {
 				if (path.indexOf(FileConstants.BACKSLASHES) == 0) {
 					path = prefix + path;
 				}
@@ -98,7 +99,10 @@ public class AliFileOperator implements FileOperatorApi {
 			ossClient.shutdown();
 		}
 
-		return "/" + path;
+		if (StringUtils.isNotBlank(path) && path.indexOf(FileConstants.BACKSLASHES) == 0) {
+			return path;
+		}
+		return FileConstants.BACKSLASHES + path;
 	}
 
 	/**
@@ -114,7 +118,7 @@ public class AliFileOperator implements FileOperatorApi {
 			init();
 			OSSObject ossObject = ossClient.getObject(aliOssProperties.getBucketName(), path);
 			objectContent = ossObject.getObjectContent();
-			return IOUtils.readStreamAsByteArray(objectContent);
+			return IoUtils.readStreamAsByteArray(objectContent);
 		}
 		catch (Exception e) {
 			log.error("ali oss file get error:", e);

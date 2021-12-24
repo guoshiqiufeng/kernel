@@ -20,7 +20,7 @@
     <parent>
         <groupId>com.gitee.fubluesky.kernel</groupId>
         <artifactId>kernel-file</artifactId>
-        <version>1.5.6</version>
+        <version>1.6.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -42,8 +42,18 @@
         </dependency>
         <dependency>
             <groupId>com.gitee.fubluesky.kernel</groupId>
+            <artifactId>file-sdk-local</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.gitee.fubluesky.kernel</groupId>
             <artifactId>file-expand-apk</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
