@@ -17,8 +17,9 @@
 
 package com.gitee.fubluesky.kernel.file.api.utils;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -26,22 +27,27 @@ import java.io.InputStream;
  * @version 1.0
  * @since 2021-07-31 16:08
  */
-@SuppressWarnings("all")
-public class IOUtils {
+@Slf4j
+public class IoUtils {
 
-	public static byte[] readStreamAsByteArray(InputStream in) throws IOException {
-		if (in == null) {
+	public static byte[] readStreamAsByteArray(InputStream inputStream) {
+		if (inputStream == null) {
 			return new byte[0];
 		}
-
-		ByteArrayOutputStream output = new ByteArrayOutputStream();
-		byte[] buffer = new byte[1024];
-		int len = -1;
-		while ((len = in.read(buffer)) != -1) {
-			output.write(buffer, 0, len);
+		try {
+			ByteArrayOutputStream output = new ByteArrayOutputStream();
+			byte[] buffer = new byte[1024];
+			int len;
+			while ((len = inputStream.read(buffer)) != -1) {
+				output.write(buffer, 0, len);
+			}
+			output.flush();
+			return output.toByteArray();
 		}
-		output.flush();
-		return output.toByteArray();
+		catch (Exception e) {
+			log.error("IoUtils readStreamAsByteArray error: {}", e.getMessage());
+			return new byte[0];
+		}
 	}
 
 }

@@ -34,6 +34,8 @@ public class UploadUtils {
 
 	private static FileOperatorApi ftpFileOperator;
 
+	private static FileOperatorApi localFileOperator;
+
 	private static Boolean aliEnabled;
 
 	@Autowired
@@ -46,6 +48,11 @@ public class UploadUtils {
 		UploadUtils.ftpFileOperator = ftpFileOperator;
 	}
 
+	@Autowired
+	public void setLocalFileOperator(FileOperatorApi localFileOperator) {
+		UploadUtils.localFileOperator = localFileOperator;
+	}
+
 	@Value("${kernel.file.ali.enabled:false}")
 	public void setOssEnabled(Boolean aliEnabled) {
 		UploadUtils.aliEnabled = aliEnabled;
@@ -56,6 +63,13 @@ public class UploadUtils {
 	@Value("${kernel.file.ftp.enabled:false}")
 	public void setFtpEnabled(Boolean ftpEnabled) {
 		UploadUtils.ftpEnabled = ftpEnabled;
+	}
+
+	private static Boolean localEnabled;
+
+	@Value("${kernel.file.local.enabled:false}")
+	public void setLocalEnabled(Boolean localEnabled) {
+		UploadUtils.localEnabled = localEnabled;
 	}
 
 	/**
@@ -82,6 +96,9 @@ public class UploadUtils {
 		}
 		if (ftpEnabled) {
 			url = aliFileOperator.getHttpPrefix() + ftpFileOperator.upload(data, savePrefixPath, path);
+		}
+		if (localEnabled) {
+			url = localFileOperator.getHttpPrefix() + localFileOperator.upload(data, savePrefixPath, path);
 		}
 		return url;
 	}

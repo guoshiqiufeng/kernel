@@ -15,35 +15,45 @@
  *  limitations under the License.
  */
 
-package com.gitee.fubluesky.kernel.file.local.autoconfigure;
+package com.gitee.fubluesky.kernel.file.all.autoconfigure;
 
-import com.gitee.fubluesky.kernel.file.api.FileOperatorApi;
-import com.gitee.fubluesky.kernel.file.local.LocalFileOperator;
 import com.gitee.fubluesky.kernel.file.local.pojo.LocalFileProperties;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * 本地文件服务 配置
+ * spring mvc 映射访问本地文件 配置
  *
  * @author yanghq
  * @version 1.0
- * @since 2021-08-02 14:09
+ * @since 2021-08-02 17:07
  */
-@Configuration
 @ConditionalOnProperty(prefix = "kernel.file.local", name = "enabled", matchIfMissing = true)
-public class LocalFileAutoConfiguration {
+@AutoConfigureBefore(AllAutoConfiguration.class)
+@Configuration
+public class FileStaticConfig implements WebMvcConfigurer {
+
+	@Bean
+	@ConfigurationProperties(prefix = "kernel.file.local")
+	@ConditionalOnMissingBean(LocalFileProperties.class)
+	public LocalFileProperties localFileProperties() {
+		return new LocalFileProperties();
+	}
 
 	@Autowired
 	private LocalFileProperties localFileProperties;
 
-	@Bean
-	@ConditionalOnMissingBean(FileOperatorApi.class)
-	public FileOperatorApi fileOperatorApi() {
-		return new LocalFileOperator(localFileProperties);
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/" + localFileProperties.getMvcPath() + "/**")
+				.addResourceLocations("file:" + localFileProperties.getSavePath());
 	}
 
 }

@@ -17,11 +17,11 @@
 
 package com.gitee.fubluesky.kernel.file.local;
 
-import cn.hutool.core.io.FileUtil;
 import com.gitee.fubluesky.kernel.file.api.FileOperatorApi;
 import com.gitee.fubluesky.kernel.file.api.constants.FileConstants;
 import com.gitee.fubluesky.kernel.file.api.exception.FileException;
 import com.gitee.fubluesky.kernel.file.api.exception.enums.FileExceptionEnum;
+import com.gitee.fubluesky.kernel.file.api.utils.FileUtil;
 import com.gitee.fubluesky.kernel.file.local.pojo.LocalFileProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -89,7 +89,7 @@ public class LocalFileOperator implements FileOperatorApi {
 
 			// 存储文件
 			String absoluteFile = savePath + File.separator + path;
-			FileUtil.writeFromStream(inputStream, absoluteFile);
+			FileUtil.writeInputStream(inputStream, absoluteFile);
 		}
 		catch (Exception e) {
 			log.error("ftp file upload error:", e);

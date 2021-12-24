@@ -25,7 +25,7 @@ import com.gitee.fubluesky.kernel.file.api.FileOperatorApi;
 import com.gitee.fubluesky.kernel.file.api.constants.FileConstants;
 import com.gitee.fubluesky.kernel.file.api.exception.FileException;
 import com.gitee.fubluesky.kernel.file.api.exception.enums.FileExceptionEnum;
-import com.gitee.fubluesky.kernel.file.api.utils.IOUtils;
+import com.gitee.fubluesky.kernel.file.api.utils.IoUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
@@ -115,7 +115,7 @@ public class AliFileOperator implements FileOperatorApi {
 			init();
 			OSSObject ossObject = ossClient.getObject(aliOssProperties.getBucketName(), path);
 			objectContent = ossObject.getObjectContent();
-			return IOUtils.readStreamAsByteArray(objectContent);
+			return IoUtils.readStreamAsByteArray(objectContent);
 		}
 		catch (Exception e) {
 			log.error("ali oss file get error:", e);

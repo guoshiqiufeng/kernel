@@ -21,7 +21,7 @@ import com.gitee.fubluesky.kernel.file.api.FileOperatorApi;
 import com.gitee.fubluesky.kernel.file.api.constants.FileConstants;
 import com.gitee.fubluesky.kernel.file.api.exception.FileException;
 import com.gitee.fubluesky.kernel.file.api.exception.enums.FileExceptionEnum;
-import com.gitee.fubluesky.kernel.file.api.utils.IOUtils;
+import com.gitee.fubluesky.kernel.file.api.utils.IoUtils;
 import com.gitee.fubluesky.kernel.file.ftp.pojo.FtpFileProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -234,7 +234,7 @@ public class FtpFileOperator implements FileOperatorApi {
 			FTPClient ftpClient = ftpClientThreadLocal.get();
 
 			objectContent = ftpClient.retrieveFileStream(path);
-			return IOUtils.readStreamAsByteArray(objectContent);
+			return IoUtils.readStreamAsByteArray(objectContent);
 		}
 		catch (Exception e) {
 			log.error("ftp file delete error:", e);
