@@ -18,6 +18,7 @@
 package com.gitee.fubluesky.kernel.file.all.utils;
 
 import com.gitee.fubluesky.kernel.file.api.FileOperatorApi;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -27,6 +28,7 @@ import org.springframework.stereotype.Component;
  * @version 1.0
  * @since 2021-08-19 9:33
  */
+@Slf4j
 @Component
 public class UploadUtils {
 
@@ -79,7 +81,18 @@ public class UploadUtils {
 	 * @return 返回http地址
 	 */
 	public static String upload(byte[] data, String path) {
-		return upload(data, "", path);
+		return upload(data, "", path, true);
+	}
+
+	/**
+	 * 文件上传
+	 * @param data 文件字节数组
+	 * @param path 文件路径
+	 * @param enableHttpPrefix 是否启用文件前缀返回
+	 * @return 返回http地址
+	 */
+	public static String upload(byte[] data, String path, boolean enableHttpPrefix) {
+		return upload(data, "", path, enableHttpPrefix);
 	}
 
 	/**
@@ -90,17 +103,37 @@ public class UploadUtils {
 	 * @return 返回http地址
 	 */
 	public static String upload(byte[] data, String savePrefixPath, String path) {
+		return upload(data, savePrefixPath, path, true);
+	}
+
+	/**
+	 * 文件上传
+	 * @param data 文件字节数组
+	 * @param savePrefixPath 保存地址前缀
+	 * @param path 文件路径
+	 * @param enableHttpPrefix 是否启用文件前缀返回
+	 * @return 返回http地址
+	 */
+	public static String upload(byte[] data, String savePrefixPath, String path, boolean enableHttpPrefix) {
 		String url = "";
 		if (aliEnabled) {
-			url = aliFileOperator.getHttpPrefix() + aliFileOperator.upload(data, savePrefixPath, path);
+			url = aliFileOperator.upload(data, savePrefixPath, path);
+			log.debug("ali oss upload url: {}", url);
 		}
 		if (ftpEnabled) {
-			url = aliFileOperator.getHttpPrefix() + ftpFileOperator.upload(data, savePrefixPath, path);
+			url = ftpFileOperator.upload(data, savePrefixPath, path);
+			log.debug("ftp oss upload url: {}", url);
 		}
 		if (localEnabled) {
-			url = localFileOperator.getHttpPrefix() + localFileOperator.upload(data, savePrefixPath, path);
+			url = localFileOperator.upload(data, savePrefixPath, path);
+			log.debug("local oss upload url: {}", url);
 		}
-		return url;
+		if (enableHttpPrefix) {
+			return getHttpPrefix() + url;
+		}
+		else {
+			return url;
+		}
 	}
 
 	/**
@@ -109,11 +142,14 @@ public class UploadUtils {
 	 */
 	public static String getHttpPrefix() {
 		String httpPrefix = "";
-		if (aliEnabled) {
-			httpPrefix = aliFileOperator.getHttpPrefix();
+		if (localEnabled) {
+			httpPrefix = localFileOperator.getHttpPrefix();
 		}
 		if (ftpEnabled) {
 			httpPrefix = ftpFileOperator.getHttpPrefix();
+		}
+		if (aliEnabled) {
+			httpPrefix = aliFileOperator.getHttpPrefix();
 		}
 		return httpPrefix;
 	}
