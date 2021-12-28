@@ -25,6 +25,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>kernel-file</artifactId>
+    <version>1.6.1</version>
     <description>文件模块 </description>
     <inceptionYear>2021-Now</inceptionYear>
     <packaging>pom</packaging>
@@ -33,7 +34,7 @@
         <dependency>
             <groupId>com.gitee.fubluesky.kernel</groupId>
             <artifactId>kernel-core</artifactId>
-            <version>${project.version}</version>
+            <version>${kernel.version}</version>
         </dependency>
     </dependencies>
 
