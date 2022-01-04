@@ -54,9 +54,9 @@
         <!-- 极光推送 -->
         <jpush.version>3.4.7</jpush.version>
 
-        <kernel-file.version>1.6.1</kernel-file.version>
-        <kernel-security.version>1.6.0</kernel-security.version>
-        <kernel-auth.version>1.6.1</kernel-auth.version>
+        <kernel-file.version>1.6.2</kernel-file.version>
+        <kernel-security.version>1.6.2</kernel-security.version>
+        <kernel-auth.version>1.6.2</kernel-auth.version>
 
         <!--插件-->
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>

@@ -20,12 +20,11 @@
     <parent>
         <groupId>com.gitee.fubluesky.kernel</groupId>
         <artifactId>kernel</artifactId>
-        <version>1.6.1</version>
+        <version>1.6.2</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>kernel-file</artifactId>
-    <version>1.6.1</version>
     <description>文件模块 </description>
     <inceptionYear>2021-Now</inceptionYear>
     <packaging>pom</packaging>
