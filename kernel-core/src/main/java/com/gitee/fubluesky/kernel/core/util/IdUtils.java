@@ -26,11 +26,10 @@ import java.util.UUID;
  * @version 1.0
  * @since 2021-07-23 17:13
  */
-@SuppressWarnings("all")
 @UtilityClass
 public class IdUtils {
 
-	public String generateUUID() {
+	public String generateUuid() {
 		return UUID.randomUUID().toString().replaceAll("-", "");
 	}
 

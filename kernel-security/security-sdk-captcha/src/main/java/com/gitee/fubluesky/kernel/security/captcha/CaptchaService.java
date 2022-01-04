@@ -45,7 +45,7 @@ public class CaptchaService implements CaptchaApi {
 	public Captcha captcha() {
 		SpecCaptcha specCaptcha = new SpecCaptcha(130, 48, 5);
 		String code = specCaptcha.text().toLowerCase();
-		String key = IdUtils.generateUUID();
+		String key = IdUtils.generateUuid();
 		cacheOperatorApi.add(key, code);
 		return new Captcha().setImage(specCaptcha.toBase64()).setKey(key);
 	}
