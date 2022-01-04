@@ -31,7 +31,7 @@ public enum SmsExceptionEnum implements AbstractExceptionEnum {
 	/**
 	 * 短信发送请求参数为空
 	 */
-	SEND_SMS_PARAM_NULL(ErrorType.BUSINESS_ERROR.getCode(), SmsConstants.EXCEPTION_STEP_CODE, "短信发送请求参数为空，参数为：{}"),
+	SEND_SMS_PARAM_NULL(ErrorType.BUSINESS_ERROR.getCode(), SmsConstants.EXCEPTION_STEP_CODE, "短信发送请求参数为空，参数为：{0}"),
 	/**
 	 * 短信发送未启用
 	 */

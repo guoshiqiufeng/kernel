@@ -111,6 +111,22 @@ public class FileUtil {
 	public static boolean writeInputStream(InputStream inputStream, String filePath) {
 		try {
 			File file = createNewFile(filePath);
+			return writeInputStream(inputStream, file);
+		}
+		catch (Exception e) {
+			log.error("FileUtil writeInputStream error: {}", e.getMessage());
+			return false;
+		}
+	}
+
+	/**
+	 * 存储文件流
+	 * @param inputStream 文件流
+	 * @param file 文件
+	 * @return true 存储成功；false 存储失败
+	 */
+	public static boolean writeInputStream(InputStream inputStream, File file) {
+		try {
 			FileOutputStream out = new FileOutputStream(file);
 			byte[] data = new byte[1024];
 			int num = 0;

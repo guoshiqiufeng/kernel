@@ -33,7 +33,7 @@ import java.util.Collection;
  * @author yanghq
  * @version 1.0
  * @since 2021-08-24 9:54 使用方式：
- * 在Controller方法上添加 @PreAuthorize("pms.hasPermission('a:delete')") 会判断是否有a:delete的权限
+ * 在Controller方法上添加 @PreAuthorize("@pms.hasPermission('a:delete')") 会判断是否有a:delete的权限
  */
 @Slf4j
 @Component("pms")
