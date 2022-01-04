@@ -34,7 +34,7 @@ public enum MailExceptionEnum implements AbstractExceptionEnum {
 	 * 邮件发送异常，请求参数存在空值
 	 */
 	EMAIL_PARAM_EMPTY_ERROR(ErrorType.BUSINESS_ERROR.getCode(), MailConstants.EXCEPTION_STEP_CODE + "01",
-			"邮件发送失败，请检查参数配置，{}参数可能为空"),
+			"邮件发送失败，请检查参数配置，{0}参数可能为空"),
 
 	/**
 	 * 邮件发送异常
