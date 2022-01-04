@@ -12,7 +12,7 @@ pom添加依赖
 <dependency>
     <groupId>com.gitee.fubluesky.kernel</groupId>
     <artifactId>file-ali-spring-boot-starter</artifactId>
-    <version>1.6.0</version>
+    <version>1.6.2</version>
 </dependency>
 ```
 
