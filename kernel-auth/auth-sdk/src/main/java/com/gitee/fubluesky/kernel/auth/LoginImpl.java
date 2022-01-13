@@ -19,6 +19,7 @@ package com.gitee.fubluesky.kernel.auth;
 
 import com.gitee.fubluesky.kernel.auth.api.LoginApi;
 import com.gitee.fubluesky.kernel.auth.api.UserServiceApi;
+import com.gitee.fubluesky.kernel.auth.api.constants.AuthConstants;
 import com.gitee.fubluesky.kernel.auth.api.exception.AuthException;
 import com.gitee.fubluesky.kernel.auth.api.exception.enums.AuthExceptionEnum;
 import com.gitee.fubluesky.kernel.auth.api.pojo.AuthProperties;
@@ -85,6 +86,13 @@ public class LoginImpl implements LoginApi {
 				}
 			}
 		}
+
+		token = request.getHeader(AuthConstants.DEFAULT_TOKEN_HEADER_NAME);
+		if (StringUtils.isNotBlank(token)) {
+			token = token.replace(authProperties.getTokenPrefix(), "");
+			return token;
+		}
+
 		return null;
 	}
 

@@ -34,6 +34,11 @@ public interface AuthConstants {
 	String EXCEPTION_STEP_CODE = "11";
 
 	/**
+	 * token header 默认参数名
+	 */
+	String DEFAULT_TOKEN_HEADER_NAME = "Authorization";
+
+	/**
 	 * 缓存前缀
 	 */
 	String CACHE_KEY_PREFIX = "AUTH_CACHE";
