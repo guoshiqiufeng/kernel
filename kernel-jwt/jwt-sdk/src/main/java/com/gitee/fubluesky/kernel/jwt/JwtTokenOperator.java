@@ -68,15 +68,22 @@ public class JwtTokenOperator implements JwtApi {
 			}
 		}
 		else {
-			if (StringUtils.isBlank(appId)) {
-				log.error("generateToken fail. The appId is blank!");
-				throw new JwtException(JwtExceptionEnum.JWT_CREATE_ERROR);
-			}
-			// 获取
+			// 获取 过期时间配置
 			Map<String, Long> map = jwtProperties.getExpireMap();
+
+			if (StringUtils.isBlank(appId)) {
+				log.warn("multi expire is enabled, but the appId is empty!");
+
+				if (map == null || map.isEmpty()) {
+					log.warn("multi expire is enabled, but the expire map is empty!");
+					return new Date(System.currentTimeMillis() + jwtProperties.getExpire() * 1000);
+				}
+				appId = map.keySet().iterator().next();
+			}
+
 			if (map == null || map.isEmpty()) {
-				log.error("generateToken fail. The expireMap is empty!");
-				throw new JwtException(JwtExceptionEnum.JWT_CREATE_ERROR);
+				log.warn("multi expire is enabled, but the expire map is empty!");
+				return new Date(System.currentTimeMillis() + jwtProperties.getExpire() * 1000);
 			}
 			Long expire = map.get(appId);
 			if (expire == null) {

@@ -22,7 +22,7 @@
     <groupId>com.gitee.fubluesky.kernel</groupId>
     <artifactId>kernel-dependencies</artifactId>
     <name>kernel-dependencies</name>
-    <version>1.6.2</version>
+    <version>1.6.3</version>
     <description>依赖版本统一配置</description>
     <inceptionYear>2021-Now</inceptionYear>
     <packaging>pom</packaging>
@@ -53,10 +53,6 @@
 
         <!-- 极光推送 -->
         <jpush.version>3.4.7</jpush.version>
-
-        <kernel-file.version>1.6.2</kernel-file.version>
-        <kernel-security.version>1.6.2</kernel-security.version>
-        <kernel-auth.version>1.6.2</kernel-auth.version>
 
         <!--插件-->
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
@@ -194,44 +190,6 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-compress</artifactId>
                 <version>${commons-compress.version}</version>
-            </dependency>
-            <!--kernel-auth-->
-            <dependency>
-                <groupId>com.gitee.fubluesky.kernel</groupId>
-                <artifactId>auth-api</artifactId>
-                <version>${kernel-auth.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.gitee.fubluesky.kernel</groupId>
-                <artifactId>auth-spring-boot-starter</artifactId>
-                <version>${kernel-auth.version}</version>
-            </dependency>
-            <!--kernel-security-->
-            <dependency>
-                <groupId>com.gitee.fubluesky.kernel</groupId>
-                <artifactId>security-api</artifactId>
-                <version>${kernel-security.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.gitee.fubluesky.kernel</groupId>
-                <artifactId>security-spring-boot-starter</artifactId>
-                <version>${kernel-security.version}</version>
-            </dependency>
-            <!--kernel-file-->
-            <dependency>
-                <groupId>com.gitee.fubluesky.kernel</groupId>
-                <artifactId>file-api</artifactId>
-                <version>${kernel-file.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.gitee.fubluesky.kernel</groupId>
-                <artifactId>file-all-spring-boot-starter</artifactId>
-                <version>${kernel-file.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.gitee.fubluesky.kernel</groupId>
-                <artifactId>file-expand-apk</artifactId>
-                <version>${kernel-file.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

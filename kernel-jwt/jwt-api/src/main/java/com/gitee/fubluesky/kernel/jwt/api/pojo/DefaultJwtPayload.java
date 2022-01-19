@@ -74,7 +74,7 @@ public class DefaultJwtPayload {
 		this.userId = userId;
 		this.account = account;
 		this.appId = appId;
-		this.uuid = IdUtils.generateUUID();
+		this.uuid = IdUtils.generateUuid();
 		this.rememberMe = rememberMe;
 	}
 
