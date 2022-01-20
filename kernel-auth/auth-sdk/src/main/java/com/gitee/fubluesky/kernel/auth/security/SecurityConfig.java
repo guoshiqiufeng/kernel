@@ -75,6 +75,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		}
 		http.authorizeRequests().requestMatchers(CorsUtils::isPreFlightRequest).permitAll().anyRequest()
 				.authenticated();
+		// 禁用logout
+		http.logout().disable();
 		// jwt 过滤器
 		http.addFilter(new JwtAuthorizationFilter(authenticationManager()));
 		// 不需要session
