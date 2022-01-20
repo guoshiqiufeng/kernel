@@ -23,7 +23,7 @@
     <groupId>com.gitee.fubluesky</groupId>
     <artifactId>kernel-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.6.3</version>
+    <version>1.6.4</version>
     <inceptionYear>2021-Now</inceptionYear>
     <name>kernel-parent</name>
     <description>kernel-parent</description>
