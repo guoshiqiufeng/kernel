@@ -43,7 +43,7 @@
         <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
 
         <kernel-dependencies.version>1.6.3</kernel-dependencies.version>
-        <kernel.version>${project.version}</kernel.version>
+        <kernel.version>1.6.4</kernel.version>
 
         <!--插件-->
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
