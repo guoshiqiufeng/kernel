@@ -9,7 +9,7 @@ pom添加依赖
 <dependency>
     <groupId>com.gitee.fubluesky.kernel</groupId>
     <artifactId>auth-spring-boot-starter</artifactId>
-    <version>1.6.2</version>
+    <version>1.6.5</version>
 </dependency>
 ```
 ### 配置
