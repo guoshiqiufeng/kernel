@@ -4,7 +4,7 @@
 #### 介绍
 内核框架
 #### 依赖
-- spring-boot 2.5.8
+- spring-boot 2.5.10
 - spring-cloud 2020.0.4
 - spring-cloud-alibaba 2021.1
 - kernel-dependencies 1.6.3
