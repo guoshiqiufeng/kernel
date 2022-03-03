@@ -1,6 +1,6 @@
 # kernel
-[![Maven central](https://maven-badges.herokuapp.com/maven-central/com.gitee.fubluesky.kernel/kernel/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.gitee.fubluesky.kernel/kernel)
-[![License](http://img.shields.io/:license-apache-brightgreen.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
+[![Maven central](https://img.shields.io/maven-central/v/com.gitee.fubluesky.kernel/kernel.svg?style=flat-square)](https://search.maven.org/search?q=g:com.gitee.fubluesky.kernel%20AND%20a:kernel)
+[![License](https://img.shields.io/:license-apache-brightgreen.svg?style=flat-square)](http://www.apache.org/licenses/LICENSE-2.0.html)
 #### 介绍
 内核框架
 #### 依赖
