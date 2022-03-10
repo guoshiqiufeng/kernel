@@ -25,7 +25,6 @@ import com.gitee.fubluesky.kernel.auth.cache.LoginUserRedisCache;
 import com.gitee.fubluesky.kernel.auth.cache.LoginUserTokenRedisCache;
 import com.gitee.fubluesky.kernel.cache.api.CacheOperatorApi;
 import com.gitee.fubluesky.kernel.cache.redis.utils.RedisCacheUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -50,35 +49,26 @@ public class LoginAutoConfiguration {
 		return new AuthProperties();
 	}
 
-	@Autowired
-	private AuthProperties authProperties;
-
 	@Bean
 	public RedisTemplate<String, LoginUser> loginUserRedisTemplate(RedisConnectionFactory redisConnectionFactory) {
 		return RedisCacheUtils.getObjectRedisTemplate(redisConnectionFactory);
 	}
 
-	@Autowired
-	private RedisTemplate<String, LoginUser> loginUserRedisTemplate;
-
 	@Bean
 	@ConditionalOnMissingBean(name = "loginUserTokenCache")
-	public CacheOperatorApi<LoginUser> loginUserTokenCache() {
+	public CacheOperatorApi<LoginUser> loginUserTokenCache(RedisTemplate<String, LoginUser> loginUserRedisTemplate) {
 		return new LoginUserTokenRedisCache(loginUserRedisTemplate);
 	}
 
 	@Bean
 	@ConditionalOnMissingBean(name = "loginUserCache")
-	public CacheOperatorApi<LoginUser> loginUserCache() {
+	public CacheOperatorApi<LoginUser> loginUserCache(RedisTemplate<String, LoginUser> loginUserRedisTemplate) {
 		return new LoginUserRedisCache(loginUserRedisTemplate);
 	}
 
-	@Autowired
-	private CacheOperatorApi<LoginUser> loginUserCache;
-
 	@Bean
 	@ConditionalOnMissingBean(LoginApi.class)
-	public LoginApi loginApi() {
+	public LoginApi loginApi(AuthProperties authProperties, CacheOperatorApi<LoginUser> loginUserCache) {
 		return new LoginImpl(authProperties, loginUserCache);
 	}
 

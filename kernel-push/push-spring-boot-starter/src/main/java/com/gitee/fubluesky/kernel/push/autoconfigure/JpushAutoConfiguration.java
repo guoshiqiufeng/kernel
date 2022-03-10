@@ -20,7 +20,6 @@ package com.gitee.fubluesky.kernel.push.autoconfigure;
 import com.gitee.fubluesky.kernel.push.api.PushApi;
 import com.gitee.fubluesky.kernel.push.jpush.JpushService;
 import com.gitee.fubluesky.kernel.push.jpush.pojo.JpushProperties;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -43,12 +42,9 @@ public class JpushAutoConfiguration {
 		return new JpushProperties();
 	}
 
-	@Autowired
-	private JpushProperties jpushProperties;
-
 	@Bean
 	@ConditionalOnMissingBean(PushApi.class)
-	public PushApi pushApi() {
+	public PushApi pushApi(JpushProperties jpushProperties) {
 		return new JpushService(jpushProperties);
 	}
 

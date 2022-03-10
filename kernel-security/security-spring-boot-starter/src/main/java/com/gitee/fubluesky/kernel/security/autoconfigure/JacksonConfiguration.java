@@ -26,7 +26,6 @@ import com.gitee.fubluesky.kernel.security.jackson.constant.PlatformJacksonConst
 import com.gitee.fubluesky.kernel.security.jackson.module.DefaultJavaTimeModule;
 import com.gitee.fubluesky.kernel.security.jackson.module.TimestampsJavaTimeModule;
 import com.gitee.fubluesky.kernel.security.jackson.pojo.PlatformJacksonProperties;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -58,14 +57,9 @@ public class JacksonConfiguration {
 		return new PlatformJacksonProperties();
 	}
 
-	@Autowired
-	private PlatformJacksonProperties platformJacksonProperties;
-
-	@Autowired
-	private Jackson2ObjectMapperBuilder builder;
-
 	@Bean
-	public ObjectMapper objectMapper(Jackson2ObjectMapperBuilder builder) {
+	public ObjectMapper objectMapper(Jackson2ObjectMapperBuilder builder,
+			PlatformJacksonProperties platformJacksonProperties) {
 		builder.simpleDateFormat(PlatformJacksonConstant.PATTERN_DATETIME);
 		// 创建ObjectMapper
 		ObjectMapper objectMapper = builder.createXmlMapper(false).build();

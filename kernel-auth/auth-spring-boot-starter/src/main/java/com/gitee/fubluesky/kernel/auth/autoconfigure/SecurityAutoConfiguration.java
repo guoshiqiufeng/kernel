@@ -19,7 +19,6 @@ package com.gitee.fubluesky.kernel.auth.autoconfigure;
 
 import com.gitee.fubluesky.kernel.auth.api.pojo.AuthProperties;
 import com.gitee.fubluesky.kernel.auth.security.SecurityConfig;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -39,11 +38,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 @ConditionalOnProperty(prefix = "kernel.auth", name = "securityConfigEnabled", matchIfMissing = true)
 public class SecurityAutoConfiguration {
 
-	@Autowired
-	private AuthProperties authProperties;
-
 	@Bean
-	public SecurityConfig securityConfig() {
+	public SecurityConfig securityConfig(AuthProperties authProperties) {
 		return new SecurityConfig(authProperties);
 	}
 

@@ -20,7 +20,6 @@ package com.gitee.fubluesky.kernel.email.autoconfigure;
 import com.gitee.fubluesky.kernel.email.api.MailSenderApi;
 import com.gitee.fubluesky.kernel.email.api.pojo.MailProperties;
 import com.gitee.fubluesky.kernel.email.java.JavaMailSender;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -43,12 +42,9 @@ public class MailAutoConfiguration {
 		return new MailProperties();
 	}
 
-	@Autowired
-	private MailProperties mailProperties;
-
 	@Bean
 	@ConditionalOnMissingBean(MailSenderApi.class)
-	public MailSenderApi mailSenderApi() {
+	public MailSenderApi mailSenderApi(MailProperties mailProperties) {
 		return new JavaMailSender(mailProperties);
 	}
 
