@@ -20,7 +20,6 @@ package com.gitee.fubluesky.kernel.file.ftp.autoconfigure;
 import com.gitee.fubluesky.kernel.file.api.FileOperatorApi;
 import com.gitee.fubluesky.kernel.file.ftp.FtpFileOperator;
 import com.gitee.fubluesky.kernel.file.ftp.pojo.FtpFileProperties;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -43,12 +42,9 @@ public class FtpFileAutoConfiguration {
 		return new FtpFileProperties();
 	}
 
-	@Autowired
-	private FtpFileProperties ftpFileProperties;
-
 	@Bean
 	@ConditionalOnMissingBean(FileOperatorApi.class)
-	public FileOperatorApi fileOperatorApi() {
+	public FileOperatorApi fileOperatorApi(FtpFileProperties ftpFileProperties) {
 		return new FtpFileOperator(ftpFileProperties);
 	}
 

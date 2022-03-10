@@ -20,7 +20,6 @@ package com.gitee.fubluesky.kernel.file.ali.autoconfigure;
 import com.gitee.fubluesky.kernel.file.ali.AliFileOperator;
 import com.gitee.fubluesky.kernel.file.ali.pojo.AliOssProperties;
 import com.gitee.fubluesky.kernel.file.api.FileOperatorApi;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -43,12 +42,9 @@ public class AliOssAutoConfiguration {
 		return new AliOssProperties();
 	}
 
-	@Autowired
-	private AliOssProperties aliOssProperties;
-
 	@Bean
 	@ConditionalOnMissingBean(FileOperatorApi.class)
-	public FileOperatorApi fileOperatorApi() {
+	public FileOperatorApi fileOperatorApi(AliOssProperties aliOssProperties) {
 		return new AliFileOperator(aliOssProperties);
 	}
 

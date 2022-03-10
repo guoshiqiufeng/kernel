@@ -1,3 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.gitee.fubluesky.kernel.file.local.autoconfigure.LocalFileAutoConfiguration,\
   com.gitee.fubluesky.kernel.file.local.autoconfigure.FileStaticConfig

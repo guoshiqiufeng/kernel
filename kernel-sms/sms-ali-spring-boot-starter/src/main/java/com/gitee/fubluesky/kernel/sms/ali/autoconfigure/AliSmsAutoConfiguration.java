@@ -20,7 +20,6 @@ package com.gitee.fubluesky.kernel.sms.ali.autoconfigure;
 import com.gitee.fubluesky.kernel.sms.ali.AliSmsSender;
 import com.gitee.fubluesky.kernel.sms.ali.pojo.AliSmsProperties;
 import com.gitee.fubluesky.kernel.sms.api.SmsSenderApi;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -43,12 +42,9 @@ public class AliSmsAutoConfiguration {
 		return new AliSmsProperties();
 	}
 
-	@Autowired
-	private AliSmsProperties aliSmsProperties;
-
 	@Bean
 	@ConditionalOnMissingBean(SmsSenderApi.class)
-	public SmsSenderApi smsSenderApi() {
+	public SmsSenderApi smsSenderApi(AliSmsProperties aliSmsProperties) {
 		return new AliSmsSender(aliSmsProperties);
 	}
 

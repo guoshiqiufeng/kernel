@@ -4,9 +4,9 @@
 #### 介绍
 内核框架
 #### 依赖
-- spring-boot 2.5.10
-- spring-cloud 2020.0.4
-- spring-cloud-alibaba 2021.1
+- spring-boot 2.6.4
+- spring-cloud 2021.0.1
+- spring-cloud-alibaba 2021.0.1.0
 - kernel-dependencies 1.6.3
 #### 代码
 采用阿里巴巴代码规范，使用`spring-javaformat`格式化代码

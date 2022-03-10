@@ -26,6 +26,7 @@ import java.time.temporal.TemporalAdjusters;
 
 /**
  * LocalDateTime 工具类
+ *
  * @author yanghq
  * @version 1.0
  * @since 2022-03-02 13:11
@@ -33,58 +34,58 @@ import java.time.temporal.TemporalAdjusters;
 @UtilityClass
 public class LocalDateTimeUtils {
 
-    /**
-     * 获取年开始时间
-     * @param date 时间
-     * @return 年开始时间
-     */
-    public LocalDateTime beginOfYear(LocalDateTime date) {
-        return LocalDateTime.of(LocalDate.from(date.with(TemporalAdjusters.firstDayOfYear())), LocalTime.MIN);
-    }
+	/**
+	 * 获取年开始时间
+	 * @param date 时间
+	 * @return 年开始时间
+	 */
+	public LocalDateTime beginOfYear(LocalDateTime date) {
+		return LocalDateTime.of(LocalDate.from(date.with(TemporalAdjusters.firstDayOfYear())), LocalTime.MIN);
+	}
 
+	/**
+	 * 获取年结束时间
+	 * @param date 时间
+	 * @return 年结束时间
+	 */
+	public LocalDateTime endOfYear(LocalDateTime date) {
+		return LocalDateTime.of(LocalDate.from(date.with(TemporalAdjusters.lastDayOfYear())), LocalTime.MAX);
+	}
 
-    /**
-     * 获取年结束时间
-     * @param date 时间
-     * @return 年结束时间
-     */
-    public LocalDateTime endOfYear(LocalDateTime date) {
-        return LocalDateTime.of(LocalDate.from(date.with(TemporalAdjusters.lastDayOfYear())), LocalTime.MAX);
-    }
+	/**
+	 * 获取月开始时间
+	 * @param date 时间
+	 * @return 月开始时间
+	 */
+	public static LocalDateTime beginOfMonth(LocalDateTime date) {
+		return LocalDateTime.of(LocalDate.from(date.with(TemporalAdjusters.firstDayOfMonth())), LocalTime.MIN);
+	}
 
-    /**
-     * 获取月开始时间
-     * @param date 时间
-     * @return 月开始时间
-     */
-    public static LocalDateTime beginOfMonth(LocalDateTime date) {
-        return LocalDateTime.of(LocalDate.from(date.with(TemporalAdjusters.firstDayOfMonth())), LocalTime.MIN);
-    }
+	/**
+	 * 获取月结束时间
+	 * @param date 时间
+	 * @return 月结束时间
+	 */
+	public static LocalDateTime endOfMonth(LocalDateTime date) {
+		return LocalDateTime.of(LocalDate.from(date.with(TemporalAdjusters.lastDayOfMonth())), LocalTime.MAX);
+	}
 
-    /**
-     * 获取月结束时间
-     * @param date 时间
-     * @return 月结束时间
-     */
-    public static LocalDateTime endOfMonth(LocalDateTime date) {
-        return LocalDateTime.of(LocalDate.from(date.with(TemporalAdjusters.lastDayOfMonth())), LocalTime.MAX);
-    }
+	/**
+	 * 获取日开始时间
+	 * @param date 时间
+	 * @return 日开始时间
+	 */
+	public static LocalDateTime beginOfDay(LocalDateTime date) {
+		return date.with(LocalTime.MIN);
+	}
 
-    /**
-     * 获取日开始时间
-     * @param date 时间
-     * @return 日开始时间
-     */
-    public static LocalDateTime beginOfDay(LocalDateTime date) {
-        return date.with(LocalTime.MIN);
-    }
+	/**
+	 * 获取日结束时间
+	 * @param date 时间
+	 * @return 日结束时间
+	 */
+	public static LocalDateTime endOfDay(LocalDateTime date) {
+		return date.with(LocalTime.MAX);
+	}
 
-    /**
-     * 获取日结束时间
-     * @param date 时间
-     * @return 日结束时间
-     */
-    public static LocalDateTime endOfDay(LocalDateTime date) {
-        return date.with(LocalTime.MAX);
-    }
 }

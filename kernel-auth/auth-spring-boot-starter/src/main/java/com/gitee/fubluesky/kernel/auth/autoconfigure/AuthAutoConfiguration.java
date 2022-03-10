@@ -30,7 +30,6 @@ import com.gitee.fubluesky.kernel.jwt.autoconfigure.JwtAutoConfiguration;
 import com.gitee.fubluesky.kernel.security.api.CaptchaApi;
 import com.gitee.fubluesky.kernel.security.api.pojo.CaptchaProperties;
 import com.gitee.fubluesky.kernel.security.autoconfigure.CaptchaAutoConfiguration;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
@@ -45,39 +44,17 @@ import org.springframework.context.annotation.Configuration;
 @AutoConfigureAfter(value = { JwtAutoConfiguration.class, CaptchaAutoConfiguration.class })
 public class AuthAutoConfiguration {
 
-	@Autowired
-	private AuthProperties authProperties;
-
-	@Autowired
-	private LoginApi loginApi;
-
 	@Bean
 	@ConditionalOnMissingBean(PasswordEncryptApi.class)
 	public PasswordEncryptApi passwordEncryptApi() {
 		return new BcryptPasswordEncrypt();
 	}
 
-	@Autowired
-	private PasswordEncryptApi passwordEncryptApi;
-
-	@Autowired
-	private CacheOperatorApi<LoginUser> loginUserTokenCache;
-
-	@Autowired
-	private CacheOperatorApi<LoginUser> loginUserCache;
-
-	@Autowired
-	private CaptchaApi captchaApi;
-
-	@Autowired
-	private CaptchaProperties captchaProperties;
-
-	@Autowired
-	private JwtApi jwtApi;
-
 	@Bean
 	@ConditionalOnMissingBean(AuthApi.class)
-	public AuthApi authApi() {
+	public AuthApi authApi(AuthProperties authProperties, LoginApi loginApi, PasswordEncryptApi passwordEncryptApi,
+			CacheOperatorApi<LoginUser> loginUserTokenCache, CacheOperatorApi<LoginUser> loginUserCache,
+			CaptchaApi captchaApi, CaptchaProperties captchaProperties, JwtApi jwtApi) {
 		return new AuthImpl(authProperties, loginApi, passwordEncryptApi, loginUserTokenCache, loginUserCache,
 				captchaApi, captchaProperties, jwtApi);
 	}

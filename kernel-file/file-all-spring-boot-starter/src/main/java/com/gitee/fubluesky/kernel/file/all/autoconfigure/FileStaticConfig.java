@@ -20,10 +20,9 @@ package com.gitee.fubluesky.kernel.file.all.autoconfigure;
 import com.gitee.fubluesky.kernel.file.api.FileOperatorApi;
 import com.gitee.fubluesky.kernel.file.local.LocalFileOperator;
 import com.gitee.fubluesky.kernel.file.local.pojo.LocalFileProperties;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -37,18 +36,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @since 2021-08-02 17:07
  */
 @ConditionalOnProperty(prefix = "kernel.file.local", name = "enabled", havingValue = "true")
+@EnableConfigurationProperties(LocalFileSpringProperties.class)
 @Configuration
 public class FileStaticConfig implements WebMvcConfigurer {
 
-	@Bean
-	@ConfigurationProperties(prefix = "kernel.file.local")
-	@ConditionalOnMissingBean(LocalFileProperties.class)
-	public LocalFileProperties localFileProperties() {
-		return new LocalFileProperties();
-	}
+	private final LocalFileProperties localFileProperties;
 
-	@Autowired
-	private LocalFileProperties localFileProperties;
+	public FileStaticConfig(LocalFileSpringProperties localFileProperties) {
+		this.localFileProperties = localFileProperties;
+	}
 
 	@Bean("localFileOperator")
 	@ConditionalOnMissingBean(name = "localFileOperator")

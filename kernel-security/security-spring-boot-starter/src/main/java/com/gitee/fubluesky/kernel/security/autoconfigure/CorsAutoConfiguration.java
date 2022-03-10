@@ -19,7 +19,6 @@ package com.gitee.fubluesky.kernel.security.autoconfigure;
 
 import com.gitee.fubluesky.kernel.security.cors.pojo.CorsProperties;
 import com.gitee.fubluesky.kernel.security.cors.utils.CorsUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -44,11 +43,8 @@ public class CorsAutoConfiguration {
 		return new CorsProperties();
 	}
 
-	@Autowired
-	private CorsProperties corsProperties;
-
 	@Bean
-	public FilterRegistrationBean<CorsFilter> corsFilter() {
+	public FilterRegistrationBean<CorsFilter> corsFilter(CorsProperties corsProperties) {
 		return new CorsUtils(corsProperties).getCorsFilter();
 	}
 
