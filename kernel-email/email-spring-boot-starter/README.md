@@ -12,7 +12,7 @@ pom添加依赖
 <dependency>
     <groupId>com.gitee.fubluesky.kernel</groupId>
     <artifactId>email-spring-boot-starter</artifactId>
-    <version>1.6.6</version>
+    <version>1.6.8</version>
 </dependency>
 ```
 
