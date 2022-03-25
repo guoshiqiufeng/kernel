@@ -23,16 +23,16 @@
     <parent>
         <groupId>com.gitee.fubluesky</groupId>
         <artifactId>kernel-parent</artifactId>
-        <version>1.6.7</version>
+        <version>1.6.8</version>
         <relativePath/>
     </parent>
 
     <groupId>com.gitee.fubluesky.kernel</groupId>
     <artifactId>kernel</artifactId>
     <packaging>pom</packaging>
-    <version>1.6.7</version>
     <inceptionYear>2021-Now</inceptionYear>
     <name>kernel</name>
+    <version>${revision}</version>
     <description>kernel</description>
     <url>https://github.com/guoshiqiufeng/kernel.git</url>
 
