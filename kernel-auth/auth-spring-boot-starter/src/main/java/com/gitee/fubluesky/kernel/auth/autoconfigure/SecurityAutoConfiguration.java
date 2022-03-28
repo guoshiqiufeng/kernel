@@ -35,7 +35,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @AutoConfigureAfter(value = { AuthAutoConfiguration.class })
-@ConditionalOnProperty(prefix = "kernel.auth", name = "securityConfigEnabled", matchIfMissing = true)
+@ConditionalOnProperty(prefix = "kernel.auth", name = "securityConfigEnabled", havingValue = "true")
 public class SecurityAutoConfiguration {
 
 	@Bean
