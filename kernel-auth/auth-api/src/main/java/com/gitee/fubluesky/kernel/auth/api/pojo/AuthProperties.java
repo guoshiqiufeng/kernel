@@ -53,14 +53,19 @@ public class AuthProperties {
 	 */
 	private String jwtAppIdHeaderName = "appId";
 
-	/**
-	 * 是否启用spring security config
-	 */
-	private Boolean securityConfigEnabled = true;
+	private SecurityProperties security;
 
-	/**
-	 * 启用 spring security config 后 spring security 放行路径
-	 */
-	private List<String> securityConfigAllowPatterns;
+	@Data
+	public static class SecurityProperties {
 
+		/**
+		 * 是否启用spring security config
+		 */
+		private Boolean enabled = true;
+
+		/**
+		 * 启用 spring security config 后 spring security 放行路径
+		 */
+		private List<String> allowPatterns;
+	}
 }
