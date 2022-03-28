@@ -23,7 +23,7 @@
     <groupId>com.gitee.fubluesky</groupId>
     <artifactId>kernel-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.6.8</version>
+    <version>1.6.9</version>
     <inceptionYear>2021-Now</inceptionYear>
     <name>kernel-parent</name>
     <description>kernel-parent</description>
@@ -43,8 +43,9 @@
         <spring-cloud-alibaba.version>2021.0.1.0</spring-cloud-alibaba.version>
 
         <kernel-dependencies.version>1.6.3</kernel-dependencies.version>
-        <revision>1.6.8</revision>
-        
+
+        <kernel.version>1.6.9</kernel.version>
+
         <!--插件-->
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
         <maven-install-plugin.version>3.0.0-M1</maven-install-plugin.version>
@@ -128,166 +129,166 @@
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>kernel-core</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <!--db-->
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>db-api</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>db-sdk-mybatis-plus</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>db-spring-boot-starter</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <!--jwt-->
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>jwt-api</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>jwt-sdk</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>jwt-spring-boot-starter</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <!--cache-->
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>cache-api</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>cache-sdk-redis</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>cache-redis-spring-boot-starter</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <!--security-->
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>security-api</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>security-sdk-captcha</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>security-sdk-cors</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>security-sdk-jackson</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>security-sdk-sign</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>security-spring-boot-starter</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <!--auth-->
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>auth-api</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>auth-sdk</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>auth-spring-boot-starter</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <!--file-->
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>file-api</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>file-sdk-ali</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>file-sdk-ftp</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>file-sdk-local</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>file-ali-spring-boot-starter</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>file-ftp-spring-boot-starter</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>file-local-spring-boot-starter</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>file-all-spring-boot-starter</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>file-expand-apk</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <!--push-->
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>push-spring-boot-starter</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <!--sms-->
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>sms-ali-spring-boot-starter</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
             <!--email-->
             <dependency>
                 <groupId>com.gitee.fubluesky.kernel</groupId>
                 <artifactId>email-spring-boot-starter</artifactId>
-                <version>${project.version}</version>
+                <version>${kernel.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
