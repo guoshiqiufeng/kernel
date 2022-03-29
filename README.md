@@ -4,7 +4,7 @@
 #### 介绍
 内核框架
 #### 依赖
-- spring-boot 2.6.4
+- spring-boot 2.6.5
 - spring-cloud 2021.0.1
 - spring-cloud-alibaba 2021.0.1.0
 - kernel-dependencies 1.6.3
@@ -35,6 +35,7 @@
 - [ ] 模块拆分
 - [ ] 文档
 - [ ] demo
+  - [vea](https://github.com/guoshiqiufeng/vea) 微服务demo
 #### 安装教程
 使用maven进行依赖安装
 

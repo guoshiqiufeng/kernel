@@ -20,7 +20,7 @@
     <parent>
         <groupId>com.gitee.fubluesky.kernel</groupId>
         <artifactId>kernel</artifactId>
-        <version>1.6.7</version>
+        <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -33,7 +33,6 @@
         <dependency>
             <groupId>com.gitee.fubluesky.kernel</groupId>
             <artifactId>kernel-core</artifactId>
-            <version>${project.version}</version>
         </dependency>
     </dependencies>
 

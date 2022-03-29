@@ -69,8 +69,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.headers()
 				.addHeaderWriter(new XFrameOptionsHeaderWriter(XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN));
 
-		if (ListUtils.isNotEmpty(authProperties.getSecurityConfigAllowPatterns())) {
-			http.authorizeRequests().antMatchers(authProperties.getSecurityConfigAllowPatterns().toArray(new String[1]))
+		if (ListUtils.isNotEmpty(authProperties.getSecurity().getAllowPatterns())) {
+			http.authorizeRequests().antMatchers(authProperties.getSecurity().getAllowPatterns().toArray(new String[1]))
 					.permitAll();
 		}
 		http.authorizeRequests().requestMatchers(CorsUtils::isPreFlightRequest).permitAll().anyRequest()

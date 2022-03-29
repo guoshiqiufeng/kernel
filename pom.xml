@@ -23,16 +23,16 @@
     <parent>
         <groupId>com.gitee.fubluesky</groupId>
         <artifactId>kernel-parent</artifactId>
-        <version>1.6.7</version>
+        <version>1.6.9</version>
         <relativePath/>
     </parent>
 
     <groupId>com.gitee.fubluesky.kernel</groupId>
     <artifactId>kernel</artifactId>
     <packaging>pom</packaging>
-    <version>1.6.7</version>
     <inceptionYear>2021-Now</inceptionYear>
     <name>kernel</name>
+    <version>${revision}</version>
     <description>kernel</description>
     <url>https://github.com/guoshiqiufeng/kernel.git</url>
 
@@ -42,10 +42,40 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <java.version>1.8</java.version>
+        <revision>1.6.9</revision>
+        <maven-flatten-version>1.1.0</maven-flatten-version>
     </properties>
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <version>${maven-flatten-version}</version>
+                <configuration>
+                    <updatePomFile>true</updatePomFile>
+                    <flattenMode>resolveCiFriendliesOnly</flattenMode>
+                    <pomElements>
+                        <dependencies>expand</dependencies>
+                    </pomElements>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>flatten</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>flatten.clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>io.spring.javaformat</groupId>
                 <artifactId>spring-javaformat-maven-plugin</artifactId>
@@ -173,7 +203,7 @@
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.8</version>
+                <version>1.6.9</version>
                 <extensions>true</extensions>
                 <configuration>
                     <serverId>sonatype-nexus-releases</serverId>
