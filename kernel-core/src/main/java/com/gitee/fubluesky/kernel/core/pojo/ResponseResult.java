@@ -36,6 +36,16 @@ public class ResponseResult implements Serializable {
 	private static final long serialVersionUID = -7114120755921784203L;
 
 	/**
+	 * 成功
+	 */
+	public static final int SUCCESS = Integer.parseInt(ResponseEnum.SUCCESS.getCode());
+
+	/**
+	 * 失败
+	 */
+	public static final int FAILURE = Integer.parseInt(ResponseEnum.FAILURE.getCode());
+
+	/**
 	 * 状态码
 	 */
 	private Integer code;
