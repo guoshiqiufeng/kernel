@@ -5,7 +5,7 @@
 内核框架
 #### 依赖
 - jdk 17
-- spring-boot 2.7.4
+- spring-boot 2.7.5
 - spring-cloud 2021.0.3
 - spring-cloud-alibaba 2021.0.4.0
 - kernel-dependencies 1.7.0
