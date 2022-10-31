@@ -32,6 +32,9 @@
         <mybatis-plus.version>3.5.2</mybatis-plus.version>
         <swagger.fox.version>3.0.0</swagger.fox.version>
         <knife4j.version>3.0.2</knife4j.version>
+        <!--redisson-->
+        <redisson.version>3.17.4</redisson.version>
+        <jetcache.version>2.7.0</jetcache.version>
 
         <!-- Cloud Service -->
         <qiniu.version>7.2.23</qiniu.version>
@@ -42,6 +45,7 @@
 
         <aliyun.sdk.core.version>4.4.6</aliyun.sdk.core.version>
 
+        <!--easy excel-->
         <easyexcel.version>3.0.5</easyexcel.version>
         <commons-compress.version>1.21</commons-compress.version>
 
@@ -86,6 +90,18 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-generator</artifactId>
                 <version>${mybatis-plus.version}</version>
+            </dependency>
+            <!--redisson-->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson.version}</version>
+            </dependency>
+            <!--jetcache-->
+            <dependency>
+                <groupId>com.alicp.jetcache</groupId>
+                <artifactId>jetcache-starter-redis</artifactId>
+                <version>${jetcache.version}</version>
             </dependency>
             <!--knife4j-->
             <dependency>
