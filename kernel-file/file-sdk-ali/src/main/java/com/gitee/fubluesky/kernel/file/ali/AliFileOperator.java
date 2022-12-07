@@ -135,7 +135,18 @@ public class AliFileOperator implements FileOperatorApi {
 	 */
 	@Override
 	public void delete(String path) {
-		ossClient.deleteObject(aliOssProperties.getBucketName(), path);
+		try {
+			// 初始化
+			init();
+			ossClient.deleteObject(aliOssProperties.getBucketName(), path);
+		}
+		catch (Exception e) {
+			log.error("ali oss file delete error:", e);
+			throw new FileException(FileExceptionEnum.FILE_GET_ERROR);
+		}
+		finally {
+			ossClient.shutdown();
+		}
 	}
 
 }
