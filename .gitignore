@@ -7,3 +7,4 @@ target/
 *.iml
 .metadata/
 /src/
+**/.flattened-pom.xml
