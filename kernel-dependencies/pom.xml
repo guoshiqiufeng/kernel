@@ -41,7 +41,7 @@
         <aliyun.oss.version>3.13.2</aliyun.oss.version>
         <qcloud.cos.version>4.4</qcloud.cos.version>
 
-        <commons.net.version>3.8.0</commons.net.version>
+        <commons.net.version>3.9.0</commons.net.version>
 
         <aliyun.sdk.core.version>4.4.6</aliyun.sdk.core.version>
 
