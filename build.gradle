@@ -26,10 +26,13 @@ ext {
 
             "guava"                            : "com.google.guava:guava:33.0.0-jre",
             // spring
+            "spring-core"                      : "org.springframework:spring-core:${springVersion}",
             "spring-context"                   : "org.springframework:spring-context:${springVersion}",
             "spring-web"                       : "org.springframework:spring-web:${springVersion}",
             "spring-webmvc"                    : "org.springframework:spring-webmvc:${springVersion}",
             // spring-boot
+            "spring-boot-starter-aop"          : "org.springframework.boot:spring-boot-starter-aop:${springBootVersion}",
+            "spring-boot-starter-web"          : "org.springframework.boot:spring-boot-starter-web:${springBootVersion}",
             "spring-boot-starter-data-redis"   : "org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}",
 
             "gson"                             : "com.google.code.gson:gson:2.10.1",
@@ -44,6 +47,7 @@ ext {
             "commons-compress"                 : "org.apache.commons:commons-compress:1.25.0",
             "commons-net"                      : "commons-net:commons-net:3.10.0",
             "easyexcel"                        : "com.alibaba:easyexcel:3.3.3",
+            "easy-captcha"                     : "com.github.whvcse:easy-captcha:1.6.2",
             "logback-classic"                  : "ch.qos.logback:logback-classic:1.4.14",
             "hutool-all"                       : "cn.hutool:hutool-all:${hutoolVersion}",
             // aliyun
@@ -174,8 +178,8 @@ subprojects {
     publishing {
         repositories {
             maven {
-                def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-                def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
+                def releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+                def snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
                 url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
 
                 credentials {

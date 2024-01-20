@@ -1,0 +1,9 @@
+dependencies {
+    api project(':kernel-security:security-api')
+    // api project(':kernel-db:db-sdk-mybatis-plus')
+
+    implementation "${lib."spring-boot-starter-aop"}"
+    implementation "${lib."spring-boot-starter-web"}"
+    implementation "${lib."jakarta.servlet-api"}"
+    implementation "${lib."slf4j-api"}"
+}

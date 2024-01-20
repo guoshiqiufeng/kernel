@@ -1,0 +1,6 @@
+dependencies {
+    api project(':kernel-security:security-api')
+    api project(':kernel-cache:cache-sdk-redis')
+
+    api "${lib."easy-captcha"}"
+}

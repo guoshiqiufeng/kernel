@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.gitee.fubluesky.kernel.security.autoconfigure.CaptchaAutoConfiguration,\
+  com.gitee.fubluesky.kernel.security.autoconfigure.CorsAutoConfiguration,\
+  com.gitee.fubluesky.kernel.security.autoconfigure.JacksonConfiguration,\
+  com.gitee.fubluesky.kernel.security.autoconfigure.SignAutoConfiguration

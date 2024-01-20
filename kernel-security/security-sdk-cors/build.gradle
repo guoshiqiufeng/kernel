@@ -1,0 +1,5 @@
+dependencies {
+    api project(':kernel-security:security-api')
+
+    implementation "${lib."spring-boot-starter-web"}"
+}

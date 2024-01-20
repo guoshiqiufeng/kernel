@@ -1,0 +1,12 @@
+dependencies {
+    api project(":kernel-security:security-sdk-captcha")
+    api project(":kernel-security:security-sdk-cors")
+    api project(":kernel-security:security-sdk-jackson")
+    api project(":kernel-security:security-sdk-sign")
+    api "${lib."spring-boot-starter-web"}"
+
+    implementation "org.springframework.boot:spring-boot-autoconfigure:${springBootVersion}"
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}"
+    annotationProcessor "org.springframework.boot:spring-boot-autoconfigure-processor:${springBootVersion}"
+    testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
+}

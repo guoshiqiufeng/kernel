@@ -1,0 +1,7 @@
+dependencies {
+    api project(':kernel-security:security-api')
+
+    implementation "${lib."spring-boot-starter-web"}"
+    implementation "${lib."jakarta.servlet-api"}"
+    implementation "${lib."slf4j-api"}"
+}
