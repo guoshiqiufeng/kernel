@@ -1,0 +1,6 @@
+dependencies {
+    api project(':kernel-jwt:jwt-api')
+    api "${lib."jjwt-api"}"
+    implementation "${lib."slf4j-api"}"
+    implementation "${lib."jackson-databind"}"
+}

@@ -1,0 +1,2 @@
+com.gitee.fubluesky.kernel.db.autoconfigure.MyBatisPlusAutoConfiguration
+com.baomidou.mybatisplus.autoconfigure.MybatisPlusAutoConfiguration

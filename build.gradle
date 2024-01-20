@@ -1,0 +1,244 @@
+import java.time.LocalDateTime
+
+allprojects {
+    group APP_GROUP
+    version APP_VERSION
+}
+
+ext {
+    configuration = [
+            javaVersion = JavaVersion.VERSION_21
+    ]
+
+    libraries = [
+            springBootVersion = '3.2.1',
+            springVersion = '6.1.2',
+            hutoolVersion = '5.8.25',
+            mybatisPlusVersion = '3.5.5',
+    ]
+
+    lib = [
+            "slf4j-api"                        : "org.slf4j:slf4j-api:1.7.36",
+            // jakarta
+            "jakarta.annotation-api"           : "jakarta.annotation:jakarta.annotation-api:2.1.1",
+            "jakarta.validation-api"           : "jakarta.validation:jakarta.validation-api:3.0.2",
+            "jakarta.servlet-api"              : "jakarta.servlet:jakarta.servlet-api:6.0.0",
+
+            "guava"                            : "com.google.guava:guava:33.0.0-jre",
+            // spring
+            "spring-context"                   : "org.springframework:spring-context:${springVersion}",
+            "spring-web"                       : "org.springframework:spring-web:${springVersion}",
+            "spring-webmvc"                    : "org.springframework:spring-webmvc:${springVersion}",
+            // spring-boot
+            "spring-boot-starter-data-redis"   : "org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}",
+
+            "gson"                             : "com.google.code.gson:gson:2.10.1",
+            "fastjson2"                        : "com.alibaba.fastjson2:fastjson2:2.0.42",
+            // jackson
+            "jackson-databind"                 : "com.fasterxml.jackson.core:jackson-databind:2.15.3",
+            "jackson-datatype-jsr310"          : "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.3",
+            "jakarta.mail"                     : "com.sun.mail:jakarta.mail:2.0.1",
+            "jdom2"                            : "org.jdom:jdom2:2.0.6.1",
+            "jjwt-api"                         : "io.jsonwebtoken:jjwt:0.9.1",
+            "jpush-client"                     : "cn.jpush.api:jpush-client:3.4.13",
+            "commons-compress"                 : "org.apache.commons:commons-compress:1.25.0",
+            "commons-net"                      : "commons-net:commons-net:3.10.0",
+            "easyexcel"                        : "com.alibaba:easyexcel:3.3.3",
+            "logback-classic"                  : "ch.qos.logback:logback-classic:1.4.14",
+            "hutool-all"                       : "cn.hutool:hutool-all:${hutoolVersion}",
+            // aliyun
+            "aliyun-sdk-oss"                   : "com.aliyun.oss:aliyun-sdk-oss:3.17.4",
+            "aliyun-java-sdk-core"             : "com.aliyun:aliyun-java-sdk-core:4.6.4",
+            // mybatis-plus
+            "mybatis-plus-spring-boot3-starter": "com.baomidou:mybatis-plus-spring-boot3-starter:${mybatisPlusVersion}",
+    ]
+}
+
+description = "Simplifying mq usage"
+
+subprojects {
+    apply plugin: 'java-library'
+    apply plugin: 'signing'
+    apply plugin: 'maven-publish'
+    apply plugin: "io.freefair.lombok"
+    apply plugin: 'com.github.hierynomus.license'
+
+    sourceCompatibility = "${javaVersion}"
+    targetCompatibility = "${javaVersion}"
+
+    lombok {
+        version = "1.18.30"
+    }
+
+    compileJava {
+        options.release = 17
+    }
+
+    repositories {
+        mavenLocal()
+        maven { url "https://maven.aliyun.com/repository/public" }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        mavenCentral()
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+        options.warnings = false
+        options.deprecation = true
+        options.compilerArgs += ["-parameters"]
+    }
+
+    tasks.withType(GenerateModuleMetadata) {
+        enabled = false
+    }
+
+    jar {
+        into("META-INF/") {
+            from rootProject.file("LICENSE")
+        }
+        into("META-INF/maven/$project.group/$project.name") {
+            from { generatePomFileForMavenJavaPublication }
+            rename ".*", "pom.xml"
+        }
+        afterEvaluate {
+            manifest {
+                attributes 'Implementation-Title': archiveBaseName
+                attributes 'Implementation-Version': archiveVersion
+                attributes 'Built-Gradle': gradle.gradleVersion
+                attributes 'Bundle-DocURL': 'https://guoshiqiufeng.github.io/kernel-doc'
+                attributes 'Build-OS': System.getProperty("os.name")
+                attributes 'Built-By': System.getProperty("user.name")
+                attributes 'Build-Jdk': System.getProperty("java.version")
+                attributes 'Build-Timestamp': LocalDateTime.now().format("yyyy-MM-dd HH:mm:ss")
+                attributes 'Automatic-Module-Name': "${project.group}.${project.name.replaceAll("-", ".")}"
+            }
+        }
+    }
+
+    license {
+        encoding = "UTF-8"
+        header = rootProject.file("header.txt")
+        includes(["**/*.java", "**/*.kt"])
+        mapping {
+            java = "SLASHSTAR_STYLE"
+            kt = "SLASHSTAR_STYLE"
+        }
+        ignoreFailures = true
+        ext.year = Calendar.getInstance().get(Calendar.YEAR)
+    }
+
+    task sourcesJar(type: Jar) {
+        archiveClassifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+    javadoc {
+        // Check for syntax during linting. 'none' doesn't seem to work in suppressing
+        // all linting warnings all the time (see/link references most notably).
+        options.addStringOption("Xdoclint:syntax", "-quiet")
+
+        // Suppress warnings due to cross-module @see and @link references.
+        // Note that global 'api' task does display all warnings, and
+        // checks for 'reference' on top of 'syntax'.
+        logging.captureStandardError LogLevel.INFO
+        logging.captureStandardOutput LogLevel.INFO  // suppress "## warnings" message
+
+        afterEvaluate {
+            configure(options) {
+                encoding "UTF-8"
+                charSet 'UTF-8'
+                author true
+                version true
+                failOnError false
+                links "https://docs.oracle.com/javase/8/docs/api"
+            }
+        }
+    }
+
+    test {
+        dependsOn("cleanTest", "generatePomFileForMavenJavaPublication")
+        useJUnitPlatform()
+    }
+
+    task javadocJar(type: Jar) {
+        archiveClassifier = 'javadoc'
+        from javadoc
+    }
+
+    tasks.whenTaskAdded { task ->
+        if (task.name.contains('signMavenJavaPublication') && project.hasProperty('signing.secretKeyRingFile')) {
+            task.enabled = new File(project.property('signing.secretKeyRingFile') as String).isFile()
+        }
+    }
+
+    publishing {
+        repositories {
+            maven {
+                def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+                def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
+                url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+
+                credentials {
+                    if (project.hasProperty('storedUsername') && project.hasProperty('storedPassword')) {
+                        username project.storedUsername
+                        password project.storedPassword
+                    }
+                }
+            }
+        }
+        publications {
+
+            mavenJava(MavenPublication) {
+                from components.java
+
+                artifact sourcesJar
+                artifact javadocJar
+
+                pom {
+                    name = 'loki'
+                    packaging 'jar'
+                    description = 'Simplifying mq usage.'
+                    url = 'https://github.com/guoshiqiufeng/loki'
+
+                    scm {
+                        connection = 'scm:git@github.com:guoshiqiufeng/loki.git'
+                        developerConnection = 'scm:git@github.com:guoshiqiufeng/loki.git'
+                        url = 'https://github.com/guoshiqiufeng/loki'
+                    }
+
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id = 'fubluesky'
+                            name = 'yanghq'
+                            email = 'fubluesky@foxmail.com'
+                        }
+                    }
+
+                    withXml {
+                        def root = asNode()
+                        root.dependencies.'*'.findAll {
+                            def d = it
+                            d.scope.text() == 'runtime' && project.configurations.findByName("implementation").allDependencies.find { dep ->
+                                dep.name == it.artifactId.text()
+                            }.each() {
+                                d.scope*.value = 'compile'
+                                d.appendNode('optional', true)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        signing {
+            sign publishing.publications.mavenJava
+        }
+    }
+}

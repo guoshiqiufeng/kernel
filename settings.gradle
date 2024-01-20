@@ -1,0 +1,60 @@
+buildscript {
+    repositories {
+        maven { url "https://maven.aliyun.com/repository/public" }
+        maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+
+    dependencies {
+        //noinspection DifferentKotlinGradleVersion
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.21"
+        classpath "gradle.plugin.com.hierynomus.gradle.plugins:license-gradle-plugin:0.16.1"
+        classpath "io.freefair.gradle:lombok-plugin:8.4"
+    }
+}
+
+rootProject.name = 'kernel-root'
+include 'kernel'
+include 'kernel-bom'
+include 'kernel-core'
+include 'kernel-cache'
+include 'kernel-cache:cache-api'
+include 'kernel-cache:cache-sdk-redis'
+include 'kernel-db'
+include 'kernel-db:db-api'
+include 'kernel-db:db-sdk-mybatis-plus'
+include 'kernel-email'
+include 'kernel-email:email-api'
+include 'kernel-email:email-sdk-java'
+include 'kernel-excel'
+include 'kernel-excel:excel-api'
+include 'kernel-excel:excel-sdk-easy'
+include 'kernel-file'
+include 'kernel-file:file-api'
+include 'kernel-file:file-expand-apk'
+include 'kernel-file:file-sdk-ali'
+include 'kernel-file:file-sdk-ftp'
+include 'kernel-file:file-sdk-local'
+include 'kernel-jwt'
+include 'kernel-jwt:jwt-api'
+include 'kernel-jwt:jwt-sdk'
+include 'kernel-push'
+include 'kernel-push:push-api'
+include 'kernel-push:push-sdk-jpush'
+include 'kernel-sms'
+include 'kernel-sms:sms-api'
+include 'kernel-sms:sms-sdk-ali'
+include 'spring-boot-starter'
+include 'spring-boot-starter:cache-redis-spring-boot-starter'
+include 'spring-boot-starter:db-spring-boot-starter'
+include 'spring-boot-starter:email-spring-boot-starter'
+include 'spring-boot-starter:excel-spring-boot-starter'
+include 'spring-boot-starter:file-ali-spring-boot-starter'
+include 'spring-boot-starter:file-ftp-spring-boot-starter'
+include 'spring-boot-starter:file-local-spring-boot-starter'
+include 'spring-boot-starter:file-all-spring-boot-starter'
+include 'spring-boot-starter:jwt-spring-boot-starter'
+include 'spring-boot-starter:push-spring-boot-starter'
+include 'spring-boot-starter:sms-ali-spring-boot-starter'
+

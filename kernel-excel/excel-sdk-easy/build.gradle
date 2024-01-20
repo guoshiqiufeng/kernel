@@ -1,0 +1,7 @@
+dependencies {
+    api project(':kernel-excel:excel-api')
+
+    api "${lib."commons-compress"}"
+    api "${lib."easyexcel"}"
+    implementation "${lib."slf4j-api"}"
+}

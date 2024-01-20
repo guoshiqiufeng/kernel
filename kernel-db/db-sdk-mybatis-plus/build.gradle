@@ -1,0 +1,9 @@
+dependencies {
+    api project(':kernel-db:db-api')
+    api "${lib."mybatis-plus-spring-boot3-starter"}"
+
+    implementation "${lib."slf4j-api"}"
+    implementation "${lib."jakarta.validation-api"}"
+    implementation "${lib."jakarta.servlet-api"}"
+    implementation "${lib."spring-web"}"
+}

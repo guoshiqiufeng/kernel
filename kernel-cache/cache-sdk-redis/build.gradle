@@ -1,0 +1,5 @@
+dependencies {
+    api project(':kernel-cache:cache-api')
+    api "${lib."spring-boot-starter-data-redis"}"
+    implementation "${lib."slf4j-api"}"
+}

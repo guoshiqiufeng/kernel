@@ -1,0 +1,5 @@
+dependencies {
+    api project(':kernel-file:file-api')
+
+    implementation "${lib."slf4j-api"}"
+}

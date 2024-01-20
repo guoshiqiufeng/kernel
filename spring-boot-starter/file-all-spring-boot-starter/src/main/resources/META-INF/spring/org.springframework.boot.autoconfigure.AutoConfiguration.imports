@@ -1,0 +1,3 @@
+com.gitee.fubluesky.kernel.file.all.autoconfigure.FileStaticConfig
+com.gitee.fubluesky.kernel.file.all.autoconfigure.AllAutoConfiguration
+com.gitee.fubluesky.kernel.file.all.utils.UploadUtils

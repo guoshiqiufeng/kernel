@@ -1,0 +1,5 @@
+dependencies {
+    api project(':kernel-core')
+
+    api "${lib."jakarta.servlet-api"}"
+}

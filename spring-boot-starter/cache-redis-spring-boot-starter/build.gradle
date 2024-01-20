@@ -1,0 +1,11 @@
+dependencies {
+    api project(":kernel-cache:cache-sdk-redis")
+
+    implementation "${lib."jackson-databind"}"
+    implementation "${lib."jackson-datatype-jsr310"}"
+
+    implementation "org.springframework.boot:spring-boot-autoconfigure:${springBootVersion}"
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}"
+    annotationProcessor "org.springframework.boot:spring-boot-autoconfigure-processor:${springBootVersion}"
+    testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
+}

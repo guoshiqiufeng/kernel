@@ -1,0 +1,10 @@
+dependencies {
+    api "${lib.'fastjson2'}"
+    api "${lib.'hutool-all'}"
+    api "${lib.'guava'}"
+
+    implementation "${lib."slf4j-api"}"
+    implementation "${lib."jakarta.servlet-api"}"
+    implementation "${lib."jakarta.validation-api"}"
+    implementation "${lib."spring-web"}"
+}

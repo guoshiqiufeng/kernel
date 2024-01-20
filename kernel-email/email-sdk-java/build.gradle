@@ -1,0 +1,6 @@
+dependencies {
+    api project(':kernel-email:email-api')
+    api "${lib."jakarta.mail"}"
+
+    implementation "${lib."slf4j-api"}"
+}

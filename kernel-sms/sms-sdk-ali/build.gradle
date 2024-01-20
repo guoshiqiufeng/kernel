@@ -1,0 +1,5 @@
+dependencies {
+    api project(':kernel-sms:sms-api')
+    api "${lib."aliyun-java-sdk-core"}"
+    implementation "${lib."slf4j-api"}"
+}

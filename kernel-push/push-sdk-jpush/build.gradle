@@ -1,0 +1,5 @@
+dependencies {
+    api project(':kernel-push:push-api')
+    api "${lib."jpush-client"}"
+    implementation "${lib."slf4j-api"}"
+}

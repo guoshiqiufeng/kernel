@@ -1,0 +1,8 @@
+dependencies {
+    api project(':kernel-file:file-api')
+
+    api "${lib."aliyun-sdk-oss"}"
+
+    implementation "${lib."slf4j-api"}"
+    implementation "${lib."gson"}"
+}
