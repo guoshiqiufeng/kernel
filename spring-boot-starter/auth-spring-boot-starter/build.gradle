@@ -1,0 +1,9 @@
+dependencies {
+    api project(":kernel-auth:auth-sdk")
+    api project(':spring-boot-starter:cache-redis-spring-boot-starter')
+    api project(':spring-boot-starter:security-spring-boot-starter')
+    implementation "org.springframework.boot:spring-boot-autoconfigure:${springBootVersion}"
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}"
+    annotationProcessor "org.springframework.boot:spring-boot-autoconfigure-processor:${springBootVersion}"
+    testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
+}

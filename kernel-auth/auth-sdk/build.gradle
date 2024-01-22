@@ -1,0 +1,9 @@
+dependencies {
+    api project(':kernel-auth:auth-api')
+    api project(':kernel-security:security-sdk-captcha')
+    api project(':kernel-cache:cache-sdk-redis')
+    api project(':spring-boot-starter:jwt-spring-boot-starter')
+    api "${lib."spring-boot-starter-security"}"
+    implementation "${lib."slf4j-api"}"
+    implementation "${lib."spring-boot-starter-web"}"
+}

@@ -32,6 +32,7 @@ ext {
             "spring-webmvc"                    : "org.springframework:spring-webmvc:${springVersion}",
             // spring-boot
             "spring-boot-starter-aop"          : "org.springframework.boot:spring-boot-starter-aop:${springBootVersion}",
+            "spring-boot-starter-security"     : "org.springframework.boot:spring-boot-starter-security:${springBootVersion}",
             "spring-boot-starter-web"          : "org.springframework.boot:spring-boot-starter-web:${springBootVersion}",
             "spring-boot-starter-data-redis"   : "org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}",
 

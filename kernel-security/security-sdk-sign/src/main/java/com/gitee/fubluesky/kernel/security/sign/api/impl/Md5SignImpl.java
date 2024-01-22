@@ -1,20 +1,18 @@
 /*
+ * Copyright (c) 2021-2024, fubluesky (fubluesky@foxmail.com)
  *
- *   Copyright 2021 fubluesky.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *   Licensed under the Apache License, Version 2.0 (the "License");
- *   you may not use this file except in compliance with the License.
- *   You may obtain a copy of the License at
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- *        https://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-
 package com.gitee.fubluesky.kernel.security.sign.api.impl;
 
 import cn.hutool.core.util.StrUtil;
@@ -32,16 +30,16 @@ import org.springframework.util.DigestUtils;
 @Slf4j
 public class Md5SignImpl implements SignApi {
 
-	@Override
-	public void validateSign(String sign, String body) {
-		if (StrUtil.isEmpty(sign) || StrUtil.isEmpty(body)) {
-			throw new SecurityException(SecurityExceptionEnum.SIGN_ERROR);
-		}
-		String digest = DigestUtils.md5DigestAsHex(body.getBytes());
-		log.debug("md5: {}", digest);
-		if (!sign.equals(digest)) {
-			throw new SecurityException(SecurityExceptionEnum.SIGN_ERROR);
-		}
-	}
+    @Override
+    public void validateSign(String sign, String body) {
+        if (StrUtil.isEmpty(sign) || StrUtil.isEmpty(body)) {
+            throw new SecurityException(SecurityExceptionEnum.SIGN_ERROR);
+        }
+        String digest = DigestUtils.md5DigestAsHex(body.getBytes());
+        log.debug("md5: {}", digest);
+        if (!sign.equals(digest)) {
+            throw new SecurityException(SecurityExceptionEnum.SIGN_ERROR);
+        }
+    }
 
 }
