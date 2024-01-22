@@ -17,6 +17,7 @@ package com.gitee.fubluesky.kernel.security.sign.pojo;
 
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Map;
 
@@ -28,6 +29,7 @@ import java.util.Map;
 @Data
 public class SignProperties implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = -8998290936324394431L;
 
     /**

@@ -19,6 +19,7 @@ import lombok.experimental.UtilityClass;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Set;
@@ -31,6 +32,7 @@ import java.util.Set;
 @UtilityClass
 public class GrantedAuthorityUtils implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 8612802882156008935L;
 
     /**

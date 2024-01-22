@@ -19,6 +19,7 @@ import com.gitee.fubluesky.kernel.core.exception.AbstractExceptionEnum;
 import com.gitee.fubluesky.kernel.core.exception.ResponseEnum;
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -31,6 +32,7 @@ import java.io.Serializable;
 @Data
 public class ResponseResult implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = -7114120755921784203L;
 
     /**

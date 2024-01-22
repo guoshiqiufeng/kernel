@@ -18,6 +18,7 @@ package com.gitee.fubluesky.kernel.file.all.autoconfigure;
 import com.gitee.fubluesky.kernel.file.local.pojo.LocalFileProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -28,6 +29,7 @@ import java.io.Serializable;
 @ConfigurationProperties(prefix = "kernel.file.local")
 public class LocalFileSpringProperties extends LocalFileProperties implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = -3702694512869108639L;
 
 }

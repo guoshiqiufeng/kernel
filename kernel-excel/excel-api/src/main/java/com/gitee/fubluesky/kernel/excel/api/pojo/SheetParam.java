@@ -17,6 +17,7 @@ package com.gitee.fubluesky.kernel.excel.api.pojo;
 
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Collection;
 
@@ -28,6 +29,7 @@ import java.util.Collection;
 @Data
 public class SheetParam implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 2287696388527867721L;
 
     /**

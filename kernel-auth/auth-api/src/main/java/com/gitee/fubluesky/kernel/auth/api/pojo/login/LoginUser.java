@@ -18,6 +18,7 @@ package com.gitee.fubluesky.kernel.auth.api.pojo.login;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -30,6 +31,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class LoginUser implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = -8213601764304142784L;
 
     /**

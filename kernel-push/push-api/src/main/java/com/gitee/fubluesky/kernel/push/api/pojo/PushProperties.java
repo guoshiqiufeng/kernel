@@ -17,6 +17,7 @@ package com.gitee.fubluesky.kernel.push.api.pojo;
 
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -27,6 +28,7 @@ import java.io.Serializable;
 @Data
 public class PushProperties implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = -5207361293886433467L;
 
     /**

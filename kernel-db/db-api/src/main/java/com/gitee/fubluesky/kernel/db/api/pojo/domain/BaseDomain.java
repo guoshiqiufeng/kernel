@@ -17,6 +17,7 @@ package com.gitee.fubluesky.kernel.db.api.pojo.domain;
 
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -29,6 +30,7 @@ import java.io.Serializable;
 @Data
 public class BaseDomain implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = -9106347079313841483L;
 
 }

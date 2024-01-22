@@ -17,6 +17,7 @@ package com.gitee.fubluesky.kernel.db.mybatisplus.pojo;
 
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -27,6 +28,7 @@ import java.io.Serializable;
 @Data
 public class DbProperties implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = -8733821714991760707L;
 
     /**
