@@ -3,6 +3,70 @@ import java.time.LocalDateTime
 allprojects {
     group APP_GROUP
     version APP_VERSION
+
+    dependencies {
+        /**
+         * 强制依赖版本
+         */
+        configurations.configureEach {
+            // 开启版本冲突编译直接报错模式...
+            resolutionStrategy {
+                failOnVersionConflict()
+            }
+
+            // 版本冲突解析策略
+            resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+                def requested = details.requested
+                if (requested.group == 'org.springframework' && requested.name.contains("spring")) {
+                    details.useVersion "${springVersion}"
+                }
+                if (requested.group == 'org.springframework.boot' && requested.name.contains("spring")) {
+                    details.useVersion "${springBootVersion}"
+                }
+                if (requested.group == 'org.slf4j' && requested.name == "slf4j-api") {
+                    details.useVersion "1.7.36"
+                }
+                if (requested.group == 'ch.qos.logback' && requested.name == "logback-classic") {
+                    details.useVersion "1.4.14"
+                }
+                if (requested.group == 'com.fasterxml.jackson.core' && requested.name == "jackson-databind") {
+                    details.useVersion "2.15.3"
+                }
+                if (requested.group == 'org.apache.httpcomponents' && requested.name == "httpclient") {
+                    details.useVersion "4.5.13"
+                }
+                if (requested.group == 'com.google.code.gson' && requested.name == "gson") {
+                    details.useVersion "2.8.6"
+                }
+                if (requested.group == 'org.apache.commons' && requested.name == "commons-compress") {
+                    details.useVersion "1.25.0"
+                }
+                if (requested.group == 'org.apache.httpcomponents' && requested.name == "httpcore") {
+                    details.useVersion "4.4.16"
+                }
+                if (requested.group == 'jakarta.activation' && requested.name == "jakarta.activation-api") {
+                    details.useVersion "2.1.2"
+                }
+                // auth-spring-boot-starter
+                if (requested.group == 'org.hamcrest' && requested.name == "hamcrest") {
+                    details.useVersion "2.2"
+                }
+                if (requested.group == 'net.bytebuddy' && requested.name == "byte-buddy") {
+                    details.useVersion "1.12.21"
+                }
+                if (requested.group == 'net.minidev' && requested.name == "json-smart") {
+                    details.useVersion "2.5.0"
+                }
+                if (requested.group == 'org.junit.jupiter' && requested.name == "junit-jupiter-api") {
+                    details.useVersion "5.10.1"
+                }
+                // sms-ali-spring-boot-starter
+                if (requested.group == 'jakarta.xml.bind' && requested.name == "jakarta.xml.bind-api") {
+                    details.useVersion "4.0.1"
+                }
+            }
+        }
+    }
 }
 
 ext {
