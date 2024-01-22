@@ -19,6 +19,8 @@ import com.gitee.fubluesky.kernel.file.api.pojo.FileProperties;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.time.Duration;
+
 /**
  * @author yanghq
  * @version 1.0
@@ -68,4 +70,18 @@ public class FtpFileProperties extends FileProperties {
      */
     private String tempDir;
 
+    /**
+     * 传输超时时间
+     */
+    private Duration dataTimeout = Duration.ofMillis(60000);
+
+    /**
+     * 连接超时时间
+     */
+    private int connectTimeout = 60000;
+
+    /**
+     *  编码
+     */
+    private String controlEncoding = "UTF-8";
 }

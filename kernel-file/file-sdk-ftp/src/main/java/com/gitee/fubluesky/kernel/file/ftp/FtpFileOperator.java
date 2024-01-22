@@ -63,7 +63,7 @@ public class FtpFileOperator implements FileOperatorApi {
         // 端口
         ftpClient.setDefaultPort(ftpFileProperties.getPort());
         // 编码
-        ftpClient.setControlEncoding("UTF-8");
+        ftpClient.setControlEncoding(ftpFileProperties.getControlEncoding());
 
         reply = ftpClient.getReplyCode();
 
@@ -79,11 +79,8 @@ public class FtpFileOperator implements FileOperatorApi {
             }
         }
         // 设置传输超时时间为60秒
-        ftpClient.setDataTimeout(60000);
-        /*
-         * ftpClient.setConnectTimeout(60000); //连接超时为60秒
-         */
-        ftpClient.enterLocalPassiveMode();
+        ftpClient.setDataTimeout(ftpFileProperties.getDataTimeout());
+        ftpClient.setConnectTimeout(ftpFileProperties.getConnectTimeout());
         ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
         ftpClient.setBufferSize(1024 * 1024 * 10);
         if (ftpFileProperties.getIsPassive()) {
