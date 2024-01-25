@@ -87,7 +87,7 @@ subprojects {
     }
 
     dependencies {
-        implementation platform("org.springframework.boot:spring-boot-dependencies:3.2.1")
+        implementation platform("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
         implementation "org.apache.httpcomponents:httpclient:4.5.14"
     }
 

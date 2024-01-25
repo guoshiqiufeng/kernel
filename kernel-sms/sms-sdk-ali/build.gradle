@@ -1,5 +1,8 @@
 dependencies {
     api project(':kernel-sms:sms-api')
-    api "${lib."aliyun-java-sdk-core"}"
+    api "${lib."bcprov-jdk18on"}"
+    api ("${lib."aliyun-java-sdk-core"}") {
+        exclude(group: 'org.bouncycastle', module: 'bcprov-jdk15on')
+    }
     implementation "${lib."slf4j-api"}"
 }

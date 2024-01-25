@@ -1,9 +1,6 @@
 dependencies {
     api project(':kernel-file:file-api')
-    api "${lib."bcprov-jdk18on"}"
-    api ("${lib."aliyun-sdk-oss"}") {
-        exclude(group: 'org.bouncycastle', module: 'bcprov-jdk15on')
-    }
+    api "${lib."aliyun-sdk-oss"}"
 
     implementation "${lib."slf4j-api"}"
     implementation "${lib."gson"}"
