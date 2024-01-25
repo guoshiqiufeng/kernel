@@ -1,4 +1,4 @@
-## LOKI
+## KERNEL
 
 [![Maven central](https://img.shields.io/maven-central/v/io.github.guoshiqiufeng/kernel.svg?style=flat-square)](https://search.maven.org/search?q=g:io.github.guoshiqiufeng%20AND%20a:kernel)
 [![License](https://img.shields.io/:license-apache-brightgreen.svg?style=flat-square)](http://www.apache.org/licenses/LICENSE-2.0.html)
