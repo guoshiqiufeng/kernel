@@ -11,8 +11,7 @@ ext {
     ]
 
     libraries = [
-            springBootVersion = '3.2.1',
-            springVersion = '6.1.2',
+            springBootVersion = '3.2.2',
             hutoolVersion = '5.8.25',
             mybatisPlusVersion = '3.5.5',
     ]
@@ -54,6 +53,7 @@ ext {
             // aliyun
             "aliyun-sdk-oss"                   : "com.aliyun.oss:aliyun-sdk-oss:3.17.4",
             "aliyun-java-sdk-core"             : "com.aliyun:aliyun-java-sdk-core:4.6.4",
+            "bcprov-jdk18on"                   : "org.bouncycastle:bcprov-jdk18on:1.77",
             // mybatis-plus
             "mybatis-plus-spring-boot3-starter": "com.baomidou:mybatis-plus-spring-boot3-starter:${mybatisPlusVersion}",
     ]
@@ -88,6 +88,7 @@ subprojects {
 
     dependencies {
         implementation platform("org.springframework.boot:spring-boot-dependencies:3.2.1")
+        implementation "org.apache.httpcomponents:httpclient:4.5.14"
     }
 
     tasks.withType(JavaCompile) {
@@ -198,7 +199,7 @@ subprojects {
         publications {
 
             mavenJava(MavenPublication) {
-                if(project.name != "kernel-bom") {
+                if (project.name != "kernel-bom") {
                     from components.java
                     artifact sourcesJar
                     artifact javadocJar
@@ -206,7 +207,7 @@ subprojects {
 
                 pom {
                     name = 'kernel'
-                    if(project.name == "kernel-bom") {
+                    if (project.name == "kernel-bom") {
                         packaging 'pom'
                     } else {
                         packaging 'jar'

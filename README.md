@@ -17,7 +17,7 @@ https://guoshiqiufeng.github.io/kernel/en/
 
 - Java 21
 - Gradle 8.5
-- Spring Boot 3.2.1
+- Spring Boot 3.2.2
 
 ### Use
 
