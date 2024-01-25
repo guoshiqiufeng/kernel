@@ -1,5 +1,8 @@
 dependencies {
     api project(':kernel-push:push-api')
-    api "${lib."jpush-client"}"
+    api "${lib."bcprov-jdk18on"}"
+    api ("${lib."jpush-client"}") {
+        exclude(group: 'org.bouncycastle', module: 'bcprov-jdk15on')
+    }
     implementation "${lib."slf4j-api"}"
 }
