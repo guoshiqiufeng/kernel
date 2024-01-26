@@ -11,12 +11,12 @@ export default defineUserConfig({
         '/': {
             lang: 'zh-CN',
             title: 'kernel',
-            description: '简化消息队列使用'
+            description: '简化组件，快速开发'
         },
         '/en/': {
             lang: 'en-US',
             title: 'kernel',
-            description: 'Simplifying mq usage'
+            description: 'Simpler components, faster development'
         }
     },
     head: [],

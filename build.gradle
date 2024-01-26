@@ -59,7 +59,7 @@ ext {
     ]
 }
 
-description = "Spring Boot Rapid Development"
+description = "Simpler components, faster development"
 
 subprojects {
     apply plugin: 'java-library'
@@ -212,7 +212,7 @@ subprojects {
                     } else {
                         packaging 'jar'
                     }
-                    description = 'Spring Boot Rapid Development'
+                    description = 'Simpler components, faster development'
                     url = 'https://github.com/guoshiqiufeng/kernel'
 
                     scm {
