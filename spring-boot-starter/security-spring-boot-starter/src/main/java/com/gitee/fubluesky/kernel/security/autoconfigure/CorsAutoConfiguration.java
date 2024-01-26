@@ -42,7 +42,7 @@ public class CorsAutoConfiguration {
     }
 
     @Bean
-    public FilterRegistrationBean<CorsFilter> corsFilter(CorsProperties corsProperties) {
+    public CorsFilter corsFilter(CorsProperties corsProperties) {
         return new CorsUtils(corsProperties).getCorsFilter();
     }
 

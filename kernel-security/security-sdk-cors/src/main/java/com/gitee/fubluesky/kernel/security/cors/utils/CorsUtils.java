@@ -37,7 +37,7 @@ public class CorsUtils {
         this.corsProperties = corsProperties;
     }
 
-    public FilterRegistrationBean<CorsFilter> getCorsFilter() {
+    public CorsFilter getCorsFilter() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(corsProperties.getAllowCredentials());
         config.addAllowedOriginPattern(corsProperties.getAllowedOrigin());
@@ -59,7 +59,7 @@ public class CorsUtils {
         source.registerCorsConfiguration(corsProperties.getPath(), config);
         FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(new CorsFilter(source));
         bean.setOrder(0);
-        return bean;
+        return new CorsFilter(source);
     }
 
 }
