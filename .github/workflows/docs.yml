@@ -22,7 +22,11 @@ jobs:
         
       - name: list files
         run: ls -l
+        working-directory: docs
         
+      - name: list files
+        run: ls -l
+      
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
