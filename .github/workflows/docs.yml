@@ -16,16 +16,6 @@ jobs:
         with:
           # “最近更新时间” 等 git 日志相关信息，需要拉取全部提交记录
           fetch-depth: 0
-
-      - name: Change to docs directory
-        run: cd docs
-        
-      - name: list files
-        run: ls -l
-        working-directory: docs
-        
-      - name: list files
-        run: ls -l
       
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
@@ -34,9 +24,7 @@ jobs:
           version: 8
           # 使用 pnpm 安装依赖
           run_install: true
-
-      - name: list files
-        run: ls -l
+          path: docs
         
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -45,13 +33,16 @@ jobs:
           node-version: 18
           # 缓存 pnpm 依赖
           cache: pnpm
+          path: docs
 
       - name: Install dependencies
         run: pnpm install
+        working-directory: docs
 
       # 运行构建脚本
       - name: Build VuePress site
         run: pnpm docs:build
+        working-directory: docs
 
       # 查看 workflow 的文档来获取更多信息
       # @see https://github.com/crazy-max/ghaction-github-pages
@@ -61,7 +52,7 @@ jobs:
           # 部署到 gh-pages 分支
           target_branch: gh-pages
           # 部署目录为 VuePress 的默认输出目录
-          build_dir: docs/.vuepress/dist
+          build_dir: docs/docs/.vuepress/dist
         env:
           # @see https://docs.github.com/cn/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
